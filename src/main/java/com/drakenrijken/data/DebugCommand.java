@@ -59,6 +59,13 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal("Je zit in tijdperk " + era + " van 3."), false);
 					return 1;
 				}))
+				.then(Commands.literal("rijk").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					int macht = RealmScan.powerAround(p.level(), p.blockPosition());
+					String text = com.drakenrijken.core.RealmReport.describe(macht);
+					c.getSource().sendSuccess(() -> Component.literal(text), false);
+					return 1;
+				}))
 				.then(Commands.literal("recepten").executes(c -> {
 					int n = ModRecipes.book().all().size();
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
