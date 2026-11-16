@@ -1,0 +1,1 @@
+{"id":"zij2_kruipers","requires":["poort_stoom"],"event":"kill","target":"minecraft:creeper","count":5,"reward":{"xp":90}}

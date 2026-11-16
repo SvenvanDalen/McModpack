@@ -1,0 +1,1 @@
+{"id":"zij2_glas","requires":["poort_stoom"],"event":"pickup","target":"minecraft:glass","count":10,"reward":{"xp":70}}

@@ -1,0 +1,1 @@
+{"id":"zij2_redstone","requires":["poort_stoom"],"event":"pickup","target":"minecraft:redstone","count":15,"reward":{"xp":80}}

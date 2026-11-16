@@ -1,0 +1,1 @@
+{"id":"zij3_obsidiaan","requires":["poort_runen"],"event":"break_block","target":"minecraft:obsidian","count":4,"reward":{"xp":200}}

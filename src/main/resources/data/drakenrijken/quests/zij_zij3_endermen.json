@@ -1,0 +1,1 @@
+{"id":"zij3_endermen","requires":["poort_runen"],"event":"kill","target":"minecraft:enderman","count":3,"reward":{"xp":240}}
