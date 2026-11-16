@@ -28,6 +28,18 @@ class MachineRecipeLoaderTest {
 	}
 
 	@Test
+	void stoomReceptenLadenMetJuisteMachines() throws Exception {
+		List<String> teksten = new ArrayList<>();
+		for (String naam : List.of("ijzer_staaf", "plank_zaag", "staal_pers")) {
+			try (var in = getClass().getResourceAsStream("/data/drakenrijken/recipes/" + naam + ".json")) {
+				teksten.add(new String(in.readAllBytes()));
+			}
+		}
+		var r = MachineRecipeLoader.load(teksten.stream(), w -> { throw new AssertionError(w); });
+		assertEquals(List.of("smederij", "zaag", "pers"), r.stream().map(x -> x.machine()).toList());
+	}
+
+	@Test
 	void meegeleverdReceptLaadt() throws Exception {
 		try (var in = getClass().getResourceAsStream("/data/drakenrijken/recipes/ijzer_staaf.json")) {
 			var r = MachineRecipeLoader.load(Stream.of(new String(in.readAllBytes())), w -> { throw new AssertionError(w); });
