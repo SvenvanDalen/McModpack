@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["LLL", "IRI"],
+	"key": {"L": "minecraft:leather", "I": "minecraft:iron_ingot", "R": "minecraft:redstone"},
+	"result": {"id": "drakenrijken:transportband", "count": 6}
+}

@@ -1,0 +1,5 @@
+{"variants":{
+"facing=north":{"model":"drakenrijken:block/transportband"},
+"facing=east":{"model":"drakenrijken:block/transportband","y":90},
+"facing=south":{"model":"drakenrijken:block/transportband","y":180},
+"facing=west":{"model":"drakenrijken:block/transportband","y":270}}}

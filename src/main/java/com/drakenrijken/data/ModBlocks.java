@@ -20,6 +20,7 @@ public final class ModBlocks {
 	public static Block ZAAG;
 	public static Block PERS;
 	public static Block RUNESTEEN;
+	public static Block TRANSPORTBAND;
 	public static Block RUNESMEDERIJ;
 
 	private ModBlocks() {}
@@ -32,6 +33,7 @@ public final class ModBlocks {
 		ZAAG = register("zaag", p -> new MachineBlock(p, "zaag", 2), BlockBehaviour.Properties.of().strength(3.5f));
 		PERS = register("pers", p -> new MachineBlock(p, "pers", 2), BlockBehaviour.Properties.of().strength(3.5f));
 		RUNESTEEN = register("runesteen", RuneStoneBlock::new, BlockBehaviour.Properties.of().strength(4.0f));
+		TRANSPORTBAND = register("transportband", ConveyorBlock::new, BlockBehaviour.Properties.of().strength(1.5f));
 		RUNESMEDERIJ = register("runesmederij", p -> new MachineBlock(p, "runesmederij", 3), BlockBehaviour.Properties.of().strength(4.0f));
 	}
 
