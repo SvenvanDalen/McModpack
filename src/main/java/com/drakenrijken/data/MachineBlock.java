@@ -30,21 +30,24 @@ public class MachineBlock extends Block {
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
 		if (level.isClientSide()) return InteractionResult.SUCCESS;
-		String melding = process(player, machine);
+		int kracht = AxleNetwork.scan(level, pos).available();
+		String melding = process(player, machine, kracht);
 		player.sendOverlayMessage(Component.literal(melding));
 		return InteractionResult.SUCCESS_SERVER;
 	}
 
-	/** Verwerkt één keer het eerste passende recept; geeft een korte melding terug. */
-	public static String process(Player player, String machine) {
+	/** Verwerkt één keer het eerste passende recept waar genoeg kracht voor is; geeft een korte melding terug. */
+	public static String process(Player player, String machine, int kracht) {
 		Map<String, Integer> have = new HashMap<>();
 		var inv = player.getInventory();
 		for (int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack s = inv.getItem(i);
 			if (!s.isEmpty()) have.merge(BuiltInRegistries.ITEM.getKey(s.getItem()).toString(), s.getCount(), Integer::sum);
 		}
-		var found = ModRecipes.book().find(machine, have);
-		if (found.isEmpty()) return "Geen passend recept met wat je bij je hebt.";
+		var found = ModRecipes.book().forMachine(machine).stream()
+			.filter(x -> x.power() <= kracht && x.inputs().entrySet().stream().allMatch(e -> have.getOrDefault(e.getKey(), 0) >= e.getValue()))
+			.findFirst();
+		if (found.isEmpty()) return "Geen passend recept, of te weinig kracht (" + kracht + ").";
 		MachineRecipe r = found.get();
 		Identifier outId = Identifier.tryParse(r.output());
 		var outItem = outId == null ? java.util.Optional.<net.minecraft.world.item.Item>empty() : BuiltInRegistries.ITEM.getOptional(outId);
