@@ -56,6 +56,22 @@ public final class QuestEvents {
 	private static void send(ServerPlayer sp, QuestEvent e) {
 		for (String id : engine.onEvent(e, ModData.of(sp))) {
 			DrakenRijken.LOGGER.info("{} voltooide quest {}", sp.getName().getString(), id);
+			giveItems(sp, id);
+		}
+	}
+
+	private static void giveItems(ServerPlayer sp, String questId) {
+		for (QuestDef q : engine.quests()) {
+			if (!q.id().equals(questId)) continue;
+			for (String item : q.reward().items()) {
+				var id = net.minecraft.resources.Identifier.tryParse(item);
+				var opt = id == null ? java.util.Optional.<net.minecraft.world.item.Item>empty() : BuiltInRegistries.ITEM.getOptional(id);
+				if (opt.isEmpty()) {
+					DrakenRijken.LOGGER.warn("Quest {} geeft onbekend item {}", questId, item);
+					continue;
+				}
+				sp.getInventory().add(new ItemStack(opt.get()));
+			}
 		}
 	}
 

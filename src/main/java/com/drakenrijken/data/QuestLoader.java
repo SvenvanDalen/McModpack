@@ -61,8 +61,15 @@ public final class QuestLoader {
 			JsonArray arr = o.getAsJsonArray("requires");
 			arr.forEach(e -> requires.add(e.getAsString()));
 		}
+		com.drakenrijken.core.QuestReward reward = com.drakenrijken.core.QuestReward.NONE;
+		if (o.has("reward")) {
+			JsonObject r = o.getAsJsonObject("reward");
+			List<String> items = new ArrayList<>();
+			if (r.has("items")) r.getAsJsonArray("items").forEach(e -> items.add(e.getAsString()));
+			reward = new com.drakenrijken.core.QuestReward(r.has("xp") ? r.get("xp").getAsInt() : 0, items);
+		}
 		return new QuestDef(required(o, "id"), requires, required(o, "event"), required(o, "target"),
-			o.has("count") ? o.get("count").getAsInt() : 1);
+			o.has("count") ? o.get("count").getAsInt() : 1, reward);
 	}
 
 	private static String required(JsonObject o, String key) {

@@ -65,4 +65,21 @@ class QuestEngineTest {
 		assertThrows(IllegalArgumentException.class, () -> new QuestEngine(List.of(
 			new QuestDef("a", List.of("bestaat-niet"), "kill", "*", 1))));
 	}
+
+	@Test
+	void beloningGeeftXpAlleenBijVoltooien() {
+		QuestEngine e = new QuestEngine(List.of(new QuestDef("a", List.of(), "kill", "*", 2, new QuestReward(50, List.of("minecraft:bread")))));
+		PlayerData d = PlayerData.empty();
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		assertEquals(0, d.progress().xp());
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		assertEquals(50, d.progress().xp());
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		assertEquals(50, d.progress().xp());
+	}
+
+	@Test
+	void negatieveBeloningWordtAfgewezen() {
+		assertThrows(IllegalArgumentException.class, () -> new QuestReward(-1, List.of()));
+	}
 }

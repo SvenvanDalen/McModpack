@@ -35,6 +35,7 @@ public final class QuestEngine {
 			if (n >= q.count()) {
 				qp.completed().add(q.id());
 				done.add(q.id());
+				XpRules.award(d.progress(), q.reward().xp());
 			}
 		}
 		return done;

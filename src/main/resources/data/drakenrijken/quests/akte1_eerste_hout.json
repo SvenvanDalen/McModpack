@@ -1,1 +1,1 @@
-{"id":"eerste_hout","event":"break_block","target":"minecraft:oak_log","count":5}
+{"id":"eerste_hout","event":"break_block","target":"minecraft:oak_log","count":5,"reward":{"xp":50,"items":["minecraft:bread"]}}
