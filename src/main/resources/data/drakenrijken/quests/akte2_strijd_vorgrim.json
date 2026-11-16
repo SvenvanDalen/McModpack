@@ -1,0 +1,1 @@
+{"id":"strijd_vorgrim","requires":["berg_diamanten"],"event":"kill","target":"drakenrijken:vorgrim","count":1,"reward":{"xp":2000}}

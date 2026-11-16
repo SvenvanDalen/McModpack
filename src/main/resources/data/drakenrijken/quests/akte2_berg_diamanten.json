@@ -1,0 +1,1 @@
+{"id":"berg_diamanten","requires":["ruine_wachters"],"event":"pickup","target":"minecraft:diamond","count":3,"reward":{"xp":500,"items":["minecraft:golden_apple"]}}

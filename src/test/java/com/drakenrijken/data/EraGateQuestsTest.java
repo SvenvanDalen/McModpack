@@ -42,6 +42,11 @@ class EraGateQuestsTest {
 		}
 		for (int i = 0; i < 10; i++) engine.onEvent(new QuestEvent("kill", "minecraft:zombie"), d);
 		assertEquals(2, gate.currentEra(d.quests()));
+		String[][] akte2 = {{"pickup", "minecraft:copper_ingot", "10"}, {"pickup", "minecraft:coal", "20"}, {"kill", "minecraft:creeper", "5"}, {"pickup", "minecraft:amethyst_shard", "6"}};
+		for (String[] a : akte2) {
+			assertEquals(2, gate.currentEra(d.quests()));
+			for (int i = 0; i < Integer.parseInt(a[2]); i++) engine.onEvent(new QuestEvent(a[0], a[1]), d);
+		}
 		for (int i = 0; i < 8; i++) engine.onEvent(new QuestEvent("kill", "minecraft:blaze"), d);
 		assertEquals(3, gate.currentEra(d.quests()));
 	}

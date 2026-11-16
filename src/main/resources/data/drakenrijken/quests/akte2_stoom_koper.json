@@ -1,0 +1,1 @@
+{"id":"stoom_koper","requires":["poort_stoom"],"event":"pickup","target":"minecraft:copper_ingot","count":10,"reward":{"xp":150}}

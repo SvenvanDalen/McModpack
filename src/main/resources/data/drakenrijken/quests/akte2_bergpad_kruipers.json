@@ -1,0 +1,1 @@
+{"id":"bergpad_kruipers","requires":["stoom_brandstof"],"event":"kill","target":"minecraft:creeper","count":5,"reward":{"xp":200}}

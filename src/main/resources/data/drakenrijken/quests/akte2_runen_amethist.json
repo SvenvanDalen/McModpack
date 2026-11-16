@@ -1,0 +1,1 @@
+{"id":"runen_amethist","requires":["bergpad_kruipers"],"event":"pickup","target":"minecraft:amethyst_shard","count":6,"reward":{"xp":250}}

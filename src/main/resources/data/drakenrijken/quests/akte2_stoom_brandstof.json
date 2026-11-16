@@ -1,0 +1,1 @@
+{"id":"stoom_brandstof","requires":["stoom_koper"],"event":"pickup","target":"minecraft:coal","count":20,"reward":{"xp":150,"items":["minecraft:bucket"]}}

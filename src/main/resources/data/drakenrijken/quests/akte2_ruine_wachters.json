@@ -1,0 +1,1 @@
+{"id":"ruine_wachters","requires":["poort_runen"],"event":"kill","target":"minecraft:wither_skeleton","count":3,"reward":{"xp":500}}
