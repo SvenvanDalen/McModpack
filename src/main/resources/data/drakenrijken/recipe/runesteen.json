@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["ADA", "DGD", "ADA"],
+	"key": {"A": "minecraft:amethyst_shard", "D": "minecraft:diamond", "G": "minecraft:gold_block"},
+	"result": {"id": "drakenrijken:runesteen", "count": 1}
+}

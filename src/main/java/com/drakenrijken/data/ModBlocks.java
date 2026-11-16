@@ -19,6 +19,8 @@ public final class ModBlocks {
 	public static Block STOOMKETEL;
 	public static Block ZAAG;
 	public static Block PERS;
+	public static Block RUNESTEEN;
+	public static Block RUNESMEDERIJ;
 
 	private ModBlocks() {}
 
@@ -29,6 +31,8 @@ public final class ModBlocks {
 		STOOMKETEL = register("stoomketel", SteamBoilerBlock::new, BlockBehaviour.Properties.of().strength(4.0f));
 		ZAAG = register("zaag", p -> new MachineBlock(p, "zaag", 2), BlockBehaviour.Properties.of().strength(3.5f));
 		PERS = register("pers", p -> new MachineBlock(p, "pers", 2), BlockBehaviour.Properties.of().strength(3.5f));
+		RUNESTEEN = register("runesteen", RuneStoneBlock::new, BlockBehaviour.Properties.of().strength(4.0f));
+		RUNESMEDERIJ = register("runesmederij", p -> new MachineBlock(p, "runesmederij", 3), BlockBehaviour.Properties.of().strength(4.0f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {

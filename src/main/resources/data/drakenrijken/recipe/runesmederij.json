@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["AAA", "ASA", "OOO"],
+	"key": {"A": "minecraft:amethyst_shard", "S": "drakenrijken:smederij", "O": "minecraft:obsidian"},
+	"result": {"id": "drakenrijken:runesmederij", "count": 1}
+}
