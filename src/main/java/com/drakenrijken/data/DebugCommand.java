@@ -71,6 +71,13 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
 				}))
+				.then(Commands.literal("aanval").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
+						? RealmRaid.launch(sl, p, com.drakenrijken.core.RealmState.levelFor(ModData.of(p).realmPower())) : 0;
+					if (n == 0) c.getSource().sendSuccess(() -> Component.literal("Geen aanval: je rijk is nog te klein (niveau 2 nodig) of er zijn al genoeg vijanden."), false);
+					return 1;
+				}))
 				.then(Commands.literal("recepten").executes(c -> {
 					int n = ModRecipes.book().all().size();
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);

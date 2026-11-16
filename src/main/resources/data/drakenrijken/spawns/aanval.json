@@ -1,0 +1,9 @@
+{
+	"area": "aanval",
+	"entries": [
+		{ "mob": "minecraft:zombie", "weight": 6, "era": 1 },
+		{ "mob": "minecraft:skeleton", "weight": 4, "era": 1 },
+		{ "mob": "minecraft:pillager", "weight": 4, "era": 2 },
+		{ "mob": "minecraft:vindicator", "weight": 3, "era": 3 }
+	]
+}

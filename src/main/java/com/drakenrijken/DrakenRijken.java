@@ -20,6 +20,7 @@ public class DrakenRijken implements ModInitializer {
 		com.drakenrijken.data.ModRecipes.init();
 		com.drakenrijken.data.DebugCommand.init();
 		com.drakenrijken.data.RealmTrading.init();
+		com.drakenrijken.data.RealmRaid.init();
 		com.drakenrijken.quest.QuestEvents.init();
 		config = com.drakenrijken.config.ConfigFile.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
 		LOGGER.info("Draken en Rijken geladen");

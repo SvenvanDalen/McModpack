@@ -51,4 +51,14 @@ public class RijkGameTest {
 		if (dorpeling.getPlayerReputation(speler) != laag) throw new AssertionError("reputatie niet teruggezet");
 		context.succeed();
 	}
+
+	@GameTest
+	public void aanvalVanafNiveauTwee(GameTestHelper context) {
+		var speler = context.makeMockServerPlayerInLevel();
+		var level = context.getLevel();
+		if (com.drakenrijken.data.RealmRaid.launch(level, speler, 1) != 0) throw new AssertionError("aanval onder niveau 2");
+		int n = com.drakenrijken.data.RealmRaid.launch(level, speler, 2);
+		if (n < 1 || n > 3) throw new AssertionError("verwachtte 1 tot 3 aanvallers, kreeg " + n);
+		context.succeed();
+	}
 }
