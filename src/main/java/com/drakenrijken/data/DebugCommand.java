@@ -59,6 +59,11 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal("Je zit in tijdperk " + era + " van 3."), false);
 					return 1;
 				}))
+				.then(Commands.literal("recepten").executes(c -> {
+					int n = ModRecipes.book().all().size();
+					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
+					return 1;
+				}))
 				.then(Commands.literal("quests").executes(c -> {
 					ServerPlayer p = c.getSource().getPlayerOrException();
 					var lines = QuestLog.lines(QuestEvents.engine().quests(), ModData.of(p).quests());
