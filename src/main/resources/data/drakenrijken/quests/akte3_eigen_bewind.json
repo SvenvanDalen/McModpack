@@ -1,0 +1,1 @@
+{"id":"epiloog_eigen_bewind","requires":["strijd_vorgrim"],"event":"pickup","target":"minecraft:gold_block","count":5,"reward":{"xp":1000,"items":["minecraft:golden_apple"]}}

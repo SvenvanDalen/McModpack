@@ -1,0 +1,1 @@
+{"id":"epiloog_verdrag","requires":["strijd_vorgrim"],"event":"pickup","target":"minecraft:emerald","count":10,"reward":{"xp":1000,"items":["minecraft:emerald_block"]}}
