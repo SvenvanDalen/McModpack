@@ -36,6 +36,7 @@ public final class QuestEngine {
 				qp.completed().add(q.id());
 				done.add(q.id());
 				XpRules.award(d.progress(), q.reward().xp());
+				d.progress().addBonusPoints(q.reward().skillPoints());
 			}
 		}
 		return done;

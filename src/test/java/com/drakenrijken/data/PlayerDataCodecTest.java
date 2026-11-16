@@ -60,6 +60,13 @@ class PlayerDataCodecTest {
 	}
 
 	@Test
+	void bonuspuntenBlijvenBewaard() {
+		PlayerData d = PlayerData.empty();
+		d.progress().addBonusPoints(3);
+		assertEquals(3, roundtrip(d).progress().bonusPoints());
+	}
+
+	@Test
 	void oudeOpslagZonderMachtGeeftNul() {
 		var json = new com.google.gson.JsonObject();
 		json.addProperty("level", 1);

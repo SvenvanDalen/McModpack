@@ -17,9 +17,9 @@ public final class SkillTree {
 		}
 	}
 
-	/** Een punt per level boven level 1. */
+	/** Een punt per level boven level 1, plus bonuspunten uit quests. */
 	public static int pointsEarned(PlayerProgress p) {
-		return p.level() - 1;
+		return p.level() - 1 + p.bonusPoints();
 	}
 
 	public int pointsLeft(PlayerProgress p) {

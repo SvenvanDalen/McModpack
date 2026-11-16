@@ -7,6 +7,7 @@ import java.util.Set;
 public final class PlayerProgress {
 	private int level;
 	private int xp;
+	private int bonusPoints;
 	private final Set<String> unlocked = new LinkedHashSet<>();
 
 	public PlayerProgress() {
@@ -27,6 +28,14 @@ public final class PlayerProgress {
 	public int level() { return level; }
 
 	public int xp() { return xp; }
+
+	/** Extra vaardigheidspunten uit quest-beloningen. */
+	public int bonusPoints() { return bonusPoints; }
+
+	public void addBonusPoints(int n) {
+		if (n < 0) throw new IllegalArgumentException("bonuspunten zijn negatief: " + n);
+		bonusPoints = Math.addExact(bonusPoints, n);
+	}
 
 	/** Wijzigbare set; alleen SkillTree hoort hierin te schrijven. */
 	public Set<String> unlocked() { return unlocked; }

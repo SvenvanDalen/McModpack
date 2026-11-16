@@ -82,4 +82,22 @@ class QuestEngineTest {
 	void negatieveBeloningWordtAfgewezen() {
 		assertThrows(IllegalArgumentException.class, () -> new QuestReward(-1, List.of()));
 	}
+
+	@Test
+	void beloningGeeftVaardigheidspuntenAlleenBijVoltooien() {
+		QuestEngine e = new QuestEngine(List.of(new QuestDef("a", List.of(), "kill", "*", 2, new QuestReward(0, 2, List.of()))));
+		PlayerData d = PlayerData.empty();
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		assertEquals(0, d.progress().bonusPoints());
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		e.onEvent(new QuestEvent("kill", "x"), d);
+		assertEquals(2, d.progress().bonusPoints());
+		assertEquals(2, SkillTree.pointsEarned(d.progress()));
+	}
+
+	@Test
+	void negatievePuntenWordenAfgewezen() {
+		assertThrows(IllegalArgumentException.class, () -> new QuestReward(0, -1, List.of()));
+		assertThrows(IllegalArgumentException.class, () -> new PlayerProgress().addBonusPoints(-1));
+	}
 }
