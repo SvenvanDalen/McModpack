@@ -53,6 +53,12 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal("Je bent nu " + klasse.get().name().toLowerCase() + "."), false);
 					return 1;
 				})))
+				.then(Commands.literal("tijdperk").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					int era = new com.drakenrijken.core.EraGate("poort_stoom", "poort_runen").currentEra(ModData.of(p).quests());
+					c.getSource().sendSuccess(() -> Component.literal("Je zit in tijdperk " + era + " van 3."), false);
+					return 1;
+				}))
 				.then(Commands.literal("quests").executes(c -> {
 					ServerPlayer p = c.getSource().getPlayerOrException();
 					var lines = QuestLog.lines(QuestEvents.engine().quests(), ModData.of(p).quests());
