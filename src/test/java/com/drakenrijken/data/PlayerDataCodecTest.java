@@ -23,7 +23,9 @@ class PlayerDataCodecTest {
 		d.progress().restore(7, 40);
 		d.quests().counts().put("hout", 3);
 		d.quests().completed().add("dorp");
+		d.setRealmPower(260);
 		PlayerData r = roundtrip(d);
+		assertEquals(260, r.realmPower());
 		assertEquals(PlayerClass.MAGIER, r.playerClass().orElseThrow());
 		assertEquals(7, r.progress().level());
 		assertEquals(40, r.progress().xp());
@@ -46,5 +48,22 @@ class PlayerDataCodecTest {
 		json.addProperty("xp", 0);
 		var res = PlayerDataCodec.CODEC.parse(JsonOps.INSTANCE, json);
 		assertTrue(res.error().isPresent());
+	}
+
+	@Test
+	void negatieveMachtInOpslagWordtAfgewezen() {
+		var json = new com.google.gson.JsonObject();
+		json.addProperty("level", 1);
+		json.addProperty("xp", 0);
+		json.addProperty("realmPower", -5);
+		assertTrue(PlayerDataCodec.CODEC.parse(JsonOps.INSTANCE, json).error().isPresent());
+	}
+
+	@Test
+	void oudeOpslagZonderMachtGeeftNul() {
+		var json = new com.google.gson.JsonObject();
+		json.addProperty("level", 1);
+		json.addProperty("xp", 0);
+		assertEquals(0, PlayerDataCodec.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow().realmPower());
 	}
 }

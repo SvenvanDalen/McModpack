@@ -16,7 +16,7 @@ public final class PlayerDataCodec {
 	private PlayerDataCodec() {}
 
 	private record Raw(Optional<String> playerClass, int level, int xp, List<String> unlocked,
-		Map<String, Integer> questCounts, List<String> questsDone) {}
+		Map<String, Integer> questCounts, List<String> questsDone, int realmPower) {}
 
 	private static final Codec<Raw> RAW = RecordCodecBuilder.create(i -> i.group(
 		Codec.STRING.optionalFieldOf("class").forGetter(Raw::playerClass),
@@ -24,7 +24,8 @@ public final class PlayerDataCodec {
 		Codec.INT.fieldOf("xp").forGetter(Raw::xp),
 		Codec.STRING.listOf().optionalFieldOf("unlocked", List.of()).forGetter(Raw::unlocked),
 		Codec.unboundedMap(Codec.STRING, Codec.INT).optionalFieldOf("questCounts", Map.of()).forGetter(Raw::questCounts),
-		Codec.STRING.listOf().optionalFieldOf("questsDone", List.of()).forGetter(Raw::questsDone)
+		Codec.STRING.listOf().optionalFieldOf("questsDone", List.of()).forGetter(Raw::questsDone),
+		Codec.INT.optionalFieldOf("realmPower", 0).forGetter(Raw::realmPower)
 	).apply(i, Raw::new));
 
 	public static final Codec<PlayerData> CODEC = RAW.flatXmap(PlayerDataCodec::fromRaw, d -> DataResult.success(toRaw(d)));
@@ -32,7 +33,7 @@ public final class PlayerDataCodec {
 	private static Raw toRaw(PlayerData d) {
 		return new Raw(d.playerClass().map(PlayerClass::name), d.progress().level(), d.progress().xp(),
 			new ArrayList<>(d.progress().unlocked()), new LinkedHashMap<>(d.quests().counts()),
-			new ArrayList<>(d.quests().completed()));
+			new ArrayList<>(d.quests().completed()), d.realmPower());
 	}
 
 	private static DataResult<PlayerData> fromRaw(Raw r) {
@@ -42,6 +43,7 @@ public final class PlayerDataCodec {
 				d.setPlayerClass(PlayerClass.valueOf(r.playerClass().get()));
 			}
 			d.progress().restore(r.level(), r.xp());
+			d.setRealmPower(r.realmPower());
 		} catch (IllegalArgumentException e) {
 			return DataResult.error(() -> "ongeldige spelerdata: " + e.getMessage());
 		}

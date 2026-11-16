@@ -7,6 +7,7 @@ public final class PlayerData {
 	private PlayerClass playerClass;
 	private final PlayerProgress progress = new PlayerProgress();
 	private final QuestProgress quests = new QuestProgress();
+	private int realmPower;
 
 	private PlayerData() {}
 
@@ -21,4 +22,12 @@ public final class PlayerData {
 	public PlayerProgress progress() { return progress; }
 
 	public QuestProgress quests() { return quests; }
+
+	public int realmPower() { return realmPower; }
+
+	/** Totale macht van het rijk; het niveau volgt hieruit via RealmState. */
+	public void setRealmPower(int power) {
+		if (power < 0) throw new IllegalArgumentException("macht is negatief: " + power);
+		this.realmPower = power;
+	}
 }
