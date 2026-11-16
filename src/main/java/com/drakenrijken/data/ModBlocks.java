@@ -15,12 +15,14 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 public final class ModBlocks {
 	public static Block WATERRAD;
 	public static Block SMEDERIJ;
+	public static Block AS;
 
 	private ModBlocks() {}
 
 	public static void init() {
 		WATERRAD = register("waterrad", WaterWheelBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
 		SMEDERIJ = register("smederij", p -> new MachineBlock(p, "smederij"), BlockBehaviour.Properties.of().strength(3.5f));
+		AS = register("as", Block::new, BlockBehaviour.Properties.of().strength(1.5f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {

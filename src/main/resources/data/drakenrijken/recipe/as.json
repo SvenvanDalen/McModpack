@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["P", "I", "P"],
+	"key": {"P": "minecraft:oak_planks", "I": "minecraft:iron_ingot"},
+	"result": {"id": "drakenrijken:as", "count": 4}
+}
