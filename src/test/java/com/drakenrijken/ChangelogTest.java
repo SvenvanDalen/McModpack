@@ -16,7 +16,9 @@ class ChangelogTest {
 		Matcher m = Pattern.compile("(?m)^version=(.+)$").matcher(Files.readString(Path.of("gradle.properties")));
 		assertTrue(m.find(), "geen version in gradle.properties");
 		String version = m.group(1).trim();
-		assertTrue(version.matches("\d+\.\d+\.\d+"), "geen Semver: " + version);
+		String[] delen = version.split("[.]");
+		assertTrue(delen.length == 3, "geen Semver: " + version);
+		for (String d : delen) assertTrue(!d.isEmpty() && d.chars().allMatch(Character::isDigit), "geen Semver: " + version);
 		assertTrue(Files.readString(Path.of("CHANGELOG.md")).contains("## [" + version + "]"), "versie ontbreekt in changelog");
 	}
 }
