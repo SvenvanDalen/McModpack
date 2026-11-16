@@ -10,6 +10,7 @@ public class DrakenRijken implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		com.drakenrijken.data.ModData.init();
 		LOGGER.info("Draken en Rijken geladen");
 	}
 }

@@ -31,6 +31,13 @@ public final class PlayerProgress {
 	/** Wijzigbare set; alleen SkillTree hoort hierin te schrijven. */
 	public Set<String> unlocked() { return unlocked; }
 
+	/** Zet opgeslagen waarden terug, met dezelfde controle als de constructor. */
+	public void restore(int level, int xp) {
+		PlayerProgress check = new PlayerProgress(level, xp);
+		this.level = check.level;
+		this.xp = check.xp;
+	}
+
 	void set(int level, int xp) {
 		this.level = level;
 		this.xp = xp;

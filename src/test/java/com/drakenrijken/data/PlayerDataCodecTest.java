@@ -1,0 +1,46 @@
+package com.drakenrijken.data;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.drakenrijken.core.PlayerClass;
+import com.drakenrijken.core.PlayerData;
+import com.google.gson.JsonElement;
+import com.mojang.serialization.JsonOps;
+import org.junit.jupiter.api.Test;
+
+class PlayerDataCodecTest {
+	private static PlayerData roundtrip(PlayerData d) {
+		JsonElement json = PlayerDataCodec.CODEC.encodeStart(JsonOps.INSTANCE, d).getOrThrow();
+		return PlayerDataCodec.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow();
+	}
+
+	@Test
+	void roundtripGeeftGelijkeData() {
+		PlayerData d = PlayerData.empty();
+		d.setPlayerClass(PlayerClass.MAGIER);
+		d.progress().unlocked().add("vuurbal");
+		d.progress().restore(7, 40);
+		PlayerData r = roundtrip(d);
+		assertEquals(PlayerClass.MAGIER, r.playerClass().orElseThrow());
+		assertEquals(7, r.progress().level());
+		assertEquals(40, r.progress().xp());
+		assertEquals(d.progress().unlocked(), r.progress().unlocked());
+	}
+
+	@Test
+	void legeDataBlijftLeeg() {
+		PlayerData r = roundtrip(PlayerData.empty());
+		assertTrue(r.playerClass().isEmpty());
+		assertEquals(1, r.progress().level());
+	}
+
+	@Test
+	void ongeldigLevelWordtAfgewezenInPlaatsVanCrash() {
+		var json = new com.google.gson.JsonObject();
+		json.addProperty("level", 99);
+		json.addProperty("xp", 0);
+		var res = PlayerDataCodec.CODEC.parse(JsonOps.INSTANCE, json);
+		assertTrue(res.error().isPresent());
+	}
+}
