@@ -1,0 +1,3 @@
+{"id":"brandt","start":"begin","nodes":{
+"begin":{"text":"Ik ben Brandt, de smid. Breng me ijzer, dan maak ik er iets goeds van.","choices":[{"text":"Hoe vind ik ijzer?","next":"ijzer"},{"text":"Tot ziens.","next":null}]},
+"ijzer":{"text":"Diep in de grotten. Neem fakkels mee en pas op voor spinnen.","choices":[{"text":"Bedankt.","next":null}]}}}

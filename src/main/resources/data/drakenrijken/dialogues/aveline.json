@@ -1,0 +1,4 @@
+{"id":"aveline","start":"begin","nodes":{
+"begin":{"text":"Ik ben Aveline. Ik bewaak de runen van het Oude Verbond.","choices":[{"text":"Wat doen de runen?","next":"runen"},{"text":"Ik ga weer.","next":null}]},
+"runen":{"text":"Ze openen de weg naar Drakenberg. Zoek amethist; dan wek ik ze voor je.","choices":[{"text":"Ik breng het.","next":null},{"text":"En de draak?","next":"draak"}]},
+"draak":{"text":"Vorgrim waakt over het verbroken verdrag. Hij is woedend, maar niet verloren.","choices":[{"text":"Ik begrijp het.","next":null}]}}}

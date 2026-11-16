@@ -43,7 +43,7 @@ public final class DialogueLoader {
 				n.getAsJsonArray("choices").forEach(c -> {
 					JsonObject co = c.getAsJsonObject();
 					choices.add(new Dialogue.Choice(required(co, "text"),
-						co.has("next") ? co.get("next").getAsString() : null));
+						co.has("next") && !co.get("next").isJsonNull() ? co.get("next").getAsString() : null));
 				});
 			}
 			nodes.put(e.getKey(), new Dialogue.Node(required(n, "text"), choices));

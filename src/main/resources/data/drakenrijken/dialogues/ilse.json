@@ -1,0 +1,3 @@
+{"id":"ilse","start":"begin","nodes":{
+"begin":{"text":"Ik ben Ilse. Met stoom draait een machine zonder handen.","choices":[{"text":"Kun je het me leren?","next":"leren"},{"text":"Ik kom later terug.","next":null}]},
+"leren":{"text":"Breng koper en brandstof. Dan bouwen we samen de eerste stoommachine.","choices":[{"text":"Afgesproken.","next":null}]}}}

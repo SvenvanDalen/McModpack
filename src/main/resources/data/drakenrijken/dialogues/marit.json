@@ -1,0 +1,4 @@
+{"id":"marit","start":"begin","nodes":{
+"begin":{"text":"Welkom in Rivierhoek, zwerver. Het dorp kan hulp gebruiken.","choices":[{"text":"Waarmee kan ik helpen?","next":"hulp"},{"text":"Later misschien.","next":null}]},
+"hulp":{"text":"Breng ons hout voor de huizen. Daarna praten we verder.","choices":[{"text":"Ik ga ermee aan de slag.","next":null},{"text":"Wat is er met het rijk gebeurd?","next":"verhaal"}]},
+"verhaal":{"text":"Honderd jaar geleden sloot het koningshuis een verdrag met de draak. Dat is verbroken.","choices":[{"text":"Dan help ik jullie.","next":null}]}}}
