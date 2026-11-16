@@ -16,6 +16,7 @@ public final class ModBlocks {
 	public static Block WATERRAD;
 	public static Block SMEDERIJ;
 	public static Block AS;
+	public static Block STOOMKETEL;
 
 	private ModBlocks() {}
 
@@ -23,6 +24,7 @@ public final class ModBlocks {
 		WATERRAD = register("waterrad", WaterWheelBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
 		SMEDERIJ = register("smederij", p -> new MachineBlock(p, "smederij"), BlockBehaviour.Properties.of().strength(3.5f));
 		AS = register("as", Block::new, BlockBehaviour.Properties.of().strength(1.5f));
+		STOOMKETEL = register("stoomketel", SteamBoilerBlock::new, BlockBehaviour.Properties.of().strength(4.0f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {
