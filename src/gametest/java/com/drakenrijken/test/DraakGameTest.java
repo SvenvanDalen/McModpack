@@ -16,4 +16,16 @@ public class DraakGameTest {
 		if (DragonBoss.active()) throw new AssertionError("draak niet opgeruimd");
 		context.succeed();
 	}
+
+	@GameTest
+	public void draakHerstelAlsNiemandVecht(GameTestHelper context) {
+		BlockPos plek = context.absolutePos(new BlockPos(2, 2, 2));
+		if (!DragonBoss.spawn(context.getLevel(), plek)) throw new AssertionError("draak niet gemaakt");
+		DragonBoss.damageForTest(150f);
+		DragonBoss.tick();
+		if (DragonBoss.healthFraction() < 0.99f) throw new AssertionError("draak herstelde niet, fractie " + DragonBoss.healthFraction());
+		if (DragonBoss.phase() != 1) throw new AssertionError("verwachtte fase 1, kreeg " + DragonBoss.phase());
+		DragonBoss.stop();
+		context.succeed();
+	}
 }

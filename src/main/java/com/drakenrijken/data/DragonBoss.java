@@ -43,6 +43,12 @@ public final class DragonBoss {
 
 	public static boolean active() { return dragon != null; }
 
+	public static int phase() { return phase; }
+
+	public static float healthFraction() { return dragon == null ? 0f : dragon.getHealth() / dragon.getMaxHealth(); }
+
+	public static void damageForTest(float amount) { dragon.setHealth(dragon.getHealth() - amount); }
+
 	public static boolean spawn(ServerLevel level, BlockPos pos) {
 		if (dragon != null) return false;
 		var r = EntityTypes.RAVAGER.spawn(level, pos, EntitySpawnReason.EVENT);
@@ -67,7 +73,8 @@ public final class DragonBoss {
 		bar.setColor(nieuw == 3 ? BossEvent.BossBarColor.PURPLE : nieuw == 2 ? BossEvent.BossBarColor.YELLOW : BossEvent.BossBarColor.RED);
 	}
 
-	private static void tick() {
+	/** Eén controleronde; apart zodat een test hem direct kan aanroepen. */
+	public static void tick() {
 		if (!(dragon.level() instanceof ServerLevel level)) return;
 		var area = new AABB(dragon.blockPosition()).inflate(RANGE);
 		List<ServerPlayer> spelers = level.getEntitiesOfClass(ServerPlayer.class, area, p -> p.isAlive() && !p.isSpectator());
