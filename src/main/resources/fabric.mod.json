@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "drakenrijken",
+	"version": "${version}",
+	"name": "Draken en Rijken",
+	"description": "Fantasy-RPG met klassen, quests, een draak en industrie in drie tijdperken.",
+	"authors": ["Sven van Dalen"],
+	"license": "All-Rights-Reserved",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["com.drakenrijken.DrakenRijken"],
+		"client": ["com.drakenrijken.client.DrakenRijkenClient"]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

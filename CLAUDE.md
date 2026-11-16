@@ -13,7 +13,7 @@ Een eigen Fabric-mod voor Minecraft Java: een solo fantasy-RPG met klassen, ques
 - Inhoud (quests, vaardigheden, recepten, structuren) als JSON in `data/drakenrijken/`.
 - Teksturen 16x16, modellen laag in polygonen.
 - Volg de Definition of Done uit de backlog; meet prestaties na elke epic.
-- Minecraft-, Loader-, Loom- en Java-versie zijn nog niet vastgesteld: doe DR-001 eerst, uit officiële Fabric-bronnen. Bronnen noemden 26.3 en Java 25, maar dat is niet geverifieerd.
+- Versies (vastgesteld 2026-11-16, DR-001, uit fabric-example-mod en meta.fabricmc.net): Minecraft 26.3, Fabric Loader 0.20.1, Fabric API 0.166.2+26.3, Loom 1.19-SNAPSHOT (nu 1.19.4), Gradle 9.8.2, Java 25. Bouwen: `JAVA_HOME` op JDK 25; bij een certificaatfout in Gradle `JAVA_TOOL_OPTIONS=-Djavax.net.ssl.trustStoreType=Windows-ROOT`.
 - Bouw niets buiten het goedgekeurde ontwerp zonder het eerst te bespreken.
 
 ## Agents (The Agency, `msitarzewski/agency-agents`, MIT-licentie)
