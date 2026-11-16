@@ -21,15 +21,21 @@ import net.minecraft.world.phys.BlockHitResult;
  */
 public class MachineBlock extends Block {
 	private final String machine;
+	private final int minEra;
 
-	public MachineBlock(Properties properties, String machine) {
+	public MachineBlock(Properties properties, String machine, int minEra) {
 		super(properties);
 		this.machine = machine;
+		this.minEra = minEra;
 	}
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
 		if (level.isClientSide()) return InteractionResult.SUCCESS;
+		if (player instanceof net.minecraft.server.level.ServerPlayer sp && ModEra.of(sp) < minEra) {
+			player.sendOverlayMessage(Component.literal("Deze machine ken je nog niet: je mist tijdperk " + minEra + "."));
+			return InteractionResult.SUCCESS_SERVER;
+		}
 		int kracht = AxleNetwork.scan(level, pos).available();
 		String melding = process(player, machine, kracht);
 		player.sendOverlayMessage(Component.literal(melding));
