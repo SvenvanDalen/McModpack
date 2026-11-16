@@ -84,6 +84,15 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(ok ? "De draak is wakker geworden!" : "Er is al een draak."), false);
 					return 1;
 				}))
+				.then(Commands.literal("handleiding").executes(c -> {
+					c.getSource().sendSuccess(() -> Component.literal(ModHandbook.book().index()), false);
+					return 1;
+				}).then(Commands.argument("onderwerp", StringArgumentType.word()).executes(c -> {
+					var h = ModHandbook.book();
+					String text = h.find(StringArgumentType.getString(c, "onderwerp")).map(h::describe).orElse("Onbekend onderwerp.\n" + h.index());
+					c.getSource().sendSuccess(() -> Component.literal(text), false);
+					return 1;
+				})))
 				.then(Commands.literal("recepten").executes(c -> {
 					int n = ModRecipes.book().all().size();
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
