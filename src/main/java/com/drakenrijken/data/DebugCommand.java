@@ -49,6 +49,7 @@ public final class DebugCommand {
 					}
 					d.setPlayerClass(klasse.get());
 					p.setAttached(ModData.PLAYER_DATA, d);
+					ModKits.give(p, klasse.get());
 					c.getSource().sendSuccess(() -> Component.literal("Je bent nu " + klasse.get().name().toLowerCase() + "."), false);
 					return 1;
 				})))

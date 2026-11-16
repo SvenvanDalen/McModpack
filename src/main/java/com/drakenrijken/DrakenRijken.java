@@ -15,6 +15,7 @@ public class DrakenRijken implements ModInitializer {
 	public void onInitialize() {
 		com.drakenrijken.data.ModData.init();
 		com.drakenrijken.data.ModSkills.init();
+		com.drakenrijken.data.ModKits.init();
 		com.drakenrijken.data.DebugCommand.init();
 		com.drakenrijken.quest.QuestEvents.init();
 		config = com.drakenrijken.config.ConfigFile.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
