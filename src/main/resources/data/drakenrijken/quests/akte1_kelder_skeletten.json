@@ -1,0 +1,1 @@
+{"id":"kelder_skeletten","requires":["kelder_spinnen"],"event":"kill","target":"minecraft:skeleton","count":5,"reward":{"xp":120,"items":["minecraft:arrow"]}}

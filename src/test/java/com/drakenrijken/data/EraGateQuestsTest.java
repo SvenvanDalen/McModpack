@@ -35,7 +35,11 @@ class EraGateQuestsTest {
 		QuestEngine engine = new QuestEngine(defs);
 		EraGate gate = new EraGate("poort_stoom", "poort_runen");
 		assertEquals(1, gate.currentEra(d.quests()));
-		for (int i = 0; i < 5; i++) engine.onEvent(new QuestEvent("break_block", "minecraft:oak_log"), d);
+		String[][] akte1 = {{"break_block", "minecraft:oak_log", "5"}, {"break_block", "minecraft:stone", "20"}, {"pickup", "minecraft:iron_ingot", "5"}, {"kill", "minecraft:spider", "5"}, {"kill", "minecraft:skeleton", "5"}};
+		for (String[] a : akte1) {
+			assertEquals(1, gate.currentEra(d.quests()));
+			for (int i = 0; i < Integer.parseInt(a[2]); i++) engine.onEvent(new QuestEvent(a[0], a[1]), d);
+		}
 		for (int i = 0; i < 10; i++) engine.onEvent(new QuestEvent("kill", "minecraft:zombie"), d);
 		assertEquals(2, gate.currentEra(d.quests()));
 		for (int i = 0; i < 8; i++) engine.onEvent(new QuestEvent("kill", "minecraft:blaze"), d);

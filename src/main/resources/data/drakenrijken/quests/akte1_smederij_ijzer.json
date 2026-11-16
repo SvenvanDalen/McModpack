@@ -1,0 +1,1 @@
+{"id":"smederij_ijzer","requires":["dorp_stenen"],"event":"pickup","target":"minecraft:iron_ingot","count":5,"reward":{"xp":80,"items":["minecraft:iron_pickaxe"]}}

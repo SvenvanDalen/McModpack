@@ -1,1 +1,1 @@
-{"id":"poort_stoom","requires":["eerste_hout"],"event":"kill","target":"minecraft:zombie","count":10,"reward":{"xp":150,"items":["minecraft:iron_ingot"]}}
+{"id":"poort_stoom","requires":["kelder_skeletten"],"event":"kill","target":"minecraft:zombie","count":10,"reward":{"xp":150,"items":["minecraft:iron_ingot"]}}

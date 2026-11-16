@@ -1,0 +1,1 @@
+{"id":"kelder_spinnen","requires":["smederij_ijzer"],"event":"kill","target":"minecraft:spider","count":5,"reward":{"xp":100}}

@@ -1,0 +1,1 @@
+{"id":"dorp_stenen","requires":["eerste_hout"],"event":"break_block","target":"minecraft:stone","count":20,"reward":{"xp":60,"items":["minecraft:coal"]}}
