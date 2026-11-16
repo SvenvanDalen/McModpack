@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["III", "IPI", "SSS"],
+	"key": {"I": "minecraft:iron_ingot", "P": "minecraft:piston", "S": "minecraft:cobblestone"},
+	"result": {"id": "drakenrijken:pers", "count": 1}
+}

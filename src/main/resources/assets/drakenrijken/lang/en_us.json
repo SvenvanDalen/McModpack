@@ -28,5 +28,7 @@
 	"block.drakenrijken.waterrad": "Water Wheel",
 	"block.drakenrijken.smederij": "Forge",
 	"block.drakenrijken.as": "Axle",
-	"block.drakenrijken.stoomketel": "Steam Boiler"
+	"block.drakenrijken.stoomketel": "Steam Boiler",
+	"block.drakenrijken.zaag": "Sawmill",
+	"block.drakenrijken.pers": "Press"
 }
