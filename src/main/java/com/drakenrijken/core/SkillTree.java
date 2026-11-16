@@ -36,4 +36,22 @@ public final class SkillTree {
 		p.unlocked().add(id);
 		return Result.OK;
 	}
+
+	public static final int RESPEC_COST_PER_SKILL = 10;
+
+	/** Prijs om alle vaardigheden te herverdelen (eerste inschatting): 10 munten per ontgrendelde vaardigheid. */
+	public static int respecCost(PlayerProgress p) {
+		return p.unlocked().size() * RESPEC_COST_PER_SKILL;
+	}
+
+	/**
+	 * Herverdelen: pas als de speler genoeg munten heeft worden alle vaardigheden teruggezet
+	 * (de punten komen vrij). Geeft de betaalde prijs, of -1 als er te weinig munten zijn.
+	 */
+	public static int respec(PlayerProgress p, int coins) {
+		int cost = respecCost(p);
+		if (coins < cost) return -1;
+		p.unlocked().clear();
+		return cost;
+	}
 }
