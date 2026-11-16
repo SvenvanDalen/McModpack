@@ -62,6 +62,9 @@ public final class DebugCommand {
 				.then(Commands.literal("rijk").executes(c -> {
 					ServerPlayer p = c.getSource().getPlayerOrException();
 					int macht = RealmScan.powerAround(p.level(), p.blockPosition());
+					PlayerData rd = ModData.of(p);
+					rd.setRealmPower(macht);
+					p.setAttached(ModData.PLAYER_DATA, rd);
 					String text = com.drakenrijken.core.RealmReport.describe(macht);
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
