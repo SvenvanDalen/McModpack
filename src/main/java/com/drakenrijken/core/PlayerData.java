@@ -6,6 +6,7 @@ import java.util.Optional;
 public final class PlayerData {
 	private PlayerClass playerClass;
 	private final PlayerProgress progress = new PlayerProgress();
+	private final QuestProgress quests = new QuestProgress();
 
 	private PlayerData() {}
 
@@ -18,4 +19,6 @@ public final class PlayerData {
 	public void setPlayerClass(PlayerClass playerClass) { this.playerClass = playerClass; }
 
 	public PlayerProgress progress() { return progress; }
+
+	public QuestProgress quests() { return quests; }
 }

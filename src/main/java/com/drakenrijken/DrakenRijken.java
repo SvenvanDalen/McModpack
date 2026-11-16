@@ -8,9 +8,13 @@ public class DrakenRijken implements ModInitializer {
 	public static final String MOD_ID = "drakenrijken";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	/** Ingelezen bij het starten. */
+	public static com.drakenrijken.config.ModConfig config = com.drakenrijken.config.ModConfig.defaults();
+
 	@Override
 	public void onInitialize() {
 		com.drakenrijken.data.ModData.init();
+		config = com.drakenrijken.config.ConfigFile.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
 		LOGGER.info("Draken en Rijken geladen");
 	}
 }

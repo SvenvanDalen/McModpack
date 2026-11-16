@@ -21,11 +21,15 @@ class PlayerDataCodecTest {
 		d.setPlayerClass(PlayerClass.MAGIER);
 		d.progress().unlocked().add("vuurbal");
 		d.progress().restore(7, 40);
+		d.quests().counts().put("hout", 3);
+		d.quests().completed().add("dorp");
 		PlayerData r = roundtrip(d);
 		assertEquals(PlayerClass.MAGIER, r.playerClass().orElseThrow());
 		assertEquals(7, r.progress().level());
 		assertEquals(40, r.progress().xp());
 		assertEquals(d.progress().unlocked(), r.progress().unlocked());
+		assertEquals(3, r.quests().progress("hout"));
+		assertTrue(r.quests().isCompleted("dorp"));
 	}
 
 	@Test
