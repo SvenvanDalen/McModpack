@@ -22,6 +22,8 @@ public final class QuestEngine {
 		this.quests = List.copyOf(quests);
 	}
 
+	public List<QuestDef> quests() { return quests; }
+
 	/** Verwerkt een event; geeft de ids van de quests die hierdoor voltooid zijn. */
 	public List<String> onEvent(QuestEvent e, PlayerData d) {
 		QuestProgress qp = d.quests();
