@@ -78,6 +78,12 @@ public final class DebugCommand {
 					if (n == 0) c.getSource().sendSuccess(() -> Component.literal("Geen aanval: je rijk is nog te klein (niveau 2 nodig) of er zijn al genoeg vijanden."), false);
 					return 1;
 				}))
+				.then(Commands.literal("draak").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					boolean ok = p.level() instanceof net.minecraft.server.level.ServerLevel sl && DragonBoss.spawn(sl, p.blockPosition().offset(8, 0, 0));
+					c.getSource().sendSuccess(() -> Component.literal(ok ? "De draak is wakker geworden!" : "Er is al een draak."), false);
+					return 1;
+				}))
 				.then(Commands.literal("recepten").executes(c -> {
 					int n = ModRecipes.book().all().size();
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
