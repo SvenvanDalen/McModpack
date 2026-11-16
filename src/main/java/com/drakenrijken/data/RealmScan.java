@@ -4,6 +4,10 @@ import com.drakenrijken.core.RealmPower;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
@@ -26,5 +30,17 @@ public final class RealmScan {
 			}
 		}
 		return RealmPower.total(machines);
+	}
+
+	/** Zet er dorpelingen bij tot de grens van dit rijksniveau (DR-503); geeft het aantal nieuwe. */
+	public static int topUpVillagers(ServerLevel level, BlockPos center, int realmLevel) {
+		int existing = level.getEntitiesOfClass(Villager.class, new AABB(center).inflate(RADIUS)).size();
+		int n = com.drakenrijken.core.RealmVillagers.toSpawn(realmLevel, existing);
+		int gelukt = 0;
+		for (int i = 0; i < n; i++) {
+			BlockPos plek = center.offset(i % 4 - 2, 0, i / 4 - 2);
+			if (net.minecraft.world.entity.EntityTypes.VILLAGER.spawn(level, plek, EntitySpawnReason.MOB_SUMMONED) != null) gelukt++;
+		}
+		return gelukt;
 	}
 }

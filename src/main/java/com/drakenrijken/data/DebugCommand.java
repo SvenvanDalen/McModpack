@@ -65,7 +65,9 @@ public final class DebugCommand {
 					PlayerData rd = ModData.of(p);
 					rd.setRealmPower(macht);
 					p.setAttached(ModData.PLAYER_DATA, rd);
-					String text = com.drakenrijken.core.RealmReport.describe(macht);
+					int nieuw = p.level() instanceof net.minecraft.server.level.ServerLevel sl
+						? RealmScan.topUpVillagers(sl, p.blockPosition(), com.drakenrijken.core.RealmState.levelFor(macht)) : 0;
+					String text = com.drakenrijken.core.RealmReport.describe(macht) + (nieuw > 0 ? " " + nieuw + " nieuwe dorpelingen." : "");
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
 				}))

@@ -24,4 +24,15 @@ public class RijkGameTest {
 		if (RealmState.levelFor(macht) != 1) throw new AssertionError("verwachtte niveau 1");
 		context.succeed();
 	}
+
+	@GameTest
+	public void dorpelingenGroeien(GameTestHelper context) {
+		var level = context.getLevel();
+		BlockPos midden = context.absolutePos(new BlockPos(2, 2, 2));
+		int eerst = RealmScan.topUpVillagers(level, midden, 0);
+		if (eerst != 4) throw new AssertionError("verwachtte 4 dorpelingen, kreeg " + eerst);
+		int nog = RealmScan.topUpVillagers(level, midden, 0);
+		if (nog != 0) throw new AssertionError("tweede keer moet 0 zijn, kreeg " + nog);
+		context.succeed();
+	}
 }
