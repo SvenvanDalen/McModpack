@@ -16,6 +16,11 @@ public final class RealmEffects {
 		return (int) Math.max(1, (long) basePrice * pricePercent(level) / 100);
 	}
 
+	/** Hoeveel dorpelingen het rijk huisvest: 4 bij niveau 0, 4 erbij per niveau, 24 bij niveau 5. */
+	public static int villagerCap(int level) {
+		return 4 + 4 * check(level);
+	}
+
 	private static int check(int level) {
 		if (level < 0 || level > RealmState.MAX_LEVEL) {
 			throw new IllegalArgumentException("rijksniveau buiten 0.." + RealmState.MAX_LEVEL + ": " + level);

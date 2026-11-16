@@ -20,6 +20,13 @@ class RealmEffectsTest {
 	}
 
 	@Test
+	void dorpelingenGroeienMetHetNiveau() {
+		assertEquals(4, RealmEffects.villagerCap(0));
+		assertEquals(24, RealmEffects.villagerCap(5));
+		assertThrows(IllegalArgumentException.class, () -> RealmEffects.villagerCap(6));
+	}
+
+	@Test
 	void ongeldigeInvoerWordtAfgewezen() {
 		assertThrows(IllegalArgumentException.class, () -> RealmEffects.price(10, 6));
 		assertThrows(IllegalArgumentException.class, () -> RealmEffects.price(10, -1));
