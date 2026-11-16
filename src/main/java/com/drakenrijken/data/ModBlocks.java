@@ -18,7 +18,7 @@ public final class ModBlocks {
 	private ModBlocks() {}
 
 	public static void init() {
-		WATERRAD = register("waterrad", Block::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
+		WATERRAD = register("waterrad", WaterWheelBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {
