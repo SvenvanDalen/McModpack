@@ -14,11 +14,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 /** Blokken van de mod. Nu alleen het waterrad (DR-403); de kracht komt uit core.WaterWheel. */
 public final class ModBlocks {
 	public static Block WATERRAD;
+	public static Block SMEDERIJ;
 
 	private ModBlocks() {}
 
 	public static void init() {
 		WATERRAD = register("waterrad", WaterWheelBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
+		SMEDERIJ = register("smederij", Block::new, BlockBehaviour.Properties.of().strength(3.5f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {

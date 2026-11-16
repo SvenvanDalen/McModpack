@@ -25,5 +25,6 @@
 	"guide.drakenrijken.quests": "Quests geven ervaring en beloningen. Voltooide quests openen het volgende tijdperk.",
 	"guide.drakenrijken.industrie": "De industrie heeft drie tijdperken: eerst waterwielen en assen, dan stoom, en tot slot runen. Een nieuw tijdperk ontgrendel je met quests.",
 	"guide.drakenrijken.rijk": "Je rijk groeit naarmate je meer doet. Een groter rijk geeft betere prijzen en meer dorpelingen, maar vanaf niveau 2 vallen vijanden je rijk aan.",
-	"block.drakenrijken.waterrad": "Waterrad"
+	"block.drakenrijken.waterrad": "Waterrad",
+	"block.drakenrijken.smederij": "Smederij"
 }
