@@ -17,6 +17,14 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	testImplementation platform("org.junit:junit-bom:5.11.4")
+	testImplementation "org.junit.jupiter:junit-jupiter"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+test {
+	useJUnitPlatform()
 }
 
 processResources {
@@ -35,4 +43,14 @@ java {
 	withSourcesJar()
 	sourceCompatibility = JavaVersion.VERSION_25
 	targetCompatibility = JavaVersion.VERSION_25
+}
+
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "drakenrijken-test"
+		enableGameTests = true
+		enableClientGameTests = false
+		eula = true // Door true te zetten ga je akkoord met de Minecraft-EULA.
+	}
 }
