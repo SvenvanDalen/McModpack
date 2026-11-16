@@ -1,0 +1,8 @@
+{
+	"area": "bos",
+	"entries": [
+		{ "mob": "minecraft:wolf", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:spider", "weight": 3, "era": 1 },
+		{ "mob": "minecraft:pillager", "weight": 2, "era": 2 }
+	]
+}

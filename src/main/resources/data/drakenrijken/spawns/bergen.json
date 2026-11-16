@@ -1,0 +1,8 @@
+{
+	"area": "bergen",
+	"entries": [
+		{ "mob": "minecraft:skeleton", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:stray", "weight": 3, "era": 2 },
+		{ "mob": "minecraft:blaze", "weight": 2, "era": 3 }
+	]
+}
