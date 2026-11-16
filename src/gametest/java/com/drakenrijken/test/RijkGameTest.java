@@ -35,4 +35,20 @@ public class RijkGameTest {
 		if (nog != 0) throw new AssertionError("tweede keer moet 0 zijn, kreeg " + nog);
 		context.succeed();
 	}
+
+	@GameTest
+	public void handelaarWordtVriendelijker(GameTestHelper context) {
+		var speler = context.makeMockServerPlayerInLevel();
+		var dorpeling = net.minecraft.world.entity.EntityTypes.VILLAGER.spawn(
+			context.getLevel(), context.absolutePos(new BlockPos(2, 2, 2)), net.minecraft.world.entity.EntitySpawnReason.MOB_SUMMONED);
+		if (dorpeling == null) throw new AssertionError("dorpeling niet gemaakt");
+		com.drakenrijken.data.RealmTrading.apply(dorpeling, speler, 0);
+		int laag = dorpeling.getPlayerReputation(speler);
+		com.drakenrijken.data.RealmTrading.apply(dorpeling, speler, 5);
+		int hoog = dorpeling.getPlayerReputation(speler);
+		if (hoog <= laag) throw new AssertionError("reputatie steeg niet: " + laag + " -> " + hoog);
+		com.drakenrijken.data.RealmTrading.apply(dorpeling, speler, 0);
+		if (dorpeling.getPlayerReputation(speler) != laag) throw new AssertionError("reputatie niet teruggezet");
+		context.succeed();
+	}
 }
