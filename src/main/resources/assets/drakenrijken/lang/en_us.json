@@ -1,0 +1,23 @@
+{
+	"class.drakenrijken.ridder": "Knight",
+	"class.drakenrijken.magier": "Mage",
+	"class.drakenrijken.schurk": "Rogue",
+	"skill.drakenrijken.taaiheid": "Toughness",
+	"skill.drakenrijken.schildstoot": "Shield Bash",
+	"skill.drakenrijken.zwaardbeheersing": "Sword Mastery",
+	"skill.drakenrijken.bloedwraak": "Blood Revenge",
+	"skill.drakenrijken.onverzettelijk": "Unyielding",
+	"skill.drakenrijken.oorlogskreet": "War Cry",
+	"skill.drakenrijken.vuurbal": "Fireball",
+	"skill.drakenrijken.barriere": "Barrier",
+	"skill.drakenrijken.mana_regen": "Mana Regeneration",
+	"skill.drakenrijken.vuurmuur": "Wall of Fire",
+	"skill.drakenrijken.ijsstraal": "Ice Beam",
+	"skill.drakenrijken.manaschild": "Mana Shield",
+	"skill.drakenrijken.sluipaanval": "Sneak Attack",
+	"skill.drakenrijken.snelheid": "Swiftness",
+	"skill.drakenrijken.dubbele_buit": "Double Loot",
+	"skill.drakenrijken.gifpijl": "Poison Arrow",
+	"skill.drakenrijken.schaduwstap": "Shadow Step",
+	"skill.drakenrijken.zakkenroller": "Pickpocket"
+}
