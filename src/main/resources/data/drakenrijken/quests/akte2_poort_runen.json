@@ -1,0 +1,1 @@
+{"id":"poort_runen","requires":["poort_stoom"],"event":"kill","target":"minecraft:blaze","count":8,"reward":{"xp":400,"items":["minecraft:amethyst_shard"]}}

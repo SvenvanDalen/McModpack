@@ -1,0 +1,44 @@
+package com.drakenrijken.data;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.drakenrijken.core.EraGate;
+import com.drakenrijken.core.PlayerData;
+import com.drakenrijken.core.QuestDef;
+import com.drakenrijken.core.QuestEngine;
+import com.drakenrijken.core.QuestEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+
+/** De meegeleverde poort-quests ontgrendelen tijdperk 2 en 3 in de juiste volgorde (DR-412). */
+class EraGateQuestsTest {
+	@Test
+	void poortQuestsOntgrendelenTijdperken() throws IOException, URISyntaxException {
+		Path dir = Paths.get(EraGateQuestsTest.class.getResource("/data/drakenrijken/quests").toURI());
+		List<String> texts = new ArrayList<>();
+		try (Stream<Path> s = Files.list(dir)) {
+			for (Path p : s.filter(f -> f.toString().endsWith(".json")).toList()) texts.add(Files.readString(p));
+		}
+		List<String> warns = new ArrayList<>();
+		List<QuestDef> defs = QuestLoader.load(texts.stream(), warns::add);
+		assertTrue(warns.isEmpty(), warns.toString());
+
+		PlayerData d = PlayerData.empty();
+		QuestEngine engine = new QuestEngine(defs);
+		EraGate gate = new EraGate("poort_stoom", "poort_runen");
+		assertEquals(1, gate.currentEra(d.quests()));
+		for (int i = 0; i < 5; i++) engine.onEvent(new QuestEvent("break_block", "minecraft:oak_log"), d);
+		for (int i = 0; i < 10; i++) engine.onEvent(new QuestEvent("kill", "minecraft:zombie"), d);
+		assertEquals(2, gate.currentEra(d.quests()));
+		for (int i = 0; i < 8; i++) engine.onEvent(new QuestEvent("kill", "minecraft:blaze"), d);
+		assertEquals(3, gate.currentEra(d.quests()));
+	}
+}
