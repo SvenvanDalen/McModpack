@@ -42,4 +42,14 @@ class BrokenDataTest {
 			assertFalse(warns.isEmpty(), tekst);
 		}
 	}
+
+	@Test
+	void buittabellenOverleven() {
+		for (String tekst : List.of("{kapot", "", "null", "[]", "42", "{\"entries\":", "{\"entries\":[1]}", "{\"entries\":[{\"item\":\"a\",\"count\":\"x\"}]}")) {
+			List<String> warns = new ArrayList<>();
+			var result = assertDoesNotThrow(() -> LootTableLoader.loadSafe(tekst, warns::add), tekst);
+			assertTrue(result.isEmpty(), tekst);
+			assertFalse(warns.isEmpty(), tekst);
+		}
+	}
 }

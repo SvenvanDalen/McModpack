@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 /** Leest een buittabel uit JSON: een object met "entries". Een kapotte regel maakt de hele tabel ongeldig. */
 public final class LootTableLoader {
@@ -26,5 +28,15 @@ public final class LootTableLoader {
 				o.has("era") ? o.get("era").getAsInt() : 1));
 		}
 		return new LootTable(list);
+	}
+
+	/** Zoals load, maar een kapotte tabel geeft een waarschuwing en een lege uitkomst in plaats van een fout. */
+	public static Optional<LootTable> loadSafe(String text, Consumer<String> warn) {
+		try {
+			return Optional.of(load(text));
+		} catch (RuntimeException e) {
+			warn.accept("buittabel overgeslagen: " + e.getMessage());
+			return Optional.empty();
+		}
 	}
 }
