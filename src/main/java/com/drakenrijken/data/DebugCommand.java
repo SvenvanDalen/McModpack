@@ -94,6 +94,13 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
 				}))
+					.then(Commands.literal("burcht").executes(c -> {
+						ServerPlayer p = c.getSource().getPlayerOrException();
+						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
+							? StructureBuilder.place(sl, p.blockPosition().offset(4, 6, -3), com.drakenrijken.core.Blueprints.castle()) : 0;
+						c.getSource().sendSuccess(() -> Component.literal("Burcht gebouwd (" + n + " blokken), vlak voor je."), false);
+						return 1;
+					}))
 					.then(Commands.literal("dorp").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl

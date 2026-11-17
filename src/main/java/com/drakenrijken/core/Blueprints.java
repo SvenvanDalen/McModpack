@@ -50,4 +50,23 @@ public final class Blueprints {
 		b.spot(25, 1, 8, "smid");
 		return b;
 	}
+
+	/**
+	 * Burcht van 21x21: muur met vier torens, een zaal met troon en een kerker eronder met cellen en een kist.
+	 * De poort zit aan de zuidkant (z=0). De kerker ligt op y=-5 tot -1 en is bereikbaar via een smalle schacht (x=8, z=9) in de zaalvloer.
+	 */
+	public static Blueprint castle() {
+		Blueprint b = new Blueprint();
+		b.room(0, 0, 0, 20, 5, 20, "stone_bricks");
+		b.fill(9, 1, 0, 11, 3, 0, "air");
+		for (int x : new int[] {0, 17}) for (int z : new int[] {0, 17}) b.room(x, 0, z, x + 3, 9, z + 3, "stone_bricks");
+		b.set(10, 1, 15, "gold_block");
+		b.spot(10, 1, 13, "koning");
+		b.room(4, -5, 4, 16, -1, 16, "cobblestone");
+		for (int i = 0; i < 4; i++) b.fill(5 + i * 3, -4, 5, 5 + i * 3, -2, 8, "iron_bars");
+		b.set(10, -4, 14, "chest");
+		b.spot(10, -4, 11, "bewaker");
+		b.fill(8, -4, 9, 8, 0, 9, "air");
+		return b;
+	}
 }
