@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Leidingen (#150, eerste stap): in de kern bepaalt een leiding de doorvoer (hoogstens 10 per tick) en een maximale lengte van 32 blokken, gelijk aan de assen. Nog geen buisblok en geen koppeling aan de stoomketel.
 - Blauwdrukkosten (#147, eerste stap): in de kern kunnen de kosten, de maximale grootte (16x16x16) en het tekort van een bouwplan berekend worden. Nog geen boek-item en geen plaatsing in het spel.
 - Beroepen (#152, eerste stap): dorpelingen worden gelijk verdeeld over boer, mijnwerker, smid en wachter; `/dr beroepen` toont de verdeling en de dagopbrengst. Nog niet uitbetaald, zelf een beroep kiezen en JSON-inhoud volgen; de balans is nog niet door de Economy Designer nagekeken.
 - Seizoenen (#155): cyclus van 4 x 7 speldagen (lente, zomer, herfst, winter). Spelers krijgen een melding bij een nieuw seizoen en `/dr seizoen` toont het seizoen. De oogstfactor (winter 50%, zomer 125%) staat in de kern maar is nog niet aan de oogst gekoppeld; weer, kleuren en aanvallen veranderen nog niet. Niet in het spel getest.
