@@ -90,7 +90,12 @@ public final class DragonBoss {
 		float fractie = Math.max(0f, Math.min(1f, dragon.getHealth() / dragon.getMaxHealth()));
 		bar.setProgress(fractie);
 		applyPhase(BossPhases.phaseFor(fractie));
-		if (DragonStats.breathesFire(phase) && dragon.tickCount % DragonStats.FIRE_INTERVAL_TICKS < 10) {
+		if (dragon.tickCount % DragonStats.TAIL_INTERVAL_TICKS < 10) {
+			for (ServerPlayer p : spelers) if (p.distanceTo(dragon) <= DragonStats.TAIL_RANGE) {
+				p.hurtServer(level, dragon.damageSources().mobAttack(dragon), DragonStats.TAIL_DAMAGE);
+			}
+		}
+		if (DragonStats.breathesFire(phase) && dragon.tickCount % DragonStats.fireInterval(phase) < 10) {
 			for (ServerPlayer p : spelers) if (p.distanceTo(dragon) <= DragonStats.FIRE_RANGE) p.igniteForSeconds(3);
 		}
 	}

@@ -29,4 +29,11 @@ class DragonStatsTest {
 		assertThrows(IllegalArgumentException.class, () -> DragonStats.speedFactor(0));
 		assertThrows(IllegalArgumentException.class, () -> DragonStats.damageFactor(4));
 	}
+
+	@Test
+	void vuurCyclusWordtSneller() {
+		assertEquals(100, DragonStats.fireInterval(2));
+		assertTrue(DragonStats.fireInterval(3) < DragonStats.fireInterval(2));
+		assertThrows(IllegalArgumentException.class, () -> DragonStats.fireInterval(0));
+	}
 }

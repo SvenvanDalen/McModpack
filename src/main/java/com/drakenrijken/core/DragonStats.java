@@ -6,6 +6,10 @@ public final class DragonStats {
 	/** Vanaf deze fase brandt de draak spelers in de buurt aan (vuuradem, zonder eigen deeltjes). */
 	public static final int FIRE_PHASE = 2;
 	public static final int FIRE_INTERVAL_TICKS = 100;
+	/** Staartzwiep (fase 1 en hoger): raakt spelers dichtbij en slaat ze weg. */
+	public static final int TAIL_INTERVAL_TICKS = 60;
+	public static final int TAIL_RANGE = 4;
+	public static final float TAIL_DAMAGE = 6f;
 	public static final int FIRE_RANGE = 6;
 
 	private DragonStats() {}
@@ -18,6 +22,11 @@ public final class DragonStats {
 	/** Schade als factor van de basis: 1.0, 1.25, 1.5. */
 	public static double damageFactor(int phase) {
 		return switch (check(phase)) { case 1 -> 1.0; case 2 -> 1.25; default -> 1.5; };
+	}
+
+	/** Ticks tussen twee vuuraanvallen: 100 in fase 2, 60 in fase 3 (snellere cyclus). */
+	public static int fireInterval(int phase) {
+		return check(phase) >= 3 ? 60 : FIRE_INTERVAL_TICKS;
 	}
 
 	public static boolean breathesFire(int phase) {
