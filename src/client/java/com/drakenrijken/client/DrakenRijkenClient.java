@@ -14,6 +14,13 @@ public class DrakenRijkenClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientPlayNetworking.registerGlobalReceiver(TrackerPayload.TYPE, (payload, ctx) -> tracker = payload.text());
+		var vaardigheidsToets = net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper.registerKeyMapping(
+			new net.minecraft.client.KeyMapping("key.drakenrijken.vaardigheden", 75, net.minecraft.client.KeyMapping.Category.MISC));
+		net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(mc -> {
+			while (vaardigheidsToets.consumeClick()) {
+				if (mc.player != null) mc.setScreenAndShow(new SkillScreen());
+			}
+		});
 		HudElementRegistry.attachElementAfter(VanillaHudElements.MISC_OVERLAYS, Identifier.fromNamespaceAndPath("drakenrijken", "tracker"), (g, delta) -> {
 			String[] regels = tracker.split("\n");
 			if (tracker.isEmpty()) return;
