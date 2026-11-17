@@ -78,6 +78,13 @@ public final class DebugCommand {
 					if (n == 0) c.getSource().sendSuccess(() -> Component.literal("Geen aanval: je rijk is nog te klein (niveau 2 nodig) of er zijn al genoeg vijanden."), false);
 					return 1;
 				}))
+				.then(Commands.literal("seizoen").executes(c -> {
+					long dag = c.getSource().getLevel().getGameTime() / 24000L;
+					var s = com.drakenrijken.core.Season.of(dag);
+					String text = s.naam() + ", nog " + com.drakenrijken.core.Season.daysLeft(dag) + " dag(en). Oogstfactor " + s.harvestPercent() + "% (nog niet aan de oogst gekoppeld).";
+					c.getSource().sendSuccess(() -> Component.literal(text), false);
+					return 1;
+				}))
 				.then(Commands.literal("belasting").executes(c -> {
 					ServerPlayer p = c.getSource().getPlayerOrException();
 					PlayerData bd = ModData.of(p);

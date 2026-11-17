@@ -9,7 +9,7 @@ public class OpdrachtenGameTest {
 	public void drCommandoHeeftAlleBaasOpdrachten(GameTestHelper context) {
 		var root = context.getLevel().getServer().getCommands().getDispatcher().getRoot().getChild("dr");
 		if (root == null) throw new AssertionError("/dr bestaat niet");
-		for (String naam : new String[] {"draak", "wachter", "gebruik", "tracker", "belasting"}) {
+		for (String naam : new String[] {"draak", "wachter", "gebruik", "tracker", "belasting", "seizoen"}) {
 			if (root.getChild(naam) == null) throw new AssertionError("/dr " + naam + " ontbreekt");
 		}
 		context.succeed();
