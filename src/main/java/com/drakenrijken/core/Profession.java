@@ -36,4 +36,11 @@ public enum Profession {
 		for (Profession p : values()) sum += r[p.ordinal()] * p.dailyYield;
 		return sum;
 	}
+
+	/** Opbrengst per dag in een seizoen: alleen de boeren merken het (zie {@link Season#harvestPercent()}). */
+	public static int dailyYield(int level, Season season) {
+		int[] r = assign(RealmVillagers.target(level));
+		int boer = r[BOER.ordinal()] * BOER.dailyYield * season.harvestPercent() / 100;
+		return dailyYield(level) - r[BOER.ordinal()] * BOER.dailyYield + boer;
+	}
 }
