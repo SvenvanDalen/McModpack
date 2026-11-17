@@ -71,10 +71,10 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | ID | Story | Acceptatie | Gr. | Afh. | Pr. |
 |---|---|---|---|---|---|
 | DR-301 | `KingdomPlacement` | Deterministisch per seed en chunk; dichtheid tussen 0,5% en 2% bij 10.000 chunks | M | DR-004 | M |
-| DR-302 | Dorpsstructuur | Huizen, markt en smid met NPC-plekken | L | DR-301 | M |
-| DR-303 | Burchtstructuur | Zetel van het koninkrijk met kerker | L | DR-301 | S |
-| DR-304 | Dungeonstructuur | 3 kamers, vallen, schatkist | L | DR-301 | M |
-| DR-305 | Draken-gebied | Eigen biome of gebied met rotsen en een grot | L | DR-301 | M |
+| DR-302 | Dorpsstructuur | Huizen, markt en smid met NPC-plekken | L | DR-301 | M | (deels: bouwplan met huizen, markt en smederij; niet in het spel bekeken)
+| DR-303 | Burchtstructuur | Zetel van het koninkrijk met kerker | L | DR-301 | S | (deels: bouwplan met troonzaal, torens en kerker; niet in het spel bekeken)
+| DR-304 | Dungeonstructuur | 3 kamers, vallen, schatkist | L | DR-301 | M | (deels: bouwplan met 3 kamers, val en schatkist; niet in het spel bekeken)
+| DR-305 | Draken-gebied | Eigen biome of gebied met rotsen en een grot | L | DR-301 | M | (deels: bouwplan met rotsgrot en nest; geen eigen biome)
 | DR-306 | Geleidelijke wereldgeneratie | Eén structuur per chunk-activatie; geen tick-piek boven de grens | M | DR-302 | M |
 | DR-307 | Kaart en kompas | Kaart toont ontdekte koninkrijken | M | DR-301 | S |
 | DR-308 | Vijanden per gebied | Spawnlijsten per structuur en gebied | M | DR-304 | M |
@@ -117,8 +117,8 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | DR-601 | `BossPhases` | `phaseFor(0.7)=1`, `phaseFor(0.5)=2`, `phaseFor(0.2)=3` | S | DR-004 | M |
 | DR-602 | Draakmodel | Laag-polygoon model in Blockbench met animaties voor lopen, vliegen en aanval | L | – | M |
 | DR-603 | `DragonEntity` | Beweegt, valt aan, heeft gezondheidsbalk | L | DR-601, DR-602 | M |
-| DR-604 | Fase 1: grondaanval | Klauw en staart | M | DR-603 | M |
-| DR-605 | Fase 2: vuur | Vuuradem met maximaal 8 eigen deeltjes per aanval | M | DR-603 | M |
+| DR-604 | Fase 1: grondaanval | Klauw en staart | M | DR-603 | M | (deels: staartzwiep op een Ravager als stand-in; klauw volgt met DR-602)
+| DR-605 | Fase 2: vuur | Vuuradem met maximaal 8 eigen deeltjes per aanval | M | DR-603 | M | (deels: vuuradem met hoogstens 8 deeltjes)
 | DR-606 | Fase 3: lucht en woede | Duikaanval en snellere cyclus | M | DR-603 | M |
 | DR-607 | Beloning eenmalig | `rewardOnce` geeft maar één keer beloning per speler | S | DR-601 | M |
 | DR-608 | Reset bij dood of vertrek | Speler sterft of verlaat de wereld: draak herstelt naar fase 1, geen beloning; GameTest | M | DR-603 | M |
@@ -135,7 +135,7 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | DR-704 | Muziek | Drie sfeerloops voor dorp, dungeon en natuur | L | – | C |
 | DR-705 | Teksturen | Eigen 16x16 voor blokken, items en NPC's | XL | – | M |
 | DR-706 | Handleiding in het spel | Boekje met uitleg over klassen, industrie en rijk | M | DR-209 | S |
-| DR-707 | Toegankelijkheid | Tekstgrootte en contrastopties in de eigen schermen | S | DR-701 | C |
+| DR-707 | Toegankelijkheid | Tekstgrootte en contrastopties in de eigen schermen | S | DR-701 | C | (deels: highContrast klaar; tekstgrootte niet)
 | DR-708 | Nederlandse en Engelse teksten | `nl_nl.json` en `en_us.json` | M | – | S |
 
 ## Epic 8: Prestaties
