@@ -84,6 +84,16 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(ok ? "De draak is wakker geworden!" : "Er is al een draak."), false);
 					return 1;
 				}))
+				.then(Commands.literal("wachter").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					int era = new com.drakenrijken.core.EraGate("poort_stoom", "poort_runen").currentEra(ModData.of(p).quests());
+					boolean ok = era >= 3 && p.level() instanceof net.minecraft.server.level.ServerLevel sl
+						&& RunewardenBoss.spawn(sl, p.blockPosition().offset(8, 0, 0));
+					String text = era < 3 ? "De Runenwachter wacht pas in tijdperk 3."
+						: ok ? "De Runenwachter is wakker geworden!" : "Er is al een Runenwachter.";
+					c.getSource().sendSuccess(() -> Component.literal(text), false);
+					return 1;
+				}))
 				.then(Commands.literal("handleiding").executes(c -> {
 					c.getSource().sendSuccess(() -> Component.literal(ModHandbook.book().index()), false);
 					return 1;
