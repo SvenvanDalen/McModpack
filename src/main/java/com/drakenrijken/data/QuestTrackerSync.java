@@ -40,6 +40,10 @@ public final class QuestTrackerSync {
 		});
 	}
 
+	public static ResourceBar barOf(ServerPlayer p, com.drakenrijken.core.PlayerClass klasse) {
+		return BARS.computeIfAbsent(p.getUUID(), k -> ResourceBar.forClass(klasse));
+	}
+
 	public static String textFor(ServerPlayer p) {
 		var d = ModData.of(p);
 		String quest = OFF.contains(p.getUUID()) ? "" : QuestTracker.line(QuestEvents.engine().quests(), d.quests());

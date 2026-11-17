@@ -189,6 +189,30 @@ public final class DebugCommand {
 							else c.getSource().sendFailure(Component.literal(text));
 							return r == com.drakenrijken.core.SkillTree.Result.OK ? 1 : 0;
 						})))
+					.then(Commands.literal("gebruik").then(Commands.argument("id", StringArgumentType.word()).executes(c -> {
+						ServerPlayer p = c.getSource().getPlayerOrException();
+						PlayerData d = ModData.of(p);
+						if (d.playerClass().isEmpty()) {
+							c.getSource().sendFailure(Component.literal("Kies eerst een klasse met /dr klasse."));
+							return 0;
+						}
+						String id = StringArgumentType.getString(c, "id");
+						var r = com.drakenrijken.core.SkillCosts.use(d.progress(), QuestTrackerSync.barOf(p, d.playerClass().get()), id);
+						switch (r) {
+							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu alleen: vuurbal)."));
+							case NOT_UNLOCKED -> c.getSource().sendFailure(Component.literal("Die vaardigheid heb je nog niet ontgrendeld."));
+							case TOO_TIRED -> c.getSource().sendFailure(Component.literal("Te weinig mana of uithouding."));
+							case OK -> {
+								if (id.equals("vuurbal") && p.level() instanceof net.minecraft.server.level.ServerLevel sl) {
+									var bal = new net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball(sl, p, p.getLookAngle());
+									bal.setPos(p.getX(), p.getEyeY(), p.getZ());
+									sl.addFreshEntity(bal);
+								}
+								c.getSource().sendSuccess(() -> Component.literal("Vuurbal!"), false);
+							}
+						}
+						return r == com.drakenrijken.core.SkillCosts.Result.OK ? 1 : 0;
+					})))
 					.then(Commands.literal("tracker").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						boolean aan = QuestTrackerSync.toggle(p);
