@@ -15,10 +15,10 @@ public class DrakenRijkenClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		ClientPlayNetworking.registerGlobalReceiver(TrackerPayload.TYPE, (payload, ctx) -> tracker = payload.text());
 		HudElementRegistry.attachElementAfter(VanillaHudElements.MISC_OVERLAYS, Identifier.fromNamespaceAndPath("drakenrijken", "tracker"), (g, delta) -> {
-			String t = tracker;
-			if (t.isEmpty()) return;
+			String[] regels = tracker.split("\n");
+			if (tracker.isEmpty()) return;
 			var font = Minecraft.getInstance().font;
-			g.text(font, t, 6, 6, 0xFFFFFFFF, true);
+			for (int i = 0; i < regels.length; i++) g.text(font, regels[i], 6, 6 + i * 10, 0xFFFFFFFF, true);
 		});
 	}
 }

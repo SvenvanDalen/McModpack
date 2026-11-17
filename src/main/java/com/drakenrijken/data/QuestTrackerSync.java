@@ -1,6 +1,9 @@
 package com.drakenrijken.data;
 
+import com.drakenrijken.core.HudLines;
 import com.drakenrijken.core.QuestTracker;
+import com.drakenrijken.core.RealmState;
+import com.drakenrijken.core.ResourceBar;
 import com.drakenrijken.quest.QuestEvents;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,9 +15,15 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.level.ServerPlayer;
 
-/** Stuurt elke seconde de tracker-regel naar de speler, maar alleen als die veranderd is. Uitzetten kan met /dr tracker (tot de server stopt). */
+/**
+ * Stuurt elke seconde de HUD-regels (quest, mana of uithouding, rijk-niveau) naar de speler, maar alleen als ze veranderd zijn.
+ * De quest-regel uitzetten kan met /dr tracker (tot de server stopt). De balk zit in het geheugen en herstelt 5 per seconde;
+ * er is nog niets dat hem verbruikt.
+ */
 public final class QuestTrackerSync {
+	private static final int REGEN_PER_SECOND = 5;
 	private static final Map<UUID, String> LAST = new HashMap<>();
+	private static final Map<UUID, ResourceBar> BARS = new HashMap<>();
 	private static final Set<UUID> OFF = new HashSet<>();
 
 	private QuestTrackerSync() {}
@@ -23,13 +32,20 @@ public final class QuestTrackerSync {
 		PayloadTypeRegistry.clientboundPlay().register(TrackerPayload.TYPE, TrackerPayload.CODEC);
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			if (server.getTickCount() % 20 != 0) return;
-			for (ServerPlayer p : server.getPlayerList().getPlayers()) push(p);
+			for (ServerPlayer p : server.getPlayerList().getPlayers()) {
+				ResourceBar b = BARS.get(p.getUUID());
+				if (b != null) b.regen(REGEN_PER_SECOND);
+				push(p);
+			}
 		});
 	}
 
 	public static String textFor(ServerPlayer p) {
-		if (OFF.contains(p.getUUID())) return "";
-		return QuestTracker.line(QuestEvents.engine().quests(), ModData.of(p).quests());
+		var d = ModData.of(p);
+		String quest = OFF.contains(p.getUUID()) ? "" : QuestTracker.line(QuestEvents.engine().quests(), d.quests());
+		var klasse = d.playerClass().orElse(null);
+		ResourceBar bar = klasse == null ? null : BARS.computeIfAbsent(p.getUUID(), k -> ResourceBar.forClass(klasse));
+		return HudLines.build(quest, klasse, bar, RealmState.levelFor(d.realmPower()));
 	}
 
 	private static void push(ServerPlayer p) {
@@ -39,7 +55,7 @@ public final class QuestTrackerSync {
 		ServerPlayNetworking.send(p, new TrackerPayload(t));
 	}
 
-	/** Zet de tracker aan of uit; geeft true als hij nu aan staat. */
+	/** Zet de quest-regel aan of uit; geeft true als hij nu aan staat. */
 	public static boolean toggle(ServerPlayer p) {
 		boolean nuAan = OFF.remove(p.getUUID());
 		if (!nuAan) OFF.add(p.getUUID());
