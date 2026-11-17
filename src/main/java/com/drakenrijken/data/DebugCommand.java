@@ -94,6 +94,13 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
 				}))
+					.then(Commands.literal("dungeon").executes(c -> {
+						ServerPlayer p = c.getSource().getPlayerOrException();
+						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
+							? StructureBuilder.place(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.dungeon()) : 0;
+						c.getSource().sendSuccess(() -> Component.literal("Dungeon gebouwd (" + n + " blokken), vlak voor je."), false);
+						return 1;
+					}))
 				.then(Commands.literal("handleiding").executes(c -> {
 					c.getSource().sendSuccess(() -> Component.literal(ModHandbook.book().index()), false);
 					return 1;
