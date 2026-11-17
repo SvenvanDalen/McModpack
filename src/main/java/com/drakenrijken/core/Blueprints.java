@@ -84,6 +84,8 @@ public final class Blueprints {
 		b.fill(10, 0, 10, 14, 0, 14, "magma_block");
 		b.set(12, 1, 19, "chest");
 		b.spot(12, 1, 16, "draak");
+		b.spot(8, 1, 8, "bewaker");
+		b.spot(16, 1, 8, "bewaker");
 		for (int x : new int[] {0, 24}) for (int z : new int[] {0, 12, 24}) b.fill(x, 0, z, x, 5, z, "stone");
 		return b;
 	}

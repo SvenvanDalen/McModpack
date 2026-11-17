@@ -97,7 +97,7 @@ public final class DebugCommand {
 					.then(Commands.literal("drakengebied").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
-							? StructureBuilder.placeWithLoot(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.lair(), "ruine", StructureBuilder.eraOf(p)) : 0;
+							? placeWithGuards(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.lair(), "ruine", StructureBuilder.eraOf(p)) : 0;
 						c.getSource().sendSuccess(() -> Component.literal("Drakengebied gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
@@ -146,7 +146,7 @@ public final class DebugCommand {
 	}
 	private static int placeWithGuards(net.minecraft.server.level.ServerLevel sl, net.minecraft.core.BlockPos hoek, com.drakenrijken.core.Blueprint plan, String tabel, int era) {
 		int n = StructureBuilder.placeWithLoot(sl, hoek, plan, tabel, era);
-		StructureBuilder.spawnGuards(sl, hoek, plan, "dungeon", era);
+		StructureBuilder.spawnGuards(sl, hoek, plan, tabel.equals("ruine") ? "drakengebied" : "dungeon", era);
 		return n;
 	}
 }

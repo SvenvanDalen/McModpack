@@ -1,0 +1,8 @@
+{
+	"area": "drakengebied",
+	"entries": [
+		{ "mob": "minecraft:skeleton", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:blaze", "weight": 4, "era": 2 },
+		{ "mob": "minecraft:wither_skeleton", "weight": 4, "era": 3 }
+	]
+}

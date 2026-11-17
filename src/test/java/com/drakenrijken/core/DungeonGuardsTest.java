@@ -24,4 +24,13 @@ class DungeonGuardsTest {
 			for (int era = 1; era <= 3; era++) assertTrue(tabel.pick(era, r).isPresent());
 		}
 	}
+
+	@Test
+	void drakengebiedHeeftBewakersEnEigenLijst() throws Exception {
+		assertEquals(2, Blueprints.lair().spots().stream().filter(s -> s.role().equals("bewaker")).count());
+		try (var in = getClass().getResourceAsStream("/data/drakenrijken/spawns/drakengebied.json")) {
+			var tabel = SpawnTableLoader.load(new String(in.readAllBytes(), StandardCharsets.UTF_8));
+			for (int era = 1; era <= 3; era++) assertTrue(tabel.pick(era, new Random(2)).isPresent());
+		}
+	}
 }
