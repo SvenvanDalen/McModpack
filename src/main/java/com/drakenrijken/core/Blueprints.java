@@ -69,4 +69,20 @@ public final class Blueprints {
 		b.fill(8, -4, 9, 8, 0, 9, "air");
 		return b;
 	}
+
+	/**
+	 * Het drakengebied (DR-305): een rotsheuvel van 25x25 met een grote grot, een ingang aan de zuidkant (z=0),
+	 * een zwarte vloer met magma, losse rotspilaren eromheen en een nest met een schatkist.
+	 */
+	public static Blueprint lair() {
+		Blueprint b = new Blueprint();
+		b.fill(0, -1, 0, 24, -1, 24, "blackstone");
+		b.room(2, 0, 2, 22, 8, 22, "deepslate");
+		b.fill(11, 1, 2, 13, 4, 2, "air");
+		b.fill(10, 0, 10, 14, 0, 14, "magma_block");
+		b.set(12, 1, 19, "chest");
+		b.spot(12, 1, 16, "draak");
+		for (int x : new int[] {0, 24}) for (int z : new int[] {0, 12, 24}) b.fill(x, 0, z, x, 5, z, "stone");
+		return b;
+	}
 }
