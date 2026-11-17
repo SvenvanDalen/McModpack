@@ -16,7 +16,7 @@ public final class PlayerDataCodec {
 	private PlayerDataCodec() {}
 
 	private record Raw(Optional<String> playerClass, int level, int xp, List<String> unlocked,
-		Map<String, Integer> questCounts, List<String> questsDone, int realmPower, int bonusPoints) {}
+		Map<String, Integer> questCounts, List<String> questsDone, int realmPower, int bonusPoints, List<String> discovered) {}
 
 	private static final Codec<Raw> RAW = RecordCodecBuilder.create(i -> i.group(
 		Codec.STRING.optionalFieldOf("class").forGetter(Raw::playerClass),
@@ -26,7 +26,8 @@ public final class PlayerDataCodec {
 		Codec.unboundedMap(Codec.STRING, Codec.INT).optionalFieldOf("questCounts", Map.of()).forGetter(Raw::questCounts),
 		Codec.STRING.listOf().optionalFieldOf("questsDone", List.of()).forGetter(Raw::questsDone),
 		Codec.INT.optionalFieldOf("realmPower", 0).forGetter(Raw::realmPower),
-		Codec.INT.optionalFieldOf("bonusPoints", 0).forGetter(Raw::bonusPoints)
+		Codec.INT.optionalFieldOf("bonusPoints", 0).forGetter(Raw::bonusPoints),
+		Codec.STRING.listOf().optionalFieldOf("discovered", List.of()).forGetter(Raw::discovered)
 	).apply(i, Raw::new));
 
 	public static final Codec<PlayerData> CODEC = RAW.flatXmap(PlayerDataCodec::fromRaw, d -> DataResult.success(toRaw(d)));
@@ -34,7 +35,7 @@ public final class PlayerDataCodec {
 	private static Raw toRaw(PlayerData d) {
 		return new Raw(d.playerClass().map(PlayerClass::name), d.progress().level(), d.progress().xp(),
 			new ArrayList<>(d.progress().unlocked()), new LinkedHashMap<>(d.quests().counts()),
-			new ArrayList<>(d.quests().completed()), d.realmPower(), d.progress().bonusPoints());
+			new ArrayList<>(d.quests().completed()), d.realmPower(), d.progress().bonusPoints(), new ArrayList<>(d.discovered()));
 	}
 
 	private static DataResult<PlayerData> fromRaw(Raw r) {
@@ -52,6 +53,7 @@ public final class PlayerDataCodec {
 		d.progress().unlocked().addAll(r.unlocked());
 		d.quests().counts().putAll(r.questCounts());
 		d.quests().completed().addAll(r.questsDone());
+		d.discovered().addAll(r.discovered());
 		return DataResult.success(d);
 	}
 }

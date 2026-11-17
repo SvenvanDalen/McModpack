@@ -20,4 +20,18 @@ public final class KingdomPlacement {
 		z = (z ^ (z >>> 27)) * 0x94D049BB133111EBL;
 		return z ^ (z >>> 31);
 	}
+
+	/** Midden (x, z) van elk koninkrijk-chunk waarvan het midden binnen {@code radius} blokken van (x, z) ligt. */
+	public static java.util.List<int[]> near(long seed, int x, int z, int radius) {
+		java.util.List<int[]> out = new java.util.ArrayList<>();
+		int c0x = Math.floorDiv(x - radius, 16), c1x = Math.floorDiv(x + radius, 16);
+		int c0z = Math.floorDiv(z - radius, 16), c1z = Math.floorDiv(z + radius, 16);
+		long r2 = (long) radius * radius;
+		for (int cx = c0x; cx <= c1x; cx++) for (int cz = c0z; cz <= c1z; cz++) {
+			int mx = cx * 16 + 8, mz = cz * 16 + 8;
+			long dx = mx - x, dz = mz - z;
+			if (dx * dx + dz * dz <= r2 && hasKingdom(seed, cx, cz)) out.add(new int[] {mx, mz});
+		}
+		return out;
+	}
 }

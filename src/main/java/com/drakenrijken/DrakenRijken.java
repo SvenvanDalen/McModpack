@@ -24,6 +24,7 @@ public class DrakenRijken implements ModInitializer {
 		com.drakenrijken.data.DragonBoss.init();
 		com.drakenrijken.data.RunewardenBoss.init();
 		com.drakenrijken.data.WorldGen.init();
+		com.drakenrijken.data.WorldDiscovery.init();
 		com.drakenrijken.quest.QuestEvents.init();
 		config = com.drakenrijken.config.ConfigFile.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
 		LOGGER.info("Draken en Rijken geladen");

@@ -8,6 +8,7 @@ public final class PlayerData {
 	private final PlayerProgress progress = new PlayerProgress();
 	private final QuestProgress quests = new QuestProgress();
 	private int realmPower;
+	private final java.util.Set<String> discovered = new java.util.LinkedHashSet<>();
 
 	private PlayerData() {}
 
@@ -22,6 +23,9 @@ public final class PlayerData {
 	public PlayerProgress progress() { return progress; }
 
 	public QuestProgress quests() { return quests; }
+
+	/** Ontdekte koninkrijken als "x,z" (midden van het koninkrijk), in volgorde van ontdekking. */
+	public java.util.Set<String> discovered() { return discovered; }
 
 	public int realmPower() { return realmPower; }
 
