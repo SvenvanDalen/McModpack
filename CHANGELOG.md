@@ -4,6 +4,11 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Vaardighedenscherm (toets K): alle vaardigheden per klasse, met punten over en geleerde vaardigheden als [x]. Klikken leert een vaardigheid via de server.
+- Alle 18 vaardigheden werken via `/dr gebruik <id>` (13 actief, 5 passief); waarden zijn een eerste schatting.
+- Quest-tracker in de HUD en een draak (tijdelijk een Ravager) met drie fasen, vuur en beloning.
+- Nog niet getest in het echte spel: schermen en HUD; open: lijnen in de vaardighedenboom.
+
 ## [0.1.0]
 
 Eerste ontwikkelstand. Nog geen speelbare release.
