@@ -8,6 +8,7 @@ public final class PlayerData {
 	private final PlayerProgress progress = new PlayerProgress();
 	private final QuestProgress quests = new QuestProgress();
 	private int realmPower;
+	private long lastTaxDay;
 	private final java.util.Set<String> discovered = new java.util.LinkedHashSet<>();
 
 	private PlayerData() {}
@@ -28,6 +29,11 @@ public final class PlayerData {
 	public java.util.Set<String> discovered() { return discovered; }
 
 	public int realmPower() { return realmPower; }
+
+	/** Speldag waarop de belasting (RealmTax) voor het laatst is opgehaald. */
+	public long lastTaxDay() { return lastTaxDay; }
+
+	public void setLastTaxDay(long day) { this.lastTaxDay = day; }
 
 	/** Totale macht van het rijk; het niveau volgt hieruit via RealmState. */
 	public void setRealmPower(int power) {

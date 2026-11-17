@@ -49,7 +49,8 @@ public final class RealmRaid {
 	/** Zet de aanvallers neer en geeft hun aantal terug; 0 onder niveau 2. Houdt de vijandengrens aan. */
 	public static int launch(ServerLevel level, ServerPlayer player, int realmLevel) {
 		if (!RealmRaids.raidsAt(realmLevel)) return 0;
-		int wanted = RealmRaids.waveSize(realmLevel) * RealmRaids.waves(realmLevel);
+		int wall = RealmScan.wallBlocks(level, player.blockPosition());
+		int wanted = com.drakenrijken.core.WallStrength.apply(RealmRaids.waveSize(realmLevel), wall) * RealmRaids.waves(realmLevel);
 		int bestaand = level.getEntitiesOfClass(Monster.class, new AABB(player.blockPosition()).inflate(RealmScan.RADIUS)).size();
 		int ruimte = Math.max(0, EntityBudget.MAX_ENEMIES - bestaand);
 		int era = RealmRaids.enemyEra(realmLevel);

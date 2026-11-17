@@ -4,6 +4,8 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Stadsmuur (#153): muurblokken op een ring rond je rijk verkleinen een aanval met hoogstens 30% (nooit tot nul). Gemeten bij het begin van een aanval; torens tellen nog niet mee.
+- Belasting (#154): `/dr belasting` geeft goudstaven per speldag (2 per rijksniveau, hoogstens 3 dagen opgespaard). Een eigen belastingkist als blok volgt later.
 - Tijdelijke vanilla geluiden bij vaardigheden en drakenvuur (niet in het spel getest; eigen geluiden volgen).
 - Vaardighedenscherm (toets K): alle vaardigheden per klasse, met punten over en geleerde vaardigheden als [x]. Klikken leert een vaardigheid via de server.
 - Alle 18 vaardigheden werken via `/dr gebruik <id>` (13 actief, 5 passief); waarden zijn een eerste schatting.
