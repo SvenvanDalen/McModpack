@@ -80,7 +80,11 @@ public class SkillScreen extends Screen {
 				g.horizontalLine(lijnX, naar[0] - 1, naar[1] + 10, (hoog ? 0xFFFFFF00 : 0xFFAAAAAA));
 			}
 		}
-		g.text(font, "Vaardigheden - punten over: " + delen()[0], 10, 10, 0xFFFFFFFF);
+		float s = (float) com.drakenrijken.DrakenRijken.config.textScale();
+		g.pose().pushMatrix();
+		g.pose().scale(s, s);
+		g.text(font, "Vaardigheden - punten over: " + delen()[0], Math.round(10 / s), Math.round(10 / s), 0xFFFFFFFF);
+		g.pose().popMatrix();
 	}
 
 

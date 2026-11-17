@@ -41,4 +41,12 @@ class ModConfigTest {
 		assertEquals(true, ModConfig.parse("{\"highContrast\": true}").highContrast());
 		assertEquals(false, ModConfig.parse("{\"highContrast\": \"ja\"}").highContrast());
 	}
+
+	@Test
+	void tekstgrootteBlijftBinnenGrenzen() {
+		assertEquals(1.0, ModConfig.defaults().textScale());
+		assertEquals(1.5, ModConfig.parse("{\"textScale\": 1.5}").textScale());
+		assertEquals(1.0, ModConfig.parse("{\"textScale\": 5}").textScale());
+		assertEquals(1.0, ModConfig.parse("{\"textScale\": \"groot\"}").textScale());
+	}
 }
