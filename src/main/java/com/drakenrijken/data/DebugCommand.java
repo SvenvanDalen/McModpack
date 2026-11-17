@@ -78,6 +78,16 @@ public final class DebugCommand {
 					if (n == 0) c.getSource().sendSuccess(() -> Component.literal("Geen aanval: je rijk is nog te klein (niveau 2 nodig) of er zijn al genoeg vijanden."), false);
 					return 1;
 				}))
+				.then(Commands.literal("beroepen").executes(c -> {
+					ServerPlayer p = c.getSource().getPlayerOrException();
+					int niveau = com.drakenrijken.core.RealmState.levelFor(ModData.of(p).realmPower());
+					int[] r = com.drakenrijken.core.Profession.assign(com.drakenrijken.core.RealmVillagers.target(niveau));
+					StringBuilder sb = new StringBuilder("Beroepen in je rijk:");
+					for (var b : com.drakenrijken.core.Profession.values()) sb.append(' ').append(b.naam()).append(' ').append(r[b.ordinal()]).append(',');
+					sb.append(" opbrengst ").append(com.drakenrijken.core.Profession.dailyYield(niveau)).append(" per dag (nog niet uitbetaald).");
+					c.getSource().sendSuccess(() -> Component.literal(sb.toString()), false);
+					return 1;
+				}))
 				.then(Commands.literal("seizoen").executes(c -> {
 					long dag = c.getSource().getLevel().getGameTime() / 24000L;
 					var s = com.drakenrijken.core.Season.of(dag);

@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Beroepen (#152, eerste stap): dorpelingen worden gelijk verdeeld over boer, mijnwerker, smid en wachter; `/dr beroepen` toont de verdeling en de dagopbrengst. Nog niet uitbetaald, zelf een beroep kiezen en JSON-inhoud volgen; de balans is nog niet door de Economy Designer nagekeken.
 - Seizoenen (#155): cyclus van 4 x 7 speldagen (lente, zomer, herfst, winter). Spelers krijgen een melding bij een nieuw seizoen en `/dr seizoen` toont het seizoen. De oogstfactor (winter 50%, zomer 125%) staat in de kern maar is nog niet aan de oogst gekoppeld; weer, kleuren en aanvallen veranderen nog niet. Niet in het spel getest.
 - Windmolen (#145): nieuw blok dat aan een as kracht levert: 0 onder hoogte 64, oplopend tot 6 op hoogte 200, alleen met lucht om zich heen en zicht op de hemel. Zwakker dan een waterrad met vier zijden (8). De 16x16-textuur is een eerste ontwerp en niet in het spel bekeken.
 - Marktprijzen (#156): handelsprijzen schommelen per speldag tussen 85 en 115 procent, begrensd op 50 tot 150 samen met de rijkskorting. De werking via de welwillendheid van dorpelingen is een benadering en niet in het spel getest; vraag en aanbod door verkopen zit er nog niet in.
