@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 /** Blokken van de mod. Nu alleen het waterrad (DR-403); de kracht komt uit core.WaterWheel. */
 public final class ModBlocks {
 	public static Block WATERRAD;
+	public static Block WINDMOLEN;
 	public static Block SMEDERIJ;
 	public static Block AS;
 	public static Block STOOMKETEL;
@@ -27,6 +28,7 @@ public final class ModBlocks {
 
 	public static void init() {
 		WATERRAD = register("waterrad", WaterWheelBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
+		WINDMOLEN = register("windmolen", WindMillBlock::new, BlockBehaviour.Properties.of().strength(2.0f).noOcclusion());
 		SMEDERIJ = register("smederij", p -> new MachineBlock(p, "smederij", 1), BlockBehaviour.Properties.of().strength(3.5f));
 		AS = register("as", Block::new, BlockBehaviour.Properties.of().strength(1.5f));
 		STOOMKETEL = register("stoomketel", SteamBoilerBlock::new, BlockBehaviour.Properties.of().strength(4.0f));

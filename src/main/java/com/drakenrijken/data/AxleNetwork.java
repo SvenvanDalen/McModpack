@@ -26,7 +26,7 @@ public final class AxleNetwork {
 			for (Direction d : Direction.values()) {
 				BlockPos n = p.relative(d);
 				var block = level.getBlockState(n).getBlock();
-				if (block == ModBlocks.WATERRAD || block == ModBlocks.STOOMKETEL || block == ModBlocks.RUNESTEEN) {
+				if (block == ModBlocks.WATERRAD || block == ModBlocks.WINDMOLEN || block == ModBlocks.STOOMKETEL || block == ModBlocks.RUNESTEEN) {
 					wheels.add(n);
 				} else if (block == ModBlocks.AS && shafts < PowerNetwork.MAX_SHAFTS && seen.add(n)) {
 					shafts++;
@@ -43,6 +43,7 @@ public final class AxleNetwork {
 		var block = level.getBlockState(pos).getBlock();
 		if (block == ModBlocks.STOOMKETEL) return SteamBoilerBlock.power(level, pos);
 		if (block == ModBlocks.RUNESTEEN) return RuneStoneBlock.power(level, pos);
+		if (block == ModBlocks.WINDMOLEN) return WindMillBlock.power(level, pos);
 		return WaterWheelBlock.power(level, pos);
 	}
 }

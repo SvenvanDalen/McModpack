@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["WSW", "SIS", "WSW"],
+	"key": {
+		"W": "minecraft:white_wool",
+		"S": "minecraft:stick",
+		"I": "minecraft:iron_ingot"
+	},
+	"result": {"id": "drakenrijken:windmolen", "count": 1}
+}
