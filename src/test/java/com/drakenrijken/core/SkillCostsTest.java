@@ -52,4 +52,10 @@ class SkillCostsTest {
 		p.unlocked().add("onverzettelijk");
 		assertEquals(0.5, SkillCosts.knockbackResistance(p));
 	}
+
+	@Test
+	void oorlogskreetEnBarriereKosten() {
+		assertEquals(25, SkillCosts.costOf("oorlogskreet"));
+		assertEquals(30, SkillCosts.costOf("barriere"));
+	}
 }
