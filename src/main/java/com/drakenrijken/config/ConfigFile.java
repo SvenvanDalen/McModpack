@@ -15,7 +15,7 @@ public final class ConfigFile {
 		try {
 			if (!Files.exists(file)) {
 				Files.createDirectories(configDir);
-				Files.writeString(file, "{\n  \"particles\": true,\n  \"maxActiveMachines\": 64\n}\n", StandardCharsets.UTF_8);
+				Files.writeString(file, "{\n  \"particles\": true,\n  \"maxActiveMachines\": 64,\n  \"generateStructures\": false\n}\n", StandardCharsets.UTF_8);
 				return ModConfig.defaults();
 			}
 			return ModConfig.parse(Files.readString(file, StandardCharsets.UTF_8));
