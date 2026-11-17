@@ -104,7 +104,7 @@ public final class DebugCommand {
 					.then(Commands.literal("burcht").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
-							? placeWithGuards(sl, p.blockPosition().offset(4, 6, -3), com.drakenrijken.core.Blueprints.castle(), "dungeon", StructureBuilder.eraOf(p)) : 0;
+							? placeWithGuards(sl, p.blockPosition().offset(4, 6, -3), com.drakenrijken.core.Blueprints.castle(), "burcht", StructureBuilder.eraOf(p)) : 0;
 						c.getSource().sendSuccess(() -> Component.literal("Burcht gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
