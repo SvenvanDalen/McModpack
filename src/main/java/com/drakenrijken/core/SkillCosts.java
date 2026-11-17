@@ -20,4 +20,11 @@ public final class SkillCosts {
 		if (!p.unlocked().contains(id)) return Result.NOT_UNLOCKED;
 		return bar.spend(cost) ? Result.OK : Result.TOO_TIRED;
 	}
+
+	/** Herstel per seconde: basis 5, met de vaardigheid mana_regen 5 extra. */
+	public static int regenPerSecond(PlayerProgress p) {
+		return BASE_REGEN + (p.unlocked().contains("mana_regen") ? 5 : 0);
+	}
+
+	public static final int BASE_REGEN = 5;
 }

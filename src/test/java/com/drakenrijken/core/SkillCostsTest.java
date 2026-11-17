@@ -17,4 +17,12 @@ class SkillCostsTest {
 		assertEquals(10, bar.value());
 		assertEquals(SkillCosts.Result.PASSIVE, SkillCosts.use(p, bar, "taaiheid"));
 	}
+
+	@Test
+	void manaRegenVersnelt() {
+		var p = new PlayerProgress();
+		assertEquals(5, SkillCosts.regenPerSecond(p));
+		p.unlocked().add("mana_regen");
+		assertEquals(10, SkillCosts.regenPerSecond(p));
+	}
 }

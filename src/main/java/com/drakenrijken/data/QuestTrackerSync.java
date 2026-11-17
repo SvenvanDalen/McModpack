@@ -21,7 +21,6 @@ import net.minecraft.server.level.ServerPlayer;
  * er is nog niets dat hem verbruikt.
  */
 public final class QuestTrackerSync {
-	private static final int REGEN_PER_SECOND = 5;
 	private static final Map<UUID, String> LAST = new HashMap<>();
 	private static final Map<UUID, ResourceBar> BARS = new HashMap<>();
 	private static final Set<UUID> OFF = new HashSet<>();
@@ -34,7 +33,7 @@ public final class QuestTrackerSync {
 			if (server.getTickCount() % 20 != 0) return;
 			for (ServerPlayer p : server.getPlayerList().getPlayers()) {
 				ResourceBar b = BARS.get(p.getUUID());
-				if (b != null) b.regen(REGEN_PER_SECOND);
+				if (b != null) b.regen(com.drakenrijken.core.SkillCosts.regenPerSecond(ModData.of(p).progress()));
 				push(p);
 			}
 		});
