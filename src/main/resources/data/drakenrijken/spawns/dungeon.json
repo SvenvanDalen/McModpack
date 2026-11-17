@@ -1,0 +1,9 @@
+{
+	"area": "dungeon",
+	"entries": [
+		{ "mob": "minecraft:zombie", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:skeleton", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:husk", "weight": 3, "era": 2 },
+		{ "mob": "minecraft:vindicator", "weight": 3, "era": 3 }
+	]
+}

@@ -22,6 +22,8 @@ public final class Blueprints {
 		b.fill(10, 0, 2, 12, 0, 4, "magma_block");
 		b.set(21, 1, 3, "chest");
 		b.set(19, 3, 1, "lantern");
+		b.spot(12, 1, 3, "bewaker");
+		b.spot(21, 1, 5, "bewaker");
 		return b;
 	}
 

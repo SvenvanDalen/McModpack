@@ -59,4 +59,33 @@ public final class StructureBuilder {
 			return null;
 		}
 	}
+
+	/** Zet op elke plek met rol "bewaker" een vijand uit de spawnlijst {@code spawnName}; houdt de vijandengrens aan. Geeft het aantal. */
+	public static int spawnGuards(ServerLevel level, BlockPos corner, Blueprint plan, String spawnName, int era) {
+		com.drakenrijken.core.SpawnTable table;
+		try (var in = StructureBuilder.class.getResourceAsStream("/data/drakenrijken/spawns/" + spawnName + ".json")) {
+			if (in == null) return 0;
+			table = SpawnTableLoader.load(new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8));
+		} catch (java.io.IOException e) {
+			return 0;
+		}
+		var random = new java.util.Random(corner.asLong());
+		int bestaand = level.getEntitiesOfClass(net.minecraft.world.entity.monster.Monster.class,
+			new net.minecraft.world.phys.AABB(corner).inflate(64)).size();
+		int n = 0;
+		for (var s : plan.spots()) {
+			if (!s.role().equals("bewaker") || bestaand + n >= com.drakenrijken.core.EntityBudget.MAX_ENEMIES) continue;
+			var keuze = table.pick(era, random);
+			if (keuze.isEmpty()) continue;
+			var id = Identifier.tryParse(keuze.get().mob());
+			var type = id == null ? java.util.Optional.<net.minecraft.world.entity.EntityType<?>>empty() : BuiltInRegistries.ENTITY_TYPE.getOptional(id);
+			if (type.isEmpty()) continue;
+			var mob = type.get().spawn(level, corner.offset(s.x(), s.y(), s.z()), net.minecraft.world.entity.EntitySpawnReason.EVENT);
+			if (mob != null) {
+				if (mob instanceof net.minecraft.world.entity.Mob m) m.setPersistenceRequired();
+				n++;
+			}
+		}
+		return n;
+	}
 }
