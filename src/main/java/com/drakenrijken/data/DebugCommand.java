@@ -150,6 +150,12 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
 					return 1;
 				}))
+					.then(Commands.literal("tracker").executes(c -> {
+						ServerPlayer p = c.getSource().getPlayerOrException();
+						boolean aan = QuestTrackerSync.toggle(p);
+						c.getSource().sendSuccess(() -> Component.literal(aan ? "Quest-tracker staat aan." : "Quest-tracker staat uit."), false);
+						return 1;
+					}))
 				.then(Commands.literal("quests").executes(c -> {
 					ServerPlayer p = c.getSource().getPlayerOrException();
 					var lines = QuestLog.lines(QuestEvents.engine().quests(), ModData.of(p).quests());
