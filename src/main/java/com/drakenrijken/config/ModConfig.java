@@ -5,8 +5,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /** Instellingen uit drakenrijken.json; kapotte of ontbrekende waarden vallen terug op de standaard. */
-public record ModConfig(boolean particles, int maxActiveMachines, boolean generateStructures) {
+public record ModConfig(boolean particles, int maxActiveMachines, boolean generateStructures, boolean highContrast) {
 	public static final int DEFAULT_MAX_MACHINES = 64;
+
+	public ModConfig(boolean particles, int maxActiveMachines, boolean generateStructures) {
+		this(particles, maxActiveMachines, generateStructures, false);
+	}
 
 	public static ModConfig defaults() {
 		return new ModConfig(true, DEFAULT_MAX_MACHINES, false);
@@ -15,7 +19,7 @@ public record ModConfig(boolean particles, int maxActiveMachines, boolean genera
 	public static ModConfig parse(String json) {
 		try {
 			JsonObject o = JsonParser.parseString(json).getAsJsonObject();
-			return new ModConfig(bool(o, "particles", true), positiveInt(o, "maxActiveMachines", DEFAULT_MAX_MACHINES), bool(o, "generateStructures", false));
+			return new ModConfig(bool(o, "particles", true), positiveInt(o, "maxActiveMachines", DEFAULT_MAX_MACHINES), bool(o, "generateStructures", false), bool(o, "highContrast", false));
 		} catch (RuntimeException e) {
 			return defaults();
 		}

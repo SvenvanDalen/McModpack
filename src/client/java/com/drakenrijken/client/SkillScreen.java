@@ -65,6 +65,8 @@ public class SkillScreen extends Screen {
 
 	@Override
 	public void extractRenderState(GuiGraphicsExtractor g, int mouseX, int mouseY, float delta) {
+		boolean hoog = com.drakenrijken.DrakenRijken.config.highContrast();
+		if (hoog) g.fill(0, 0, width, height, 0xFF000000);
 		super.extractRenderState(g, mouseX, mouseY, delta);
 		// Lijnen van elke vereiste vaardigheid naar de vaardigheid die ze nodig heeft (linkerkant van de kolom).
 		for (Skill s : allSkills()) {
@@ -73,9 +75,9 @@ public class SkillScreen extends Screen {
 				int[] van = plek.get(eis);
 				if (naar == null || van == null || van[0] != naar[0]) continue;
 				int lijnX = naar[0] - 4;
-				g.horizontalLine(lijnX, naar[0] - 1, van[1] + 10, 0xFFAAAAAA);
-				g.verticalLine(lijnX, Math.min(van[1], naar[1]) + 10, Math.max(van[1], naar[1]) + 10, 0xFFAAAAAA);
-				g.horizontalLine(lijnX, naar[0] - 1, naar[1] + 10, 0xFFAAAAAA);
+				g.horizontalLine(lijnX, naar[0] - 1, van[1] + 10, (hoog ? 0xFFFFFF00 : 0xFFAAAAAA));
+				g.verticalLine(lijnX, Math.min(van[1], naar[1]) + 10, Math.max(van[1], naar[1]) + 10, (hoog ? 0xFFFFFF00 : 0xFFAAAAAA));
+				g.horizontalLine(lijnX, naar[0] - 1, naar[1] + 10, (hoog ? 0xFFFFFF00 : 0xFFAAAAAA));
 			}
 		}
 		g.text(font, "Vaardigheden - punten over: " + delen()[0], 10, 10, 0xFFFFFFFF);

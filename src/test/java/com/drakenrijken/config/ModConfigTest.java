@@ -34,4 +34,11 @@ class ModConfigTest {
 		assertEquals(64, ModConfig.parse("{\"maxActiveMachines\": -5}").maxActiveMachines());
 		assertEquals(64, ModConfig.parse("{\"maxActiveMachines\": \"veel\"}").maxActiveMachines());
 	}
+
+	@Test
+	void hoogContrastStaatStandaardUit() {
+		assertEquals(false, ModConfig.defaults().highContrast());
+		assertEquals(true, ModConfig.parse("{\"highContrast\": true}").highContrast());
+		assertEquals(false, ModConfig.parse("{\"highContrast\": \"ja\"}").highContrast());
+	}
 }
