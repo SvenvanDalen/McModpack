@@ -40,4 +40,8 @@ public final class SkillCosts {
 	public static double bonusDamage(PlayerProgress p) {
 		return p.unlocked().contains("zwaardbeheersing") ? 2.0 : 0.0;
 	}
+	/** Weerstand tegen terugslag (0 tot 1): onverzettelijk geeft 0,5. */
+	public static double knockbackResistance(PlayerProgress p) {
+		return p.unlocked().contains("onverzettelijk") ? 0.5 : 0.0;
+	}
 }

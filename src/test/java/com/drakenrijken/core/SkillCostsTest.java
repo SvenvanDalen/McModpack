@@ -44,4 +44,12 @@ class SkillCostsTest {
 		assertEquals(0.02, SkillCosts.bonusSpeed(p));
 		assertEquals(2.0, SkillCosts.bonusDamage(p));
 	}
+
+	@Test
+	void onverzettelijkWeerstaatTerugslag() {
+		var p = new PlayerProgress();
+		assertEquals(0.0, SkillCosts.knockbackResistance(p));
+		p.unlocked().add("onverzettelijk");
+		assertEquals(0.5, SkillCosts.knockbackResistance(p));
+	}
 }

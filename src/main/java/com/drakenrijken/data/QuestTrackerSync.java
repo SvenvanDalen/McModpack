@@ -44,6 +44,9 @@ public final class QuestTrackerSync {
 				var dm = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
 				double wensSchade = 1.0 + com.drakenrijken.core.SkillCosts.bonusDamage(pr);
 				if (dm != null && dm.getBaseValue() != wensSchade) dm.setBaseValue(wensSchade);
+				var kb = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.KNOCKBACK_RESISTANCE);
+				double wensKb = com.drakenrijken.core.SkillCosts.knockbackResistance(pr);
+				if (kb != null && kb.getBaseValue() != wensKb) kb.setBaseValue(wensKb);
 				push(p);
 			}
 		});
