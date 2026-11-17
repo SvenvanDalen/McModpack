@@ -119,7 +119,7 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | DR-603 | `DragonEntity` | Beweegt, valt aan, heeft gezondheidsbalk | L | DR-601, DR-602 | M |
 | DR-604 | Fase 1: grondaanval | Klauw en staart | M | DR-603 | M | (deels: staartzwiep op een Ravager als stand-in; klauw volgt met DR-602)
 | DR-605 | Fase 2: vuur | Vuuradem met maximaal 8 eigen deeltjes per aanval | M | DR-603 | M | (deels: vuuradem met hoogstens 8 deeltjes)
-| DR-606 | Fase 3: lucht en woede | Duikaanval en snellere cyclus | M | DR-603 | M |
+| DR-606 | Fase 3: lucht en woede | Duikaanval en snellere cyclus | M | DR-603 | M | (deels: snellere cyclus; duikaanval wacht op vlucht en model, DR-602)
 | DR-607 | Beloning eenmalig | `rewardOnce` geeft maar één keer beloning per speler | S | DR-601 | M |
 | DR-608 | Reset bij dood of vertrek | Speler sterft of verlaat de wereld: draak herstelt naar fase 1, geen beloning; GameTest | M | DR-603 | M |
 | DR-609 | Strijdmuziek | Eigen muziekloop tijdens de strijd | M | DR-603 | C |
