@@ -5,6 +5,6 @@
 	"name": "Draken en Rijken tests",
 	"environment": "*",
 	"entrypoints": {
-		"fabric-gametest": ["com.drakenrijken.test.RooktestGameTest", "com.drakenrijken.test.WaterradGameTest", "com.drakenrijken.test.SmederijGameTest", "com.drakenrijken.test.AssenGameTest", "com.drakenrijken.test.StoomketelGameTest", "com.drakenrijken.test.TijdperkGameTest", "com.drakenrijken.test.RunesteenGameTest", "com.drakenrijken.test.TransportbandGameTest", "com.drakenrijken.test.RijkGameTest", "com.drakenrijken.test.DraakGameTest", "com.drakenrijken.test.RunewardenGameTest", "com.drakenrijken.test.DungeonGameTest", "com.drakenrijken.test.DorpGameTest", "com.drakenrijken.test.BurchtGameTest", "com.drakenrijken.test.DrakenGebiedGameTest"]
+		"fabric-gametest": ["com.drakenrijken.test.RooktestGameTest", "com.drakenrijken.test.WaterradGameTest", "com.drakenrijken.test.SmederijGameTest", "com.drakenrijken.test.AssenGameTest", "com.drakenrijken.test.StoomketelGameTest", "com.drakenrijken.test.TijdperkGameTest", "com.drakenrijken.test.RunesteenGameTest", "com.drakenrijken.test.TransportbandGameTest", "com.drakenrijken.test.RijkGameTest", "com.drakenrijken.test.DraakGameTest", "com.drakenrijken.test.RunewardenGameTest", "com.drakenrijken.test.DungeonGameTest", "com.drakenrijken.test.DorpGameTest", "com.drakenrijken.test.BurchtGameTest", "com.drakenrijken.test.DrakenGebiedGameTest", "com.drakenrijken.test.BuitGameTest"]
 	}
 }

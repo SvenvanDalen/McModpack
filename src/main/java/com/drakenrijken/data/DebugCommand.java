@@ -97,14 +97,14 @@ public final class DebugCommand {
 					.then(Commands.literal("drakengebied").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
-							? StructureBuilder.place(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.lair()) : 0;
+							? StructureBuilder.placeWithLoot(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.lair(), "ruine", StructureBuilder.eraOf(p)) : 0;
 						c.getSource().sendSuccess(() -> Component.literal("Drakengebied gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
 					.then(Commands.literal("burcht").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
-							? StructureBuilder.place(sl, p.blockPosition().offset(4, 6, -3), com.drakenrijken.core.Blueprints.castle()) : 0;
+							? StructureBuilder.placeWithLoot(sl, p.blockPosition().offset(4, 6, -3), com.drakenrijken.core.Blueprints.castle(), "dungeon", StructureBuilder.eraOf(p)) : 0;
 						c.getSource().sendSuccess(() -> Component.literal("Burcht gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
@@ -118,7 +118,7 @@ public final class DebugCommand {
 					.then(Commands.literal("dungeon").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						int n = p.level() instanceof net.minecraft.server.level.ServerLevel sl
-							? StructureBuilder.place(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.dungeon()) : 0;
+							? StructureBuilder.placeWithLoot(sl, p.blockPosition().offset(4, 0, -3), com.drakenrijken.core.Blueprints.dungeon(), "dungeon", StructureBuilder.eraOf(p)) : 0;
 						c.getSource().sendSuccess(() -> Component.literal("Dungeon gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
