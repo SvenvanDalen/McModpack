@@ -29,6 +29,7 @@ public final class QuestTrackerSync {
 
 	public static void init() {
 		PayloadTypeRegistry.clientboundPlay().register(TrackerPayload.TYPE, TrackerPayload.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(SkillsPayload.TYPE, SkillsPayload.CODEC);
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			if (server.getTickCount() % 20 != 0) return;
 			for (ServerPlayer p : server.getPlayerList().getPlayers()) {
@@ -65,10 +66,23 @@ public final class QuestTrackerSync {
 	}
 
 	private static void push(ServerPlayer p) {
+		pushSkills(p);
 		String t = textFor(p);
 		if (t.equals(LAST.get(p.getUUID()))) return;
 		LAST.put(p.getUUID(), t);
 		ServerPlayNetworking.send(p, new TrackerPayload(t));
+	}
+
+	private static final Map<UUID, String> LAST_SKILLS = new HashMap<>();
+
+	private static void pushSkills(ServerPlayer p) {
+		var d = ModData.of(p);
+		if (d.playerClass().isEmpty()) return;
+		var pr = d.progress();
+		String s = ModSkills.tree().pointsLeft(pr) + ";" + String.join(",", new java.util.TreeSet<>(pr.unlocked()));
+		if (s.equals(LAST_SKILLS.get(p.getUUID()))) return;
+		LAST_SKILLS.put(p.getUUID(), s);
+		ServerPlayNetworking.send(p, new SkillsPayload(s));
 	}
 
 	/** Zet de quest-regel aan of uit; geeft true als hij nu aan staat. */
