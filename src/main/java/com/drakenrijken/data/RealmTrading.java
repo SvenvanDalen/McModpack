@@ -28,7 +28,7 @@ public final class RealmTrading {
 	public static void apply(Villager villager, ServerPlayer player, int realmLevel) {
 		var gossips = villager.getGossips();
 		gossips.remove(player.getUUID(), GossipType.MAJOR_POSITIVE);
-		int goodwill = RealmTrade.goodwill(realmLevel);
+		int goodwill = Math.max(0, RealmTrade.goodwill(realmLevel) + com.drakenrijken.core.MarketPrice.goodwillShift(player.level().getGameTime() / 24000L));
 		if (goodwill > 0) gossips.add(player.getUUID(), GossipType.MAJOR_POSITIVE, goodwill);
 	}
 }

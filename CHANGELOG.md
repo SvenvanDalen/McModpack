@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Marktprijzen (#156): handelsprijzen schommelen per speldag tussen 85 en 115 procent, begrensd op 50 tot 150 samen met de rijkskorting. De werking via de welwillendheid van dorpelingen is een benadering en niet in het spel getest; vraag en aanbod door verkopen zit er nog niet in.
 - Stadsmuur (#153): muurblokken op een ring rond je rijk verkleinen een aanval met hoogstens 30% (nooit tot nul). Gemeten bij het begin van een aanval; torens tellen nog niet mee.
 - Belasting (#154): `/dr belasting` geeft goudstaven per speldag (2 per rijksniveau, hoogstens 3 dagen opgespaard). Een eigen belastingkist als blok volgt later.
 - Tijdelijke vanilla geluiden bij vaardigheden en drakenvuur (niet in het spel getest; eigen geluiden volgen).
