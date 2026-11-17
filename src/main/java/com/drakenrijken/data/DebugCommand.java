@@ -122,6 +122,13 @@ public final class DebugCommand {
 						c.getSource().sendSuccess(() -> Component.literal("Dungeon gebouwd (" + n + " blokken), vlak voor je."), false);
 						return 1;
 					}))
+						.then(Commands.literal("reis").then(Commands.argument("nummer", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1)).executes(c -> {
+							ServerPlayer p = c.getSource().getPlayerOrException();
+							String text = p.level() instanceof net.minecraft.server.level.ServerLevel sl
+								? FastTravelService.travel(sl, p, com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(c, "nummer")) : "Reizen kan alleen in de bovenwereld.";
+							c.getSource().sendSuccess(() -> Component.literal(text), false);
+							return 1;
+						})))
 					.then(Commands.literal("kaart").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						if (p.level() instanceof net.minecraft.server.level.ServerLevel sl) WorldDiscovery.visit(sl, p);

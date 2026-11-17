@@ -79,7 +79,7 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | DR-307 | Kaart en kompas | Kaart toont ontdekte koninkrijken | M | DR-301 | S |
 | DR-308 | Vijanden per gebied | Spawnlijsten per structuur en gebied | M | DR-304 | M |
 | DR-309 | Buittabellen | Schatkisten volgen de tijdperken | M | DR-304 | S |
-| DR-310 | Snelreis | Betaalde reis tussen ontdekte dorpen | M | DR-307 | C |
+| DR-310 | Snelreis | Betaalde reis tussen ontdekte dorpen | M | DR-307 | C | (deels: /dr reis, smaragden als betaling, geen scherm)
 
 ## Epic 4: Industrie
 
