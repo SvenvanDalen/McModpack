@@ -199,7 +199,7 @@ public final class DebugCommand {
 						String id = StringArgumentType.getString(c, "id");
 						var r = com.drakenrijken.core.SkillCosts.use(d.progress(), QuestTrackerSync.barOf(p, d.playerClass().get()), id);
 						switch (r) {
-							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere, schildstoot, schaduwstap)."));
+							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere, schildstoot, schaduwstap, ijsstraal, vuurmuur)."));
 							case NOT_UNLOCKED -> c.getSource().sendFailure(Component.literal("Die vaardigheid heb je nog niet ontgrendeld."));
 							case TOO_TIRED -> c.getSource().sendFailure(Component.literal("Te weinig mana of uithouding."));
 							case OK -> {
@@ -212,7 +212,15 @@ public final class DebugCommand {
 								if (id.equals("barriere")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.ABSORPTION, 600, 1));
 								if (id.equals("schildstoot")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 100, 1));
 								if (id.equals("schaduwstap")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.INVISIBILITY, 160, 0));
-								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : "Schaduwstap!"), false);
+								if ((id.equals("ijsstraal") || id.equals("vuurmuur")) && p.level() instanceof net.minecraft.server.level.ServerLevel zl) {
+									double straal = id.equals("ijsstraal") ? 6 : 4;
+									var doelen = zl.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, p.getBoundingBox().inflate(straal), e -> e != p && e.isAlive());
+									for (var e : doelen) {
+										if (id.equals("ijsstraal")) e.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.SLOWNESS, 100, 2));
+										else e.igniteForSeconds(4);
+									}
+								}
+								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : id.equals("schaduwstap") ? "Schaduwstap!" : id.equals("ijsstraal") ? "Ijsstraal!" : "Vuurmuur!"), false);
 							}
 						}
 						return r == com.drakenrijken.core.SkillCosts.Result.OK ? 1 : 0;

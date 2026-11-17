@@ -64,4 +64,10 @@ class SkillCostsTest {
 		assertEquals(15, SkillCosts.costOf("schildstoot"));
 		assertEquals(20, SkillCosts.costOf("schaduwstap"));
 	}
+
+	@Test
+	void ijsstraalEnVuurmuurKosten() {
+		assertEquals(25, SkillCosts.costOf("ijsstraal"));
+		assertEquals(30, SkillCosts.costOf("vuurmuur"));
+	}
 }
