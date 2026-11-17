@@ -11,6 +11,8 @@ public final class DragonStats {
 	public static final int TAIL_RANGE = 4;
 	public static final float TAIL_DAMAGE = 6f;
 	public static final int FIRE_RANGE = 6;
+	/** Hoogstens zoveel eigen deeltjes per vuuraanval (DR-605). */
+	public static final int FIRE_PARTICLES = 8;
 
 	private DragonStats() {}
 

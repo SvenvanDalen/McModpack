@@ -96,6 +96,7 @@ public final class DragonBoss {
 			}
 		}
 		if (DragonStats.breathesFire(phase) && dragon.tickCount % DragonStats.fireInterval(phase) < 10) {
+			vuurDeeltjes(level);
 			for (ServerPlayer p : spelers) if (p.distanceTo(dragon) <= DragonStats.FIRE_RANGE) p.igniteForSeconds(3);
 		}
 	}
@@ -107,6 +108,12 @@ public final class DragonBoss {
 				p.sendSystemMessage(Component.literal("De draak is verslagen! Je krijgt 5 diamanten."));
 			}
 		}
+	}
+
+	private static void vuurDeeltjes(ServerLevel level) {
+		var budget = new com.drakenrijken.core.ParticleBudget(com.drakenrijken.DrakenRijken.config.particles(), DragonStats.FIRE_PARTICLES);
+		int n = budget.request(DragonStats.FIRE_PARTICLES);
+		if (n > 0) level.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, dragon.getX(), dragon.getEyeY(), dragon.getZ(), n, 2.0, 0.5, 2.0, 0.02);
 	}
 
 	/** Haalt de draak en zijn balk weg. */

@@ -36,4 +36,12 @@ class DragonStatsTest {
 		assertTrue(DragonStats.fireInterval(3) < DragonStats.fireInterval(2));
 		assertThrows(IllegalArgumentException.class, () -> DragonStats.fireInterval(0));
 	}
+
+	@Test
+	void vuurDeeltjesBlijvenBinnenBudget() {
+		var aan = new ParticleBudget(true, DragonStats.FIRE_PARTICLES);
+		assertEquals(8, aan.request(DragonStats.FIRE_PARTICLES));
+		assertEquals(0, aan.request(1));
+		assertEquals(0, new ParticleBudget(false, DragonStats.FIRE_PARTICLES).request(DragonStats.FIRE_PARTICLES));
+	}
 }
