@@ -203,3 +203,19 @@ Na elke mijlpaal draait meetstory DR-801 en kan het spel gespeeld worden. Dat vo
 - **Epics:** 11 (0 tot 10).
 - **Stories:** 99, waarvan 63 Must, 23 Should en 13 Could (geteld op 2026-11-16).
 - **XL-stories** (DR-408, DR-610, DR-705): eerst opsplitsen voordat je eraan begint.
+
+## Open en geblokkeerd (stand 2026-11-17)
+
+Wat nog open staat kan niet zonder het echte spel, eigen bestanden of een besluit van de eigenaar.
+
+| Story | Wat ontbreekt |
+|---|---|
+| DR-005, DR-801, DR-805, DR-807 | Metingen (FPS, RAM, laadtijd) op de doellaptop in het echte spel |
+| DR-903 t/m DR-905 | Speelrondes door een mens in het echte spel |
+| DR-906 | Starten met en zonder Sodium en Lithium in het echte spel |
+| DR-907 | Wacht op de fouten uit de speelrondes (DR-903) |
+| DR-602, DR-606 (duikaanval) | Eigen draakmodel en vlucht; er is nu een Ravager als stand-in |
+| DR-609, DR-704, DR-703 (eigen geluiden) | Eigen audiobestanden; die kan Claude niet maken |
+| DR-702 | Eigen titelscherm en logo (beeldmateriaal) |
+| DR-802 (aansluiten) | Machines die doorlopend draaien; nu alleen op klik. Voorstel nodig |
+| Verhaal en tweede eindbaas | `docs/verhaalschets.md` en `docs/tweede-eindbaas-voorstel.md` wachten op akkoord |
