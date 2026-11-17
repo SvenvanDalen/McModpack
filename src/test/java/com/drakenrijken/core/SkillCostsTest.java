@@ -33,4 +33,15 @@ class SkillCostsTest {
 		p.unlocked().add("taaiheid");
 		assertEquals(4, SkillCosts.bonusHealth(p));
 	}
+
+	@Test
+	void snelheidEnZwaardbeheersing() {
+		var p = new PlayerProgress();
+		assertEquals(0.0, SkillCosts.bonusSpeed(p));
+		assertEquals(0.0, SkillCosts.bonusDamage(p));
+		p.unlocked().add("snelheid");
+		p.unlocked().add("zwaardbeheersing");
+		assertEquals(0.02, SkillCosts.bonusSpeed(p));
+		assertEquals(2.0, SkillCosts.bonusDamage(p));
+	}
 }

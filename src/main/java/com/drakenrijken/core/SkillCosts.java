@@ -31,4 +31,13 @@ public final class SkillCosts {
 	public static int bonusHealth(PlayerProgress p) {
 		return p.unlocked().contains("taaiheid") ? 4 : 0;
 	}
+	/** Extra loopsnelheid (basis 0,1): snelheid geeft 0,02. */
+	public static double bonusSpeed(PlayerProgress p) {
+		return p.unlocked().contains("snelheid") ? 0.02 : 0.0;
+	}
+
+	/** Extra aanvalsschade (basis 1): zwaardbeheersing geeft 2. */
+	public static double bonusDamage(PlayerProgress p) {
+		return p.unlocked().contains("zwaardbeheersing") ? 2.0 : 0.0;
+	}
 }

@@ -37,6 +37,13 @@ public final class QuestTrackerSync {
 				var hp = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH);
 				double wens = 20 + com.drakenrijken.core.SkillCosts.bonusHealth(ModData.of(p).progress());
 				if (hp != null && hp.getBaseValue() != wens) hp.setBaseValue(wens);
+				var pr = ModData.of(p).progress();
+				var sp = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
+				double wensSnelheid = 0.1 + com.drakenrijken.core.SkillCosts.bonusSpeed(pr);
+				if (sp != null && sp.getBaseValue() != wensSnelheid) sp.setBaseValue(wensSnelheid);
+				var dm = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
+				double wensSchade = 1.0 + com.drakenrijken.core.SkillCosts.bonusDamage(pr);
+				if (dm != null && dm.getBaseValue() != wensSchade) dm.setBaseValue(wensSchade);
 				push(p);
 			}
 		});
