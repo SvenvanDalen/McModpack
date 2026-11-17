@@ -150,6 +150,45 @@ public final class DebugCommand {
 					c.getSource().sendSuccess(() -> Component.literal(n + " machinerecepten geladen."), false);
 					return 1;
 				}))
+					.then(Commands.literal("vaardigheid")
+						.executes(c -> {
+							ServerPlayer p = c.getSource().getPlayerOrException();
+							PlayerData d = ModData.of(p);
+							if (d.playerClass().isEmpty()) {
+								c.getSource().sendFailure(Component.literal("Kies eerst een klasse met /dr klasse."));
+								return 0;
+							}
+							var tree = ModSkills.tree();
+							var sb = new StringBuilder("Punten over: " + tree.pointsLeft(d.progress()));
+							for (var s : tree.skillsFor(d.playerClass().get())) {
+								sb.append("\n").append(d.progress().unlocked().contains(s.id()) ? "[x] " : "[ ] ").append(s.id());
+								if (!s.requires().isEmpty()) sb.append(" (eerst: ").append(String.join(", ", s.requires())).append(")");
+							}
+							c.getSource().sendSuccess(() -> Component.literal(sb.toString()), false);
+							return 1;
+						})
+						.then(Commands.argument("id", StringArgumentType.word()).executes(c -> {
+							ServerPlayer p = c.getSource().getPlayerOrException();
+							PlayerData d = ModData.of(p);
+							if (d.playerClass().isEmpty()) {
+								c.getSource().sendFailure(Component.literal("Kies eerst een klasse met /dr klasse."));
+								return 0;
+							}
+							String id = StringArgumentType.getString(c, "id");
+							var r = ModSkills.tree().unlock(d.progress(), d.playerClass().get(), id);
+							p.setAttached(ModData.PLAYER_DATA, d);
+							String text = switch (r) {
+								case OK -> "Vaardigheid " + id + " ontgrendeld.";
+								case NO_POINTS -> "Je hebt geen punten meer.";
+								case LOCKED -> "Ontgrendel eerst de vereiste vaardigheid.";
+								case UNKNOWN -> "Onbekende vaardigheid. Zie /dr vaardigheid.";
+								case ALREADY_UNLOCKED -> "Die heb je al.";
+								case WRONG_CLASS -> "Die hoort bij een andere klasse.";
+							};
+							if (r == com.drakenrijken.core.SkillTree.Result.OK) c.getSource().sendSuccess(() -> Component.literal(text), false);
+							else c.getSource().sendFailure(Component.literal(text));
+							return r == com.drakenrijken.core.SkillTree.Result.OK ? 1 : 0;
+						})))
 					.then(Commands.literal("tracker").executes(c -> {
 						ServerPlayer p = c.getSource().getPlayerOrException();
 						boolean aan = QuestTrackerSync.toggle(p);

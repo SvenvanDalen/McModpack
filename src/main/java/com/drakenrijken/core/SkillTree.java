@@ -21,6 +21,11 @@ public final class SkillTree {
 	public static int pointsEarned(PlayerProgress p) {
 		return p.level() - 1 + p.bonusPoints();
 	}
+	/** Alle vaardigheden van een klasse, op id gesorteerd. */
+	public List<Skill> skillsFor(PlayerClass c) {
+		return skills.values().stream().filter(s -> s.playerClass() == c).sorted(java.util.Comparator.comparing(Skill::id)).toList();
+	}
+
 
 	public int pointsLeft(PlayerProgress p) {
 		return pointsEarned(p) - p.unlocked().size();
