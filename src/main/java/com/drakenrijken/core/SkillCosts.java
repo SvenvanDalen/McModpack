@@ -4,7 +4,7 @@ import java.util.Map;
 
 /** Wat een actieve vaardigheid kost aan mana of uithouding (eerste inschatting, nog te balanceren). */
 public final class SkillCosts {
-	private static final Map<String, Integer> COSTS = Map.of("vuurbal", 20, "oorlogskreet", 25, "barriere", 30);
+	private static final Map<String, Integer> COSTS = Map.of("vuurbal", 20, "oorlogskreet", 25, "barriere", 30, "schildstoot", 15, "schaduwstap", 20);
 
 	private SkillCosts() {}
 

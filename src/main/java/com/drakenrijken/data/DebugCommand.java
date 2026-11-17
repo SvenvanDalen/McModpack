@@ -199,7 +199,7 @@ public final class DebugCommand {
 						String id = StringArgumentType.getString(c, "id");
 						var r = com.drakenrijken.core.SkillCosts.use(d.progress(), QuestTrackerSync.barOf(p, d.playerClass().get()), id);
 						switch (r) {
-							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere)."));
+							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere, schildstoot, schaduwstap)."));
 							case NOT_UNLOCKED -> c.getSource().sendFailure(Component.literal("Die vaardigheid heb je nog niet ontgrendeld."));
 							case TOO_TIRED -> c.getSource().sendFailure(Component.literal("Te weinig mana of uithouding."));
 							case OK -> {
@@ -210,7 +210,9 @@ public final class DebugCommand {
 								}
 								if (id.equals("oorlogskreet")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.STRENGTH, 200, 0));
 								if (id.equals("barriere")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.ABSORPTION, 600, 1));
-								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : "Barrière!"), false);
+								if (id.equals("schildstoot")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 100, 1));
+								if (id.equals("schaduwstap")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.INVISIBILITY, 160, 0));
+								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : "Schaduwstap!"), false);
 							}
 						}
 						return r == com.drakenrijken.core.SkillCosts.Result.OK ? 1 : 0;
