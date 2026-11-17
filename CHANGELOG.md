@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Trein en mijnkar (#144, #146, eerste stap): in de kern bepalen prijs (helft van snelreis), reistijd, kracht van de ketel en de opbrengst per minuut van een kar (hoogstens 4 karren). Nog geen wagon of rails in het spel.
 - Seizoen en beroepen (#155, #152): de opbrengst per dag van een rijk kan nu per seizoen berekend worden; alleen de boeren merken het (winter de helft, zomer een kwart extra). Nog niet aangesloten op de dagelijkse uitbetaling.
 - Machine-overzicht (#148, eerste stap): in de kern maakt het overzicht per machine een regel, zet problemen bovenaan, kapt af op 64 regels en geeft een korte samenvatting. Nog geen scherm.
 - Leidingen (#150, eerste stap): in de kern bepaalt een leiding de doorvoer (hoogstens 10 per tick) en een maximale lengte van 32 blokken, gelijk aan de assen. Nog geen buisblok en geen koppeling aan de stoomketel.
