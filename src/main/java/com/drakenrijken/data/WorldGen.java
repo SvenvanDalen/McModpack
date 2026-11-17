@@ -42,12 +42,26 @@ public final class WorldGen {
 		});
 	}
 
-	/** Bouwt het dorp als de hele omgeving geladen is; false als dat nog niet kan. */
+	/** Bouwt het dorp (en soms een burcht, dungeon of drakengebied ernaast) als de hele omgeving geladen is; false als dat nog niet kan. */
 	static boolean build(ServerLevel level, int cx, int cz) {
 		int x = cx * 16, z = cz * 16;
-		if (!level.hasChunksAt(x - 16, z - 16, x + 48, z + 48)) return false;
+		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
+		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
 		StructureBuilder.place(level, new BlockPos(x, y, z), Blueprints.village());
+		String extra = KingdomPlacement.companion(level.getSeed(), cx, cz);
+		if (!extra.isEmpty()) {
+			int ex = x + 48, ez = z;
+			int ey = level.getHeight(Heightmap.Types.WORLD_SURFACE, ex + 8, ez + 8);
+			var plan = switch (extra) {
+				case "burcht" -> Blueprints.castle();
+				case "dungeon" -> Blueprints.dungeon();
+				default -> Blueprints.lair();
+			};
+			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
+			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : "dungeon", 1);
+			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
+		}
 		return true;
 	}
 }

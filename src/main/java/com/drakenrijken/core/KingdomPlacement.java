@@ -34,4 +34,11 @@ public final class KingdomPlacement {
 		}
 		return out;
 	}
+
+	/** Welke bijzondere plek naast het dorp van dit koninkrijk ligt: "burcht", "dungeon", "drakengebied" of "" (niets). Deterministisch. */
+	public static String companion(long seed, int chunkX, int chunkZ) {
+		long h = mix(seed ^ 0x5DEECE66DL ^ mix(chunkX * 31L + chunkZ * 17L + 7));
+		int k = (int) Long.remainderUnsigned(h, 6);
+		return switch (k) { case 0 -> "burcht"; case 1 -> "dungeon"; case 2 -> "drakengebied"; default -> ""; };
+	}
 }
