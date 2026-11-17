@@ -76,4 +76,12 @@ class SkillCostsTest {
 		assertEquals(20, SkillCosts.costOf("gifpijl"));
 		assertEquals(20, SkillCosts.costOf("bloedwraak"));
 	}
+
+	@Test
+	void laatsteVaardighedenHebbenKosten() {
+		assertEquals(15, SkillCosts.costOf("sluipaanval"));
+		assertEquals(15, SkillCosts.costOf("dubbele_buit"));
+		assertEquals(25, SkillCosts.costOf("zakkenroller"));
+		assertEquals(30, SkillCosts.costOf("manaschild"));
+	}
 }

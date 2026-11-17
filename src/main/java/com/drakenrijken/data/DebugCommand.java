@@ -199,7 +199,7 @@ public final class DebugCommand {
 						String id = StringArgumentType.getString(c, "id");
 						var r = com.drakenrijken.core.SkillCosts.use(d.progress(), QuestTrackerSync.barOf(p, d.playerClass().get()), id);
 						switch (r) {
-							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere, schildstoot, schaduwstap, ijsstraal, vuurmuur, gifpijl, bloedwraak)."));
+							case PASSIVE -> c.getSource().sendFailure(Component.literal("Dit is geen vaardigheid die je kunt gebruiken (nu: vuurbal, oorlogskreet, barriere, schildstoot, schaduwstap, ijsstraal, vuurmuur, gifpijl, bloedwraak, sluipaanval, dubbele_buit, zakkenroller, manaschild)."));
 							case NOT_UNLOCKED -> c.getSource().sendFailure(Component.literal("Die vaardigheid heb je nog niet ontgrendeld."));
 							case TOO_TIRED -> c.getSource().sendFailure(Component.literal("Te weinig mana of uithouding."));
 							case OK -> {
@@ -213,6 +213,10 @@ public final class DebugCommand {
 								if (id.equals("schildstoot")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 100, 1));
 								if (id.equals("schaduwstap")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.INVISIBILITY, 160, 0));
 								if (id.equals("bloedwraak")) p.heal(6f);
+								if (id.equals("sluipaanval")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.STRENGTH, 100, 1));
+								if (id.equals("dubbele_buit")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.LUCK, 1200, 1));
+								if (id.equals("zakkenroller")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.LUCK, 600, 3));
+								if (id.equals("manaschild")) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.ABSORPTION, 400, 2));
 								if (id.equals("gifpijl") && p.level() instanceof net.minecraft.server.level.ServerLevel gl) {
 									var dichtst = gl.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, p.getBoundingBox().inflate(8), e -> e != p && e.isAlive())
 										.stream().min(java.util.Comparator.comparingDouble(e -> e.distanceTo(p)));
@@ -226,7 +230,7 @@ public final class DebugCommand {
 										else e.igniteForSeconds(4);
 									}
 								}
-								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : id.equals("schaduwstap") ? "Schaduwstap!" : id.equals("ijsstraal") ? "Ijsstraal!" : id.equals("vuurmuur") ? "Vuurmuur!" : id.equals("gifpijl") ? "Gifpijl!" : "Bloedwraak!"), false);
+								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : id.equals("schaduwstap") ? "Schaduwstap!" : id.equals("ijsstraal") ? "Ijsstraal!" : id.equals("vuurmuur") ? "Vuurmuur!" : id.equals("gifpijl") ? "Gifpijl!" : id.equals("bloedwraak") ? "Bloedwraak!" : id.equals("sluipaanval") ? "Sluipaanval!" : id.equals("dubbele_buit") ? "Dubbele buit!" : id.equals("zakkenroller") ? "Zakkenroller!" : "Manaschild!"), false);
 							}
 						}
 						return r == com.drakenrijken.core.SkillCosts.Result.OK ? 1 : 0;
