@@ -97,6 +97,7 @@ public final class DragonBoss {
 		}
 		if (DragonStats.breathesFire(phase) && dragon.tickCount % DragonStats.fireInterval(phase) < 10) {
 			vuurDeeltjes(level);
+			level.playSound(null, dragon.blockPosition(), net.minecraft.sounds.SoundEvents.ENDER_DRAGON_GROWL, net.minecraft.sounds.SoundSource.HOSTILE, 2f, 1f);
 			for (ServerPlayer p : spelers) if (p.distanceTo(dragon) <= DragonStats.FIRE_RANGE) p.igniteForSeconds(3);
 		}
 	}

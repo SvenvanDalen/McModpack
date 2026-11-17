@@ -131,7 +131,7 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 |---|---|---|---|---|---|
 | DR-701 | HUD-ontwerp | Eén eenvoudige opzet voor balken, quest en rijk-niveau | M | DR-110 | S |
 | DR-702 | Hoofdmenu-aanpassing | Eigen titelscherm en logo | M | – | C |
-| DR-703 | Geluiden | Eigen geluiden voor machines, vaardigheden en de draak | L | – | S |
+| DR-703 | Geluiden | Eigen geluiden voor machines, vaardigheden en de draak | L | – | S | (deels: vanilla geluiden als tijdelijke vervanger bij vaardigheden en drakenvuur; eigen geluiden ontbreken) |
 | DR-704 | Muziek | Drie sfeerloops voor dorp, dungeon en natuur | L | – | C |
 | DR-705 | Teksturen | Eigen 16x16 voor blokken, items en NPC's | XL | – | M |
 | DR-706 | Handleiding in het spel | Boekje met uitleg over klassen, industrie en rijk | M | DR-209 | S |

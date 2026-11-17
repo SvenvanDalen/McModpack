@@ -230,7 +230,15 @@ public final class DebugCommand {
 										else e.igniteForSeconds(4);
 									}
 								}
-								c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : id.equals("schaduwstap") ? "Schaduwstap!" : id.equals("ijsstraal") ? "Ijsstraal!" : id.equals("vuurmuur") ? "Vuurmuur!" : id.equals("gifpijl") ? "Gifpijl!" : id.equals("bloedwraak") ? "Bloedwraak!" : id.equals("sluipaanval") ? "Sluipaanval!" : id.equals("dubbele_buit") ? "Dubbele buit!" : id.equals("zakkenroller") ? "Zakkenroller!" : "Manaschild!"), false);
+								var geluid = switch (id) {
+										case "vuurbal", "vuurmuur" -> net.minecraft.sounds.SoundEvents.BLAZE_SHOOT;
+										case "oorlogskreet" -> net.minecraft.sounds.SoundEvents.ENDER_DRAGON_GROWL;
+										case "schildstoot", "barriere" -> net.minecraft.sounds.SoundEvents.ANVIL_USE;
+										case "bloedwraak" -> net.minecraft.sounds.SoundEvents.PLAYER_LEVELUP;
+										default -> net.minecraft.sounds.SoundEvents.EVOKER_CAST_SPELL;
+									};
+									p.level().playSound(null, p.blockPosition(), geluid, net.minecraft.sounds.SoundSource.PLAYERS, 1f, 1f);
+									c.getSource().sendSuccess(() -> Component.literal(id.equals("vuurbal") ? "Vuurbal!" : id.equals("oorlogskreet") ? "Oorlogskreet!" : id.equals("barriere") ? "Barrière!" : id.equals("schildstoot") ? "Schildstoot!" : id.equals("schaduwstap") ? "Schaduwstap!" : id.equals("ijsstraal") ? "Ijsstraal!" : id.equals("vuurmuur") ? "Vuurmuur!" : id.equals("gifpijl") ? "Gifpijl!" : id.equals("bloedwraak") ? "Bloedwraak!" : id.equals("sluipaanval") ? "Sluipaanval!" : id.equals("dubbele_buit") ? "Dubbele buit!" : id.equals("zakkenroller") ? "Zakkenroller!" : "Manaschild!"), false);
 							}
 						}
 						return r == com.drakenrijken.core.SkillCosts.Result.OK ? 1 : 0;
