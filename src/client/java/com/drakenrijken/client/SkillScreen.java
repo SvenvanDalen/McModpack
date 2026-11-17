@@ -19,6 +19,7 @@ import net.minecraft.network.chat.Component;
  */
 public class SkillScreen extends Screen {
 	private String gezien = "";
+	private final java.util.Map<String, int[]> plek = new java.util.HashMap<>();
 
 	public SkillScreen() {
 		super(Component.literal("Vaardigheden"));
@@ -32,6 +33,7 @@ public class SkillScreen extends Screen {
 	@Override
 	protected void init() {
 		gezien = DrakenRijkenClient.skills;
+		plek.clear();
 		Set<String> geleerd = Set.copyOf(Arrays.asList(delen()[1].split(",")));
 		int x = 10;
 		for (PlayerClass klasse : PlayerClass.values()) {
@@ -39,6 +41,7 @@ public class SkillScreen extends Screen {
 			for (Skill s : ModSkills.tree().skillsFor(klasse)) {
 				String eerst = s.requires().isEmpty() ? "geen" : String.join(", ", s.requires());
 				boolean af = geleerd.contains(s.id());
+				plek.put(s.id(), new int[] {x, y});
 				var knop = Button.builder(Component.literal((af ? "[x] " : "") + s.id()), b -> {
 						var verbinding = Minecraft.getInstance().getConnection();
 						if (verbinding != null) verbinding.sendCommand("dr vaardigheid " + s.id());
@@ -50,7 +53,7 @@ public class SkillScreen extends Screen {
 				addRenderableWidget(knop);
 				y += 22;
 			}
-			x += 95;
+			x += 100;
 		}
 	}
 
@@ -63,9 +66,27 @@ public class SkillScreen extends Screen {
 	@Override
 	public void extractRenderState(GuiGraphicsExtractor g, int mouseX, int mouseY, float delta) {
 		super.extractRenderState(g, mouseX, mouseY, delta);
+		// Lijnen van elke vereiste vaardigheid naar de vaardigheid die ze nodig heeft (linkerkant van de kolom).
+		for (Skill s : allSkills()) {
+			int[] naar = plek.get(s.id());
+			for (String eis : s.requires()) {
+				int[] van = plek.get(eis);
+				if (naar == null || van == null || van[0] != naar[0]) continue;
+				int lijnX = naar[0] - 4;
+				g.horizontalLine(lijnX, naar[0] - 1, van[1] + 10, 0xFFAAAAAA);
+				g.verticalLine(lijnX, Math.min(van[1], naar[1]) + 10, Math.max(van[1], naar[1]) + 10, 0xFFAAAAAA);
+				g.horizontalLine(lijnX, naar[0] - 1, naar[1] + 10, 0xFFAAAAAA);
+			}
+		}
 		g.text(font, "Vaardigheden - punten over: " + delen()[0], 10, 10, 0xFFFFFFFF);
 	}
 
+
+	private static java.util.List<Skill> allSkills() {
+		var lijst = new java.util.ArrayList<Skill>();
+		for (PlayerClass k : PlayerClass.values()) lijst.addAll(ModSkills.tree().skillsFor(k));
+		return lijst;
+	}
 	@Override
 	public boolean isPauseScreen() { return false; }
 }
