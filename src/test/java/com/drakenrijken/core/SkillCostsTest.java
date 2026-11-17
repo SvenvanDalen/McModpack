@@ -25,4 +25,12 @@ class SkillCostsTest {
 		p.unlocked().add("mana_regen");
 		assertEquals(10, SkillCosts.regenPerSecond(p));
 	}
+
+	@Test
+	void taaiheidGeeftExtraLeven() {
+		var p = new PlayerProgress();
+		assertEquals(0, SkillCosts.bonusHealth(p));
+		p.unlocked().add("taaiheid");
+		assertEquals(4, SkillCosts.bonusHealth(p));
+	}
 }

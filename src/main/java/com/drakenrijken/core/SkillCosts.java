@@ -27,4 +27,8 @@ public final class SkillCosts {
 	}
 
 	public static final int BASE_REGEN = 5;
+	/** Extra levenspunten (halve harten x2): taaiheid geeft 4. */
+	public static int bonusHealth(PlayerProgress p) {
+		return p.unlocked().contains("taaiheid") ? 4 : 0;
+	}
 }

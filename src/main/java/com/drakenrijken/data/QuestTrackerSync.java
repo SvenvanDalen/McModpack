@@ -34,6 +34,9 @@ public final class QuestTrackerSync {
 			for (ServerPlayer p : server.getPlayerList().getPlayers()) {
 				ResourceBar b = BARS.get(p.getUUID());
 				if (b != null) b.regen(com.drakenrijken.core.SkillCosts.regenPerSecond(ModData.of(p).progress()));
+				var hp = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH);
+				double wens = 20 + com.drakenrijken.core.SkillCosts.bonusHealth(ModData.of(p).progress());
+				if (hp != null && hp.getBaseValue() != wens) hp.setBaseValue(wens);
 				push(p);
 			}
 		});
