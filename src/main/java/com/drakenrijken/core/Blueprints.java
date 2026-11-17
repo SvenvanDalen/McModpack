@@ -24,4 +24,30 @@ public final class Blueprints {
 		b.set(19, 3, 1, "lantern");
 		return b;
 	}
+
+	/**
+	 * Klein dorp op een vlakke plek van 30x12: drie huizen, een markt met twee kramen en een smederij.
+	 * Elk gebouw heeft een deur-opening aan de zuidkant (z=0). NPC-plekken staan in {@link Blueprint#spots()}.
+	 */
+	public static Blueprint village() {
+		Blueprint b = new Blueprint();
+		b.fill(0, -1, 0, 29, -1, 11, "grass_block");
+		for (int i = 0; i < 3; i++) {
+			int x0 = i * 7;
+			b.room(x0, 0, 4, x0 + 5, 4, 10, "oak_planks");
+			b.fill(x0 + 2, 1, 4, x0 + 3, 2, 4, "air");
+			b.set(x0 + 1, 1, 9, "white_bed");
+			b.spot(x0 + 3, 1, 7, "dorpeling");
+		}
+		b.fill(22, 0, 0, 28, 0, 3, "stone_bricks");
+		b.set(23, 1, 1, "hay_block");
+		b.set(27, 1, 1, "hay_block");
+		b.spot(25, 1, 2, "marktkoopman");
+		b.room(22, 0, 5, 28, 4, 11, "cobblestone");
+		b.fill(24, 1, 5, 25, 2, 5, "air");
+		b.set(26, 1, 10, "anvil");
+		b.set(24, 1, 10, "furnace");
+		b.spot(25, 1, 8, "smid");
+		return b;
+	}
 }

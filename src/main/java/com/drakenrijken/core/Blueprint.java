@@ -7,7 +7,10 @@ import java.util.List;
 public final class Blueprint {
 	public record Placement(int x, int y, int z, String block) {}
 
+	public record Spot(int x, int y, int z, String role) {}
+
 	private final List<Placement> placements = new ArrayList<>();
+	private final List<Spot> spots = new ArrayList<>();
 
 	public void set(int x, int y, int z, String block) { placements.add(new Placement(x, y, z, block)); }
 
@@ -21,6 +24,11 @@ public final class Blueprint {
 		fill(x1, y1, z1, x2, y2, z2, wall);
 		fill(x1 + 1, y1 + 1, z1 + 1, x2 - 1, y2 - 1, z2 - 1, "air");
 	}
+
+	/** Markeert een plek voor een NPC (bijvoorbeeld "smid" of "marktkoopman"). */
+	public void spot(int x, int y, int z, String role) { spots.add(new Spot(x, y, z, role)); }
+
+	public List<Spot> spots() { return List.copyOf(spots); }
 
 	public List<Placement> placements() { return List.copyOf(placements); }
 
