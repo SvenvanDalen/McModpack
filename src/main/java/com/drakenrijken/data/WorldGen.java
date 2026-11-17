@@ -48,13 +48,13 @@ public final class WorldGen {
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
-		if (y != level.getHeight(Heightmap.Types.OCEAN_FLOOR, x + 8, z + 8)) return true; // water: niet bouwen
+		if (!vlak(level, x, z, y)) return true; // water of steile helling: niet bouwen
 		StructureBuilder.place(level, new BlockPos(x, y, z), Blueprints.village());
 		String extra = KingdomPlacement.companion(level.getSeed(), cx, cz);
 		if (!extra.isEmpty()) {
 			int ex = x + 48, ez = z;
 			int ey = level.getHeight(Heightmap.Types.WORLD_SURFACE, ex + 8, ez + 8);
-			if (ey != level.getHeight(Heightmap.Types.OCEAN_FLOOR, ex + 8, ez + 8)) return true;
+			if (!vlak(level, ex, ez, ey)) return true;
 			var plan = switch (extra) {
 				case "burcht" -> Blueprints.castle();
 				case "dungeon" -> Blueprints.dungeon();
@@ -63,6 +63,16 @@ public final class WorldGen {
 			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
 			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : extra.equals("burcht") ? "burcht" : "dungeon", 1);
 			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
+		}
+		return true;
+	}
+	/** Geen water in het midden en geen hoogteverschil van meer dan 6 blokken tussen midden en de vier hoeken van 32x32. */
+	static boolean vlak(ServerLevel level, int x, int z, int y) {
+		if (y != level.getHeight(Heightmap.Types.OCEAN_FLOOR, x + 8, z + 8)) return false;
+		int[][] hoeken = {{0, 0}, {31, 0}, {0, 31}, {31, 31}};
+		for (int[] h : hoeken) {
+			int hy = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + h[0], z + h[1]);
+			if (Math.abs(hy - y) > 6) return false;
 		}
 		return true;
 	}
