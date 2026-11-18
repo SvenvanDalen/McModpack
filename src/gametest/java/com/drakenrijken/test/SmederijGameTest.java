@@ -199,4 +199,15 @@ public class SmederijGameTest {
 		com.drakenrijken.data.CartStationBlock.clearForTest();
 		context.succeed();
 	}
+
+	@GameTest
+	public void treinstationVraagtOntdektKoninkrijkEnStoom(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		var level = context.getLevel();
+		var pos = context.absolutePos(new net.minecraft.core.BlockPos(2, 1, 2));
+		if (com.drakenrijken.data.TrainStationBlock.boilerPower(level, pos) != 0) throw new AssertionError("geen ketel = geen kracht");
+		String a = com.drakenrijken.data.TrainStationBlock.ride(level, player, pos);
+		if (!a.contains("ontdekt koninkrijk")) throw new AssertionError("zonder ontdekt koninkrijk: " + a);
+		context.succeed();
+	}
 }

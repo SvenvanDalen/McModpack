@@ -49,7 +49,7 @@ public final class FastTravelService {
 		return "Reis voltooid voor " + prijs + " smaragden.";
 	}
 
-	private static int count(ServerPlayer p) {
+	static int count(ServerPlayer p) {
 		int n = 0;
 		var inv = p.getInventory();
 		for (int i = 0; i < inv.getContainerSize(); i++) {
@@ -59,7 +59,7 @@ public final class FastTravelService {
 		return n;
 	}
 
-	private static void pay(ServerPlayer p, int prijs) {
+	static void pay(ServerPlayer p, int prijs) {
 		var inv = p.getInventory();
 		for (int i = 0; i < inv.getContainerSize() && prijs > 0; i++) {
 			var s = inv.getItem(i);
