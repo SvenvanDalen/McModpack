@@ -14,7 +14,7 @@ public final class WorldDiscovery {
 
 	public static void init() {
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			if (server.getTickCount() % 40 != 0 || !com.drakenrijken.DrakenRijken.config.generateStructures()) return;
+			if (server.getTickCount() % 40 != 0 || !com.drakenrijken.DrakenRijken.config.buildsStructures()) return;
 			for (ServerPlayer p : server.getPlayerList().getPlayers()) {
 				if (p.level() instanceof ServerLevel level && level.dimension() == Level.OVERWORLD) visit(level, p);
 			}

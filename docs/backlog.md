@@ -188,7 +188,7 @@ Bron: GitHub-issue #1. Elke story heeft een eigen issue en een eigen PR. Bouwt v
 | DR-1108 | Koning omkopen of afzetten | Daarna zelf zijn plek innemen via een rijk | M | DR-1102 | S | #12 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1109 | Gevangenen laten werken | Werk in mijn, op het land en op schepen | M | DR-1104 | S | #13 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1110 | Opstanden | Slechte behandeling leidt tot opstand | M | DR-1109 | S | #14 | (deels: spelregels en tests in core, nog niet in de wereld)
-| DR-1111 | Optioneel: lege kavel | Start zonder gegenereerde structuren; eerst bespreken | L | – | C | #15 |
+| DR-1111 | Optioneel: lege kavel | Start zonder gegenereerde structuren; eerst bespreken | L | – | C | #15 | (deels: alleen de instelling, geen eigen startpakket of quests voor de lege kavel; later uit te breiden)
 
 ---
 
