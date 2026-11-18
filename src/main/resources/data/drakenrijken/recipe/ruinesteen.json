@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["SSS", "SPS", "SSS"],
+	"key": {"S": "minecraft:stone_bricks", "P": "minecraft:paper"},
+	"result": {"id": "drakenrijken:ruinesteen", "count": 1}
+}

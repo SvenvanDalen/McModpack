@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Ruïnesteen: elke rechtsklik onthult een volgende aanwijzing; na de laatste volgt een beloning (#158).
 - Geruchtentafel: rechtsklik vertelt een nieuw gerucht uit een JSON-lijst; je hoort elk gerucht één keer (#157).
 - Bliksemafleider: laadt op bij onweer en geeft een machine in de buurt extra kracht voor één taak (#151).
 - Moersleutel: herstelt een machine met slijtage of storing; machines kunnen na ongeveer 60 producten stukgaan (#149).
