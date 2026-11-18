@@ -224,4 +224,28 @@ public class SmederijGameTest {
 		if (chests < 1) throw new AssertionError("geen kist bij ruine " + story);
 		context.succeed();
 	}
+
+	@GameTest
+	public void echteGeneratieBouwtRuineBijDrakengebied(GameTestHelper context) {
+		var level = context.getLevel();
+		long seed = level.getSeed();
+		int fx = 0, fz = 0;
+		boolean found = false;
+		for (int cx = 200; cx < 400 && !found; cx++) for (int cz = 200; cz < 400 && !found; cz++)
+			if (com.drakenrijken.core.KingdomPlacement.hasKingdom(seed, cx, cz) && com.drakenrijken.core.KingdomPlacement.companion(seed, cx, cz).equals("drakengebied")) { fx = cx; fz = cz; found = true; }
+		if (!found) throw new AssertionError("geen drakengebied gevonden voor seed " + seed);
+		int x = fx * 16, z = fz * 16;
+		for (int cx = fx - 1; cx <= fx + 7; cx++) for (int cz = fz - 1; cz <= fz + 3; cz++) level.getChunk(cx, cz);
+		boolean klaar = com.drakenrijken.data.WorldGen.build(level, fx, fz);
+		int stenen = 0, kisten = 0;
+		for (int bx = x + 28; bx < x + 48; bx++) for (int bz = z; bz < z + 24; bz++) for (int by = level.getMinY(); by < level.getMaxY(); by++) {
+			var s = level.getBlockState(new net.minecraft.core.BlockPos(bx, by, bz));
+			if (s.is(com.drakenrijken.data.ModBlocks.RUINESTEEN)) stenen++;
+			if (s.is(net.minecraft.world.level.block.Blocks.CHEST)) kisten++;
+		}
+		for (var e : level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class, new net.minecraft.world.phys.AABB(x - 16, level.getMinY(), z - 16, x + 112, level.getMaxY(), z + 64))) e.discard();
+		System.out.println("ECHTE-GENERATIE chunk " + fx + "," + fz + " klaar=" + klaar + " stenen=" + stenen + " kisten=" + kisten);
+		if (stenen != 1) throw new AssertionError("verwacht 1 ruinesteen, kreeg " + stenen + " (klaar=" + klaar + ")");
+		context.succeed();
+	}
 }

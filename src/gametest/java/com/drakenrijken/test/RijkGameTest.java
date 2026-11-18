@@ -57,6 +57,7 @@ public class RijkGameTest {
 		var speler = context.makeMockServerPlayerInLevel();
 		var level = context.getLevel();
 		if (com.drakenrijken.data.RealmRaid.launch(level, speler, 1) != 0) throw new AssertionError("aanval onder niveau 2");
+		for (var m : level.getEntitiesOfClass(net.minecraft.world.entity.monster.Monster.class, new net.minecraft.world.phys.AABB(speler.blockPosition()).inflate(24))) m.discard();
 		int n = com.drakenrijken.data.RealmRaid.launch(level, speler, 2);
 		if (n < 1 || n > 3) throw new AssertionError("verwachtte 1 tot 3 aanvallers, kreeg " + n);
 		context.succeed();

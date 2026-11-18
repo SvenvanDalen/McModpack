@@ -43,7 +43,7 @@ public final class WorldGen {
 	}
 
 	/** Bouwt het dorp (en soms een burcht, dungeon of drakengebied ernaast) als de hele omgeving geladen is; false als dat nog niet kan. */
-	static boolean build(ServerLevel level, int cx, int cz) {
+	public static boolean build(ServerLevel level, int cx, int cz) {
 		int x = cx * 16, z = cz * 16;
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
