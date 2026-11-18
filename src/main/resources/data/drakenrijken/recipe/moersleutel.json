@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [" I ", " II", "I  "],
+	"key": {"I": "minecraft:iron_ingot"},
+	"result": {"id": "drakenrijken:moersleutel", "count": 1}
+}

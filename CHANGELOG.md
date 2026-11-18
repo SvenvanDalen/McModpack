@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Moersleutel: herstelt een machine met slijtage of storing; machines kunnen na ongeveer 60 producten stukgaan (#149).
 - Belastingkist betaalt ook de opbrengst van je dorpelingen (boer, mijnwerker, smid) uit (#152).
 - Bouwplantafel: rechtsklik zet een werkplaats (waterrad, as, smederij) naast de tafel neer als je de blokken hebt (#147).
 - Belastingkist: rechtsklik haalt de belasting van je rijk op (#153); `/dr belasting` doet hetzelfde.

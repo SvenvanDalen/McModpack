@@ -2,6 +2,7 @@ package com.drakenrijken.data;
 
 import com.drakenrijken.core.MachineJobs;
 import com.drakenrijken.core.MachineRecipe;
+import com.drakenrijken.core.MachineWear;
 import com.drakenrijken.core.TickBudget;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 public final class MachineRuntime {
 	private static final MachineJobs JOBS = new MachineJobs();
 	private static final TickBudget TIME = TickBudget.machines();
+	private static final Map<String, MachineWear> WEAR = new HashMap<>();
 
 	private MachineRuntime() {}
 
@@ -57,12 +59,34 @@ public final class MachineRuntime {
 		Identifier id = Identifier.tryParse(f.recipe().output());
 		var item = id == null ? java.util.Optional.<net.minecraft.world.item.Item>empty() : BuiltInRegistries.ITEM.getOptional(id);
 		if (item.isPresent()) Block.popResource(l, posOf(f.key()), new ItemStack(item.get(), f.recipe().outputCount()));
+		if (WEAR.computeIfAbsent(f.key(), x -> new MachineWear(true)).onProduct(l.getRandom().nextDouble())) {
+			l.sendParticles(net.minecraft.core.particles.ParticleTypes.SMOKE, posOf(f.key()).getX() + 0.5, posOf(f.key()).getY() + 1.0, posOf(f.key()).getZ() + 0.5, 8, 0.2, 0.2, 0.2, 0.02);
+		}
+	}
+
+	/** Herstelt de slijtage van een machine (moersleutel); false als er niets mis was. */
+	public static boolean repair(ServerLevel level, BlockPos pos) {
+		MachineWear w = WEAR.get(key(level, pos));
+		return w != null && w.repair();
+	}
+
+	/** Alleen voor tests: zet de machine op deze plek direct op slijtage-stand "kapot". */
+	public static void breakForTest(ServerLevel level, BlockPos pos) {
+		MachineWear w = WEAR.computeIfAbsent(key(level, pos), x -> new MachineWear(true));
+		for (int i = 0; i < 1000 && !w.broken(); i++) w.onProduct(0.0);
+	}
+
+	public static boolean broken(ServerLevel level, BlockPos pos) {
+		MachineWear w = WEAR.get(key(level, pos));
+		return w != null && w.broken();
 	}
 
 	/** Klik op een machine: toont de voortgang, of start een nieuw werk met de spullen uit de inventaris. */
 	public static String click(Player player, ServerLevel level, BlockPos pos, String machine, int kracht) {
 		String k = key(level, pos);
 		if (JOBS.running(k)) return "Bezig: " + JOBS.percent(k) + "%";
+		MachineWear slijtage = WEAR.get(k);
+		if (slijtage != null && slijtage.broken()) return "Storing! Herstel de machine met een moersleutel.";
 		Map<String, Integer> have = new HashMap<>();
 		var inv = player.getInventory();
 		for (int i = 0; i < inv.getContainerSize(); i++) {
@@ -83,5 +107,5 @@ public final class MachineRuntime {
 	public static boolean running(ServerLevel level, BlockPos pos) { return JOBS.running(key(level, pos)); }
 
 	/** Alleen voor tests: zet alles af en geeft alles terug. */
-	public static void clearForTest() { JOBS.finishAll(); }
+	public static void clearForTest() { JOBS.finishAll(); WEAR.clear(); }
 }

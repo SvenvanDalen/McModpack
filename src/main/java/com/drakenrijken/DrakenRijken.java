@@ -14,6 +14,7 @@ public class DrakenRijken implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		com.drakenrijken.data.ModBlocks.init();
+		com.drakenrijken.data.ModTools.init();
 		com.drakenrijken.data.ModData.init();
 		com.drakenrijken.data.ModSkills.init();
 		com.drakenrijken.data.ModKits.init();

@@ -90,4 +90,20 @@ public class SmederijGameTest {
 		if (player.getInventory().countItem(com.drakenrijken.data.ModBlocks.AS.asItem()) != 0) throw new AssertionError("materiaal niet verbruikt");
 		context.succeed();
 	}
+
+	@GameTest
+	public void moersleutelHerstelKapotteMachine(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		var pos = context.absolutePos(new net.minecraft.core.BlockPos(1, 1, 1));
+		var level = context.getLevel();
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		if (com.drakenrijken.data.MachineRuntime.repair(level, pos)) throw new AssertionError("niets te herstellen");
+		com.drakenrijken.data.MachineRuntime.breakForTest(level, pos);
+		String melding = com.drakenrijken.data.MachineRuntime.click(player, level, pos, "smederij", 2);
+		if (!melding.startsWith("Storing")) throw new AssertionError("storing niet gemeld: " + melding);
+		if (!com.drakenrijken.data.MachineRuntime.repair(level, pos)) throw new AssertionError("herstel mislukt");
+		if (com.drakenrijken.data.MachineRuntime.broken(level, pos)) throw new AssertionError("nog kapot");
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		context.succeed();
+	}
 }
