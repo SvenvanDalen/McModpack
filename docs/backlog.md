@@ -179,7 +179,7 @@ Bron: GitHub-issue #1. Elke story heeft een eigen issue en een eigen PR. Bouwt v
 | ID | Story | Acceptatie | Gr. | Afh. | Pr. | Issue |
 |---|---|---|---|---|---|---|
 | DR-1101 | Koninkrijken groeien en vervallen | Rijksgrootte per koninkrijk groeit of krimpt deterministisch met de tijd | M | DR-301 | M | #5 | (deels: spelregels en tests in core, nog niet in de wereld)
-| DR-1102 | Koning erkent je na een bouwplan | Erkenning pas na troonzaal, haven of kazerne | M | DR-1101 | M | #6 |
+| DR-1102 | Koning erkent je na een bouwplan | Erkenning pas na troonzaal, haven of kazerne | M | DR-1101 | M | #6 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1103 | Macht en aanzien door je bouwwerk | Groter bouwwerk geeft meer macht, mensen en vijanden | M | DR-501 | M | #7 |
 | DR-1104 | Leger | Soldaten aanwerven, uitrusten en voeden; zichtbare soldaten binnen EntityBudget | L | DR-1103 | M | #8 |
 | DR-1105 | Belegeringswapens zelf bouwen | Ontwerp bepaalt bereik, schade en gewicht | L | DR-1104 | S | #9 |
