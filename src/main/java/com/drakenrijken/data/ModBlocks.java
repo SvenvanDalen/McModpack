@@ -23,6 +23,7 @@ public final class ModBlocks {
 	public static Block RUNESTEEN;
 	public static Block TRANSPORTBAND;
 	public static Block RUNESMEDERIJ;
+	public static Block BELASTINGKIST;
 
 	private ModBlocks() {}
 
@@ -37,6 +38,7 @@ public final class ModBlocks {
 		RUNESTEEN = register("runesteen", RuneStoneBlock::new, BlockBehaviour.Properties.of().strength(4.0f));
 		TRANSPORTBAND = register("transportband", ConveyorBlock::new, BlockBehaviour.Properties.of().strength(1.5f));
 		RUNESMEDERIJ = register("runesmederij", p -> new MachineBlock(p, "runesmederij", 3), BlockBehaviour.Properties.of().strength(4.0f));
+		BELASTINGKIST = register("belastingkist", TaxChestBlock::new, BlockBehaviour.Properties.of().strength(2.5f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {

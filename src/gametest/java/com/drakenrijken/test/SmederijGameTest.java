@@ -56,4 +56,21 @@ public class SmederijGameTest {
 		com.drakenrijken.data.MachineRuntime.clearForTest();
 		context.succeed();
 	}
+
+	@GameTest
+	public void belastingkistBetaaltGoud(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		String leeg = com.drakenrijken.data.TaxChestBlock.collect(player);
+		if (player.getInventory().countItem(Items.GOLD_INGOT) != 0) throw new AssertionError("goud zonder rijk: " + leeg);
+		var d = com.drakenrijken.data.ModData.of(player);
+		d.setRealmPower(1000);
+		d.setLastTaxDay(-3);
+		player.setAttached(com.drakenrijken.data.ModData.PLAYER_DATA, d);
+		com.drakenrijken.data.TaxChestBlock.collect(player);
+		if (player.getInventory().countItem(Items.GOLD_INGOT) < 1) throw new AssertionError("geen belasting uitbetaald");
+		int eerste = player.getInventory().countItem(Items.GOLD_INGOT);
+		com.drakenrijken.data.TaxChestBlock.collect(player);
+		if (player.getInventory().countItem(Items.GOLD_INGOT) != eerste) throw new AssertionError("dubbel uitbetaald");
+		context.succeed();
+	}
 }

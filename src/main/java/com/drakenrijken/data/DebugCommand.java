@@ -96,20 +96,7 @@ public final class DebugCommand {
 					return 1;
 				}))
 				.then(Commands.literal("belasting").executes(c -> {
-					ServerPlayer p = c.getSource().getPlayerOrException();
-					PlayerData bd = ModData.of(p);
-					int niveau = com.drakenrijken.core.RealmState.levelFor(bd.realmPower());
-					long dag = p.level().getGameTime() / 24000L;
-					int bedrag = com.drakenrijken.core.RealmTax.owed(niveau, bd.lastTaxDay(), dag);
-					String text;
-					if (bedrag > 0) {
-						bd.setLastTaxDay(dag);
-						p.setAttached(ModData.PLAYER_DATA, bd);
-						p.getInventory().add(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.GOLD_INGOT, bedrag));
-						text = "Je rijk betaalt " + bedrag + " goudstaven belasting.";
-					} else {
-						text = niveau == 0 ? "Je rijk is nog te klein om belasting te betalen (niveau 1 nodig)." : "Er ligt nog geen belasting klaar; kom morgen terug.";
-					}
+					String text = TaxChestBlock.collect(c.getSource().getPlayerOrException());
 					c.getSource().sendSuccess(() -> Component.literal(text), false);
 					return 1;
 				}))
