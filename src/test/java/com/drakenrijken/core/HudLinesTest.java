@@ -17,4 +17,10 @@ class HudLinesTest {
 		assertEquals("", HudLines.build("", null, null, 0));
 		assertEquals("Uithouding 80/80", HudLines.build("", PlayerClass.RIDDER, ResourceBar.forClass(PlayerClass.RIDDER), 0));
 	}
+
+	@Test
+	void onmyojiToontManaSamoeraiUithouding() {
+		assertEquals("Mana 100/100", HudLines.build("", PlayerClass.ONMYOJI, ResourceBar.forClass(PlayerClass.ONMYOJI), 0));
+		assertEquals("Uithouding 80/80", HudLines.build("", PlayerClass.SAMOERAI, ResourceBar.forClass(PlayerClass.SAMOERAI), 0));
+	}
 }

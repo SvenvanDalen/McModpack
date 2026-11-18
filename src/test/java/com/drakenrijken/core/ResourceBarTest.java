@@ -31,4 +31,10 @@ class ResourceBarTest {
 		assertEquals(100, ResourceBar.forClass(PlayerClass.MAGIER).max());
 		assertEquals(80, ResourceBar.forClass(PlayerClass.RIDDER).max());
 	}
+
+	@Test
+	void onmyojiHeeftManaSamoeraiUithouding() {
+		assertEquals(100, ResourceBar.forClass(PlayerClass.ONMYOJI).max());
+		assertEquals(80, ResourceBar.forClass(PlayerClass.SAMOERAI).max());
+	}
 }

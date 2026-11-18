@@ -28,8 +28,8 @@ public final class ResourceBar {
 		value = (int) Math.min((long) value + amount, max);
 	}
 
-	/** De balk die bij een klasse hoort: mana voor magiër, uithouding voor de rest. */
+	/** De balk die bij een klasse hoort: mana voor magiër en onmyoji, uithouding voor de rest. */
 	public static ResourceBar forClass(PlayerClass c) {
-		return new ResourceBar(c == PlayerClass.MAGIER ? 100 : 80);
+		return new ResourceBar(c == PlayerClass.MAGIER || c == PlayerClass.ONMYOJI ? 100 : 80);
 	}
 }

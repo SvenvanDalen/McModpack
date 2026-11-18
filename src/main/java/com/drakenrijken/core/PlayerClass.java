@@ -3,7 +3,7 @@ package com.drakenrijken.core;
 import java.util.Optional;
 
 public enum PlayerClass {
-	RIDDER, MAGIER, SCHURK;
+	RIDDER, MAGIER, SCHURK, SAMOERAI, ONMYOJI;
 
 	/** Zoekt een klasse op naam, zonder hoofdletters; onbekend geeft leeg. */
 	public static Optional<PlayerClass> parse(String name) {
