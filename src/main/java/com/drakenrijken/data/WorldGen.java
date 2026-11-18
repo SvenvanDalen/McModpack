@@ -25,12 +25,12 @@ public final class WorldGen {
 
 	public static void init() {
 		ServerChunkEvents.CHUNK_LOAD.register((level, chunk, fresh) -> {
-			if (!com.drakenrijken.DrakenRijken.config.generateStructures() || level.dimension() != Level.OVERWORLD) return;
+			if (!com.drakenrijken.DrakenRijken.config.buildsStructures() || level.dimension() != Level.OVERWORLD) return;
 			int cx = chunk.getPos().x(), cz = chunk.getPos().z();
 			if (KingdomPlacement.hasKingdom(level.getSeed(), cx, cz)) QUEUE.enqueue(new StructureQueue.Request("dorp", cx, cz));
 		});
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			if (!com.drakenrijken.DrakenRijken.config.generateStructures()) return;
+			if (!com.drakenrijken.DrakenRijken.config.buildsStructures()) return;
 			ServerLevel level = server.overworld();
 			for (var r : QUEUE.nextTick()) RETRY.add(new int[] {r.chunkX(), r.chunkZ(), 0});
 			int n = RETRY.size();

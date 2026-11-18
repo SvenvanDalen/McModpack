@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Startmodus 'lege kavel' (instelling startMode in drakenrijken.json): er worden dan geen dorpen, steden of burchten gebouwd; standaard blijft 'normaal' (DR-1111) (DR-1111, #15)
 - Opstanden: honger, te weinig bewakers en hard werk laten de onrust oplopen; vanaf 80 breekt een opstand uit (DR-1110) (DR-1110, #14)
 - Gevangenen werken in de mijn, op het land of op schepen; per 5 gevangenen is een bewaker nodig (DR-1109) (DR-1109, #13)
 - Koning omkopen (prijs per niveau) of afzetten met een sterker leger dan zijn wacht; zijn plek innemen kan met een even groot eigen rijk (DR-1108) (DR-1108, #12)
