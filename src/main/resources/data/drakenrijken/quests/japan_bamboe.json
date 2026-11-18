@@ -1,0 +1,1 @@
+{"id":"japan_bamboe","requires":["eerste_hout"],"event":"pickup","target":"minecraft:bamboo","count":10,"reward":{"xp":60,"items":["drakenrijken:onigiri"]}}

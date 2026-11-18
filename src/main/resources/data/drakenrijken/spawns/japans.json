@@ -1,0 +1,8 @@
+{
+	"area": "japans",
+	"entries": [
+		{ "mob": "minecraft:skeleton", "weight": 5, "era": 1 },
+		{ "mob": "minecraft:zombie", "weight": 4, "era": 1 },
+		{ "mob": "minecraft:pillager", "weight": 2, "era": 2 }
+	]
+}

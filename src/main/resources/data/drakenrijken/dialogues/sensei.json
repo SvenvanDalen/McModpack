@@ -1,0 +1,3 @@
+{"id":"sensei","start":"begin","nodes":{
+"begin":{"text":"Welkom, reiziger. Ik ben de sensei van dit dorp. Een sterke geest begint bij een sterk lichaam.","choices":[{"text":"Kan ik u helpen?","next":"bamboe"},{"text":"Ik ga weer.","next":null}]},
+"bamboe":{"text":"Breng me tien stengels bamboe uit de tuin. Daarvoor krijg je een onigiri, en mijn dank.","choices":[{"text":"Ik breng het.","next":null}]}}}

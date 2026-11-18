@@ -30,7 +30,7 @@ class Akte2Test {
 		List<String> warns = new ArrayList<>();
 		var quests = QuestLoader.load(alle.stream(), warns::add);
 		assertTrue(warns.isEmpty(), warns.toString());
-		assertEquals(34, quests.size());
+		assertEquals(35, quests.size());
 		assertTrue(quests.stream().anyMatch(q -> q.id().equals("epiloog_verdrag")));
 		assertTrue(quests.stream().anyMatch(q -> q.id().equals("epiloog_eigen_bewind")));
 	}

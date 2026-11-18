@@ -29,7 +29,7 @@ class BundledDialoguesTest {
 		List<String> warns = new ArrayList<>();
 		List<Dialogue> gesprekken = DialogueLoader.load(teksten.stream(), warns::add);
 		assertTrue(warns.isEmpty(), warns.toString());
-		assertEquals(4, gesprekken.size());
+		assertEquals(5, gesprekken.size());
 		for (Dialogue d : gesprekken) {
 			Set<String> gezien = new HashSet<>();
 			ArrayDeque<String> todo = new ArrayDeque<>(List.of(d.start()));
