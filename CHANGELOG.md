@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Koning omkopen (prijs per niveau) of afzetten met een sterker leger dan zijn wacht; zijn plek innemen kan met een even groot eigen rijk (DR-1108) (DR-1108, #12)
 - Scheepsbemanning: zonder minimale bemanning vaart het schip niet, kanonnen hebben schutters nodig en delen de plekken (DR-1107) (DR-1107, #11)
 - Schip zelf bouwen: kiel, breedte, romp en zeilen bepalen drijfkracht, snelheid, wendbaarheid en plekken; een te zwaar schip zinkt (DR-1106) (DR-1106, #10)
 - Belegeringswapens: ontwerp (arm, contragewicht, frame) bepaalt bereik, schade en gewicht; te licht frame breekt, te zwaar wapen is niet te verplaatsen (DR-1105) (DR-1105, #9)
