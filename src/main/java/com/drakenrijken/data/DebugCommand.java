@@ -44,7 +44,7 @@ public final class DebugCommand {
 					}
 					var klasse = PlayerClass.parse(StringArgumentType.getString(c, "naam"));
 					if (klasse.isEmpty()) {
-						c.getSource().sendFailure(Component.literal("Onbekende klasse. Kies ridder, magier of schurk."));
+						c.getSource().sendFailure(Component.literal("Onbekende klasse. Kies " + java.util.Arrays.stream(PlayerClass.values()).map(k -> k.name().toLowerCase()).collect(java.util.stream.Collectors.joining(", ")) + "."));
 						return 0;
 					}
 					d.setPlayerClass(klasse.get());

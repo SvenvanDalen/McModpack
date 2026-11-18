@@ -35,9 +35,12 @@ public class SkillScreen extends Screen {
 		gezien = DrakenRijkenClient.skills;
 		plek.clear();
 		Set<String> geleerd = Set.copyOf(Arrays.asList(delen()[1].split(",")));
+		// Let op: 5 kolommen van 100 px hebben 500 px breedte nodig; op een smal venster vallen ze buiten beeld.
 		int x = 10;
 		for (PlayerClass klasse : PlayerClass.values()) {
 			int y = 30;
+			// Samoerai en onmyoji hebben nog geen werkend effect (vervolgstory); zeg dat in de tooltip.
+			boolean nogZonderEffect = klasse == PlayerClass.SAMOERAI || klasse == PlayerClass.ONMYOJI;
 			for (Skill s : ModSkills.tree().skillsFor(klasse)) {
 				String eerst = s.requires().isEmpty() ? "geen" : String.join(", ", s.requires());
 				boolean af = geleerd.contains(s.id());
@@ -47,7 +50,7 @@ public class SkillScreen extends Screen {
 						if (verbinding != null) verbinding.sendCommand("dr vaardigheid " + s.id());
 					})
 					.bounds(x, y, 90, 20)
-					.tooltip(Tooltip.create(Component.literal(klasse.name() + " - eerst nodig: " + eerst)))
+					.tooltip(Tooltip.create(Component.literal(klasse.name() + " - eerst nodig: " + eerst + (nogZonderEffect ? " (nog zonder effect)" : ""))))
 					.build();
 				knop.active = !af;
 				addRenderableWidget(knop);

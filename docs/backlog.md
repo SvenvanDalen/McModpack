@@ -197,13 +197,13 @@ Bron: `docs/superpowers/specs/2026-11-18-japans-koninkrijk-design.md`. Alle stor
 | ID | Story | Status | Wat er is en wat nog niet |
 |---|---|---|---|
 | DR-1201 | Koninkrijkstype en thema in data | ✔ klaar (getest) | `KingdomTheme` en Japans type in `KingdomPlacement`; deterministisch per seed, dichtheid tussen 0,5% en 2% (test) |
-| DR-1202 | Klassen samoerai en onmyoji | ✔ klaar, met beperking | Keuze, startset en 6 vaardigheden per klasse uit JSON. De nieuwe vaardigheden zijn passief (zonder kosten of effect). Het keuzescherm (SkillScreen) met 5 klassen is niet met de hand gecontroleerd |
+| DR-1202 | Klassen samoerai en onmyoji | ✔ klaar, met beperking | Keuze via `/dr klasse`, startset en 6 vaardigheden per klasse uit JSON. De nieuwe vaardigheden hebben nog geen effect (de tooltip zegt dat). Er is geen klassekeuzescherm; het vaardighedenscherm (SkillScreen) met 5 kolommen is niet met de hand gecontroleerd |
 | DR-1203 | Japans dorp en kasteel | ✔ klaar, niet in het spel bekeken | Bouwplannen met huizen, markt, dojo, torii, pagode en kasteel en NPC-plekken. De sensei en de koning worden niet gespawnd (er is geen NPC-mechaniek voor rollen, ook niet voor de westerse koning); de sensei-dialoog is dus onbereikbaar |
-| DR-1204 | Japans gebied | ✔ klaar, deels | Tuin met kersenbomen, bamboe, vijver en berg achter het dorp. De tuin wordt in dezelfde bouwbeurt geplaatst als het dorp, niet gespreid (zie meting) |
-| DR-1205 | Wapens | ✔ klaar, met beperkingen | Katana, naginata, yumi, shuriken met 16x16-tekstuur. De waarden staan in Java (`core/JapaneseWeapons`), niet in JSON: acceptatie niet letterlijk gehaald. `usableBy` wordt niet afgedwongen, het bereik van de naginata is niet toegepast, de shuriken doet geen 3 schade en de yumi heeft geen trekanimatie. Schadeformule niet in het spel geprobeerd |
-| DR-1206 | Eten | ✔ klaar, met beperking | Rijst, onigiri, sushi, thee met recepten. De eetbonussen zijn alleen vastgelegd (core), niet toegepast in het spel. Waarden staan in Java, niet in JSON |
+| DR-1204 | Japans gebied | deels, open | Tuin met kersenbomen, bamboe, vijver en berg achter het dorp. **Open:** geleidelijke generatie zonder tick-piek is niet gebouwd; dorp en tuin (ongeveer 5.600 plaatsingen) komen in één bouwbeurt (zie meting) |
+| DR-1205 | Wapens | deels (items er, gedrag niet) | Katana, naginata, yumi, shuriken met 16x16-tekstuur. De waarden staan in Java (`core/JapaneseWeapons`), niet in JSON: acceptatie niet letterlijk gehaald. `usableBy` wordt niet afgedwongen, het bereik van de naginata is niet toegepast, de shuriken doet geen 3 schade en de yumi heeft geen trekanimatie. Schadeformule niet in het spel geprobeerd |
+| DR-1206 | Eten | deels (items er, bonussen niet) | Rijst, onigiri, sushi, thee met recepten. De eetbonussen zijn alleen vastgelegd (core), niet toegepast in het spel. Waarden staan in Java, niet in JSON |
 | DR-1207 | Bewoners, quests en buit | ✔ klaar, met beperkingen | Quest, spawnlijst en buittabel; het Japanse kasteel gebruikt eigen buit en spawns. `loot/japans_dorp.json` heeft geen plaatsingshaak (nog ongebruikt). De sensei en de koning worden niet gespawnd |
-| DR-1208 | Meting en afronding | ✔ klaar, met beperking | Wat gemeten kon worden staat hieronder; FPS en RAM in het spel zijn **niet gemeten**. README, handleiding, changelog en wiki (lokaal klaargezet) bijgewerkt |
+| DR-1208 | Meting en afronding | deels, open | Wat gemeten kon worden staat hieronder; **Open:** FPS en RAM in het spel zijn **niet gemeten**. README, handleiding, changelog en wiki (lokaal klaargezet) bijgewerkt |
 
 ### Meting DR-1208 (2026-11-18)
 
@@ -262,8 +262,8 @@ Na elke mijlpaal draait meetstory DR-801 en kan het spel gespeeld worden. Dat vo
 
 ## Samenvatting
 
-- **Epics:** 11 (0 tot 10).
-- **Stories:** 99, waarvan 63 Must, 23 Should en 13 Could (geteld op 2026-11-16).
+- **Epics:** 13 (0 tot 12).
+- **Stories:** 122 (99 uit Epic 0 tot 10, 15 uit Epic 11, 8 uit Epic 12). De 99 waren 63 Must, 23 Should en 13 Could (geteld op 2026-11-16).
 - **XL-stories** (DR-408, DR-610, DR-705): eerst opsplitsen voordat je eraan begint.
 
 ## Open en geblokkeerd (stand 2026-11-17)
