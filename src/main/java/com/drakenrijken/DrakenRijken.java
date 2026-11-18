@@ -22,6 +22,7 @@ public class DrakenRijken implements ModInitializer {
 		com.drakenrijken.data.RealmTrading.init();
 		com.drakenrijken.data.RealmRaid.init();
 		com.drakenrijken.data.DragonBoss.init();
+		com.drakenrijken.data.MachineRuntime.init();
 		com.drakenrijken.data.SeasonAnnouncer.init();
 		com.drakenrijken.data.RunewardenBoss.init();
 		com.drakenrijken.data.WorldGen.init();

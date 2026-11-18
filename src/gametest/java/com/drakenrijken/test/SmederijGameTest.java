@@ -38,4 +38,22 @@ public class SmederijGameTest {
 		if (inv.countItem(Items.IRON_BLOCK) != 1) throw new AssertionError("pers maakte geen ijzerblok");
 		context.succeed();
 	}
+
+	@GameTest
+	public void machineLooptDoorEnGeeftGeenDubbeleUitvoer(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		var inv = player.getInventory();
+		inv.add(new ItemStack(Items.RAW_IRON, 1));
+		inv.add(new ItemStack(Items.COAL, 1));
+		var pos = context.absolutePos(new net.minecraft.core.BlockPos(1, 1, 1));
+		var level = context.getLevel();
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		com.drakenrijken.data.MachineRuntime.click(player, level, pos, "smederij", 2);
+		if (!com.drakenrijken.data.MachineRuntime.running(level, pos)) throw new AssertionError("werk loopt niet");
+		if (inv.countItem(Items.RAW_IRON) != 0) throw new AssertionError("invoer niet verbruikt");
+		String tweede = com.drakenrijken.data.MachineRuntime.click(player, level, pos, "smederij", 2);
+		if (!tweede.startsWith("Bezig")) throw new AssertionError("tweede klik zou voortgang moeten tonen: " + tweede);
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		context.succeed();
+	}
 }

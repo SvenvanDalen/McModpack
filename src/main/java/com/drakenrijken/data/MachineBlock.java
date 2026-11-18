@@ -37,7 +37,7 @@ public class MachineBlock extends Block {
 			return InteractionResult.SUCCESS_SERVER;
 		}
 		int kracht = AxleNetwork.scan(level, pos).available();
-		String melding = process(player, machine, kracht);
+		String melding = level instanceof net.minecraft.server.level.ServerLevel sl ? MachineRuntime.click(player, sl, pos, machine, kracht) : process(player, machine, kracht);
 		player.sendOverlayMessage(Component.literal(melding));
 		return InteractionResult.SUCCESS_SERVER;
 	}
@@ -64,7 +64,7 @@ public class MachineBlock extends Block {
 		return "Klaar: " + r.outputCount() + "x " + r.output();
 	}
 
-	private static void remove(Player player, String itemId, int count) {
+	static void remove(Player player, String itemId, int count) {
 		var inv = player.getInventory();
 		int left = count;
 		for (int i = 0; i < inv.getContainerSize() && left > 0; i++) {

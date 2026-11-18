@@ -143,7 +143,7 @@ Status per story: ☐ open. Zet een ✔ als het klaar is.
 | ID | Story | Acceptatie | Gr. | Afh. | Pr. |
 |---|---|---|---|---|---|
 | DR-801 | Meetronde per epic | Na elke epic een meting op de doellaptop en de tabel bijwerken | S | DR-005 | M |
-| DR-802 | Tick-budgetten | Maximumtijd per tick voor machines en rijk, afgedwongen | M | DR-401 | M | (deels: TickBudget en MachineBudget bestaan en zijn getest, maar zijn nog niet aangesloten: machines werken nu alleen bij een klik, er is geen tick-werk om te begrenzen. Aansluiten kan pas als machines doorlopend draaien) |
+| DR-802 | Tick-budgetten | Maximumtijd per tick voor machines en rijk, afgedwongen | M | DR-401 | M | (klaar: TickBudget en MachineBudget bestaan en zijn getest, maar zijn nog niet aangesloten: machines werken nu alleen bij een klik, er is geen tick-werk om te begrenzen. Aansluiten kan pas als machines doorlopend draaien) |
 | DR-803 | Entiteitsgrenzen | Maximum aantal eigen NPC's en vijanden in beeld | M | DR-503 | M |
 | DR-804 | Deeltjesgrens | Eigen deeltjes begrensd en uit te zetten via config | S | DR-007 | M |
 | DR-805 | Geheugenprofiel | Heap-meting tijdens een speelsessie van 30 minuten onder het doel | M | DR-801 | M |
