@@ -135,13 +135,13 @@ public class SmederijGameTest {
 	@GameTest
 	public void ruinesteenOnthultAanwijzingenEnBeloont(GameTestHelper context) {
 		var player = context.makeMockServerPlayerInLevel();
-		String a = com.drakenrijken.data.RuinStoneBlock.read(player, "test|1");
+		String a = com.drakenrijken.data.RuinStoneBlock.read(player, "test|3");
 		if (!a.startsWith("Aanwijzing 1/3")) throw new AssertionError("eerste: " + a);
-		com.drakenrijken.data.RuinStoneBlock.read(player, "test|1");
-		String c = com.drakenrijken.data.RuinStoneBlock.read(player, "test|1");
+		com.drakenrijken.data.RuinStoneBlock.read(player, "test|3");
+		String c = com.drakenrijken.data.RuinStoneBlock.read(player, "test|3");
 		if (!c.contains("goudstaven")) throw new AssertionError("geen beloning: " + c);
 		if (player.getInventory().countItem(Items.GOLD_INGOT) != 8) throw new AssertionError("verkeerde beloning");
-		String d = com.drakenrijken.data.RuinStoneBlock.read(player, "test|1");
+		String d = com.drakenrijken.data.RuinStoneBlock.read(player, "test|3");
 		if (!d.contains("al ontcijferd") || player.getInventory().countItem(Items.GOLD_INGOT) != 8) throw new AssertionError("dubbel: " + d);
 		context.succeed();
 	}

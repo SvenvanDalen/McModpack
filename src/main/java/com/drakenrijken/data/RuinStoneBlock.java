@@ -29,6 +29,11 @@ public class RuinStoneBlock extends Block {
 		return InteractionResult.SUCCESS_SERVER;
 	}
 
+	static final String[] STORIES = {"verlaten_wachttoren", "gevallen_smederij", "verzonken_kapel", "drakenkamp"};
+
+	/** Kiest per ruïne (op plek) een vast verhaal. */
+	public static String storyFor(String where) { return STORIES[Math.floorMod(where.hashCode(), STORIES.length)]; }
+
 	/** Leest de volgende aanwijzing van de ruïne op deze plek; voortgang staat bij de speler. */
 	public static String read(ServerPlayer p, String where) {
 		var data = ModData.of(p);
@@ -36,7 +41,7 @@ public class RuinStoneBlock extends Block {
 		int gelezen = (int) data.heard().stream().filter(s -> s.startsWith(prefix)).count();
 		List<String> clues = new ArrayList<>();
 		int reward = 0;
-		try (var in = RuinStoneBlock.class.getResourceAsStream("/data/drakenrijken/ruins/verlaten_wachttoren.json")) {
+		try (var in = RuinStoneBlock.class.getResourceAsStream("/data/drakenrijken/ruins/" + storyFor(where) + ".json")) {
 			var o = JsonParser.parseReader(new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
 			o.getAsJsonArray("clues").forEach(e -> clues.add(e.getAsString()));
 			reward = o.get("reward").getAsInt();
