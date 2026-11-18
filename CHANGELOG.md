@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Grote stad van 64x64 met 25 woningen en 200 inwoners (een op de drie koninkrijken zonder burcht, dungeon of drakengebied); inwoners zijn een getal, zichtbaar blijven er hooguit 16 figuren.
 - Vier ruïnes (wachttoren, smederij, kapel, drakenkamp) worden nu echt gebouwd bij het drakengebied, met één ruïnesteen en één kist (#158).
 - Treinstation: reis voor de helft van de prijs naar het volgende ontdekte koninkrijk, met een brandende stoomketel in de buurt (#144).
 - Karstation: een mijnkar levert kolen op uit de speltijd (#146).

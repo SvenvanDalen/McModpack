@@ -45,6 +45,7 @@ public final class WorldGen {
 	/** Bouwt het dorp (en soms een burcht, dungeon of drakengebied ernaast) als de hele omgeving geladen is; false als dat nog niet kan. */
 	public static boolean build(ServerLevel level, int cx, int cz) {
 		int x = cx * 16, z = cz * 16;
+		if (com.drakenrijken.core.CityPlans.isCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
@@ -94,6 +95,20 @@ public final class WorldGen {
 		BlockPos p = new BlockPos(sx, level.getHeight(Heightmap.Types.WORLD_SURFACE, sx, sz), sz);
 		level.setBlock(p, ModBlocks.RUINESTEEN.defaultBlockState(), 3);
 		return p;
+	}
+
+	/** Grote stad (64x64, 200 inwoners) in een koninkrijk zonder burcht, dungeon of drakengebied. */
+	static boolean buildCity(ServerLevel level, int x, int z) {
+		if (!level.hasChunksAt(x - 16, z - 16, x + 80, z + 80)) return false;
+		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 32, z + 32);
+		if (y != level.getHeight(Heightmap.Types.OCEAN_FLOOR, x + 32, z + 32)) return true;
+		for (int[] h : new int[][] {{0, 0}, {63, 0}, {0, 63}, {63, 63}}) {
+			if (Math.abs(level.getHeight(Heightmap.Types.WORLD_SURFACE, x + h[0], z + h[1]) - y) > 6) return true;
+		}
+		var plan = com.drakenrijken.core.CityPlans.city();
+		StructureBuilder.place(level, new BlockPos(x, y, z), plan);
+		com.drakenrijken.DrakenRijken.LOGGER.info("Grote stad gebouwd op {} {} {} met {} inwoners", x, y, z, com.drakenrijken.core.CityPlans.inhabitants(plan));
+		return true;
 	}
 
 	/** Geen water in het midden en geen hoogteverschil van meer dan 6 blokken tussen midden en de vier hoeken van 32x32. */
