@@ -16,6 +16,18 @@ public enum KingdomTheme {
 		return of(seed, chunkX, chunkZ) != JAPANS && CityPlans.isCity(seed, chunkX, chunkZ);
 	}
 
+	/** Naam van de buittabel voor een bouwwerk naast het dorp ("burcht", "dungeon" of "drakengebied"); alleen het Japanse kasteel wijkt af. */
+	public static String lootFor(KingdomTheme theme, String extra) {
+		if (extra.equals("burcht")) return theme == JAPANS ? "japans_kasteel" : "burcht";
+		return extra.equals("drakengebied") ? "ruine" : "dungeon";
+	}
+
+	/** Naam van de spawnlijst voor de bewakers van dat bouwwerk; alleen het Japanse kasteel wijkt af. */
+	public static String spawnsFor(KingdomTheme theme, String extra) {
+		if (extra.equals("burcht") && theme == JAPANS) return "japans";
+		return extra.equals("drakengebied") ? "drakengebied" : "dungeon";
+	}
+
 	/** SplitMix64-menging, zoals in KingdomPlacement. */
 	private static long mix(long z) {
 		z += 0x9E3779B97F4A7C15L;

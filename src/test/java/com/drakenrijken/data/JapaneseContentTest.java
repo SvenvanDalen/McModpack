@@ -70,4 +70,17 @@ class JapaneseContentTest {
 		assertEquals(1, d.size());
 		assertEquals("sensei", d.get(0).id());
 	}
+
+	@Test
+	void themaKiestBuitEnSpawnsVoorHetKasteel() {
+		var j = com.drakenrijken.core.KingdomTheme.JAPANS;
+		var w = com.drakenrijken.core.KingdomTheme.WESTERS;
+		assertEquals("japans_kasteel", com.drakenrijken.core.KingdomTheme.lootFor(j, "burcht"));
+		assertEquals("japans", com.drakenrijken.core.KingdomTheme.spawnsFor(j, "burcht"));
+		assertEquals("burcht", com.drakenrijken.core.KingdomTheme.lootFor(w, "burcht"));
+		assertEquals("dungeon", com.drakenrijken.core.KingdomTheme.spawnsFor(w, "burcht"));
+		assertEquals("ruine", com.drakenrijken.core.KingdomTheme.lootFor(j, "drakengebied"));
+		assertEquals("drakengebied", com.drakenrijken.core.KingdomTheme.spawnsFor(w, "drakengebied"));
+		assertEquals("dungeon", com.drakenrijken.core.KingdomTheme.lootFor(j, "dungeon"));
+	}
 }

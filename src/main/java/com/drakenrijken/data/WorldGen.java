@@ -47,7 +47,8 @@ public final class WorldGen {
 		int x = cx * 16, z = cz * 16;
 		// Thema (DR-1201/1203): Japanse koninkrijken krijgen nooit een grote stad, maar een Japans dorp en kasteel.
 		if (com.drakenrijken.core.KingdomTheme.usesCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
-		boolean japans = com.drakenrijken.core.KingdomTheme.of(level.getSeed(), cx, cz) == com.drakenrijken.core.KingdomTheme.JAPANS;
+		var thema = com.drakenrijken.core.KingdomTheme.of(level.getSeed(), cx, cz);
+		boolean japans = thema == com.drakenrijken.core.KingdomTheme.JAPANS;
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + (japans ? 80 : 48))) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
@@ -70,8 +71,8 @@ public final class WorldGen {
 				default -> Blueprints.lair();
 			};
 			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
-			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : extra.equals("burcht") ? "burcht" : "dungeon", 1);
-			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
+			StructureBuilder.placeWithLoot(level, corner, plan, com.drakenrijken.core.KingdomTheme.lootFor(thema, extra), 1);
+			StructureBuilder.spawnGuards(level, corner, plan, com.drakenrijken.core.KingdomTheme.spawnsFor(thema, extra), 1);
 				if (extra.equals("drakengebied")) placeRuin(level, ex, ez);
 		}
 		return true;
