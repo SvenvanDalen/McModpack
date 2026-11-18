@@ -182,7 +182,7 @@ Bron: GitHub-issue #1. Elke story heeft een eigen issue en een eigen PR. Bouwt v
 | DR-1102 | Koning erkent je na een bouwplan | Erkenning pas na troonzaal, haven of kazerne | M | DR-1101 | M | #6 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1103 | Macht en aanzien door je bouwwerk | Groter bouwwerk geeft meer macht, mensen en vijanden | M | DR-501 | M | #7 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1104 | Leger | Soldaten aanwerven, uitrusten en voeden; zichtbare soldaten binnen EntityBudget | L | DR-1103 | M | #8 | (deels: spelregels en tests in core, nog niet in de wereld)
-| DR-1105 | Belegeringswapens zelf bouwen | Ontwerp bepaalt bereik, schade en gewicht | L | DR-1104 | S | #9 |
+| DR-1105 | Belegeringswapens zelf bouwen | Ontwerp bepaalt bereik, schade en gewicht | L | DR-1104 | S | #9 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1106 | Schip zelf bouwen | Kiel en ontwerp bepalen drijfkracht, snelheid en plekken | L | – | M | #10 |
 | DR-1107 | Scheepsbemanning en kanonnen | Zonder bemanning vaart het schip niet | M | DR-1106 | M | #11 |
 | DR-1108 | Koning omkopen of afzetten | Daarna zelf zijn plek innemen via een rijk | M | DR-1102 | S | #12 |
