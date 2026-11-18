@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Bouwwerk telt mee voor macht: 40 blokken is 1 punt, bouwen alleen geeft hooguit niveau 3; groter rijk trekt meer mensen en vijanden aan (DR-1103) (DR-1103, #7)
 - Een koning erkent je pas na eigen bouwwerken (troonzaal, haven, kazerne); grotere rijken eisen er meer; spelregels en tests, nog niet in de wereld (DR-1102, #6)
 - Koninkrijken groeien, blijven gelijk of vervallen in de tijd (niveau 0 tot 5, 0 is verwoest); spelregels en tests, nog niet zichtbaar in de wereld (DR-1101, #5)
 - Grote stad van 64x64 met 25 woningen en 200 inwoners (een op de drie koninkrijken zonder burcht, dungeon of drakengebied); inwoners zijn een getal, zichtbaar blijven er hooguit 16 figuren.
