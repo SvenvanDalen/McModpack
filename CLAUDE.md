@@ -16,6 +16,7 @@ Een eigen Fabric-mod voor Minecraft Java: een solo fantasy-RPG met klassen, ques
 - Versies (vastgesteld 2026-11-16, DR-001, uit fabric-example-mod en meta.fabricmc.net): Minecraft 26.3, Fabric Loader 0.20.1, Fabric API 0.166.2+26.3, Loom 1.19-SNAPSHOT (nu 1.19.4), Gradle 9.8.2, Java 25. Bouwen: `JAVA_HOME` op JDK 25; bij een certificaatfout in Gradle `JAVA_TOOL_OPTIONS=-Djavax.net.ssl.trustStoreType=Windows-ROOT`.
 - Bouw niets buiten het goedgekeurde ontwerp zonder het eerst te bespreken.
 - Werk na elke afgeronde story of wijziging ook de wiki bij (https://github.com/SvenvanDalen/McModpack/wiki, opslag `McModpack.wiki.git`): pagina's Uitleg, Ideeen, Backlog en Wijzigingen. Kopieer Backlog en Wijzigingen uit `docs/backlog.md` en `CHANGELOG.md`; zet de status van de ideeen goed.
+- Gebruik ALTIJD Graphify (MCP, repo `SvenvanDalen/McModpack`) om de code te doorzoeken: waar iets staat (graphify_find), hoe iets werkt (query_graph), wie iets aanroept (graphify_callers), wat een wijziging raakt (graphify_impact) en welke tests erbij horen (graphify_tests_for). Gebruik grep of bestanden lezen alleen voor losse teksten, configwaarden of als Graphify niets of een oudere commit teruggeeft.
 
 ## Agents (The Agency, `msitarzewski/agency-agents`, MIT-licentie)
 Geïnstalleerd in `.claude/agents/`, alleen voor dit project. Gebruik per soort werk:
