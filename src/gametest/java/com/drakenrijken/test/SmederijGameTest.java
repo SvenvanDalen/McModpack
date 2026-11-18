@@ -73,4 +73,21 @@ public class SmederijGameTest {
 		if (player.getInventory().countItem(Items.GOLD_INGOT) != eerste) throw new AssertionError("dubbel uitbetaald");
 		context.succeed();
 	}
+
+	@GameTest
+	public void bouwplantafelZetWerkplaatsNeer(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		var level = context.getLevel();
+		var corner = context.absolutePos(new net.minecraft.core.BlockPos(1, 2, 1));
+		String zonder = com.drakenrijken.data.BlueprintTableBlock.build(player, level, corner, com.drakenrijken.core.Blueprints.workshop());
+		if (!zonder.startsWith("Je mist")) throw new AssertionError("zonder materiaal: " + zonder);
+		player.getInventory().add(new ItemStack(com.drakenrijken.data.ModBlocks.WATERRAD.asItem()));
+		player.getInventory().add(new ItemStack(com.drakenrijken.data.ModBlocks.AS.asItem()));
+		player.getInventory().add(new ItemStack(com.drakenrijken.data.ModBlocks.SMEDERIJ.asItem()));
+		String klaar = com.drakenrijken.data.BlueprintTableBlock.build(player, level, corner, com.drakenrijken.core.Blueprints.workshop());
+		if (!klaar.startsWith("Gebouwd: 3")) throw new AssertionError(klaar);
+		if (!level.getBlockState(corner.offset(2, 0, 0)).is(com.drakenrijken.data.ModBlocks.SMEDERIJ)) throw new AssertionError("smederij niet geplaatst");
+		if (player.getInventory().countItem(com.drakenrijken.data.ModBlocks.AS.asItem()) != 0) throw new AssertionError("materiaal niet verbruikt");
+		context.succeed();
+	}
 }

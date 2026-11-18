@@ -89,4 +89,13 @@ public final class Blueprints {
 		for (int x : new int[] {0, 24}) for (int z : new int[] {0, 12, 24}) b.fill(x, 0, z, x, 5, z, "stone");
 		return b;
 	}
+
+	/** Klein werkplaatsplan voor het bouwplanboek (#147): waterrad, as en smederij op een rij in de x-richting. */
+	public static Blueprint workshop() {
+		Blueprint b = new Blueprint();
+		b.set(0, 0, 0, "drakenrijken:waterrad");
+		b.set(1, 0, 0, "drakenrijken:as");
+		b.set(2, 0, 0, "drakenrijken:smederij");
+		return b;
+	}
 }

@@ -24,6 +24,7 @@ public final class ModBlocks {
 	public static Block TRANSPORTBAND;
 	public static Block RUNESMEDERIJ;
 	public static Block BELASTINGKIST;
+	public static Block BOUWPLANTAFEL;
 
 	private ModBlocks() {}
 
@@ -39,6 +40,7 @@ public final class ModBlocks {
 		TRANSPORTBAND = register("transportband", ConveyorBlock::new, BlockBehaviour.Properties.of().strength(1.5f));
 		RUNESMEDERIJ = register("runesmederij", p -> new MachineBlock(p, "runesmederij", 3), BlockBehaviour.Properties.of().strength(4.0f));
 		BELASTINGKIST = register("belastingkist", TaxChestBlock::new, BlockBehaviour.Properties.of().strength(2.5f));
+		BOUWPLANTAFEL = register("bouwplantafel", BlueprintTableBlock::new, BlockBehaviour.Properties.of().strength(2.5f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {
