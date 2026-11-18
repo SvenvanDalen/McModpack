@@ -23,6 +23,8 @@ public class MachineBlock extends Block {
 	private final String machine;
 	private final int minEra;
 
+	public String machineName() { return machine; }
+
 	public MachineBlock(Properties properties, String machine, int minEra) {
 		super(properties);
 		this.machine = machine;

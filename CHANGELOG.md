@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Machinebord: rechtsklikken toont de status van alle machines binnen 8 blokken (#148).
 - Een ruïnesteen met aanwijzingen staat nu bij elk drakengebied in de wereld.
 - Ruïnesteen: elke rechtsklik onthult een volgende aanwijzing; na de laatste volgt een beloning (#158).
 - Geruchtentafel: rechtsklik vertelt een nieuw gerucht uit een JSON-lijst; je hoort elk gerucht één keer (#157).

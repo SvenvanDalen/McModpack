@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["PPP", "WGW", "WRW"],
+	"key": {"P": "minecraft:paper", "W": "minecraft:oak_planks", "G": "minecraft:gold_ingot", "R": "minecraft:redstone"},
+	"result": {"id": "drakenrijken:machinebord", "count": 1}
+}

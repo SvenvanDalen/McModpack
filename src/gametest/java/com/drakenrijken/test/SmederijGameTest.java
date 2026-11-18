@@ -145,4 +145,22 @@ public class SmederijGameTest {
 		if (!d.contains("al ontcijferd") || player.getInventory().countItem(Items.GOLD_INGOT) != 8) throw new AssertionError("dubbel: " + d);
 		context.succeed();
 	}
+
+	@GameTest
+	public void machinebordToontStatusEnStoringen(GameTestHelper context) {
+		var level = context.getLevel();
+		var bord = context.absolutePos(new net.minecraft.core.BlockPos(1, 2, 1));
+		var smederij = context.absolutePos(new net.minecraft.core.BlockPos(2, 2, 1));
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		var leeg = com.drakenrijken.data.MachineBoardBlock.report(level, bord);
+		if (leeg.size() != 1 || !leeg.get(0).startsWith("Geen machines")) throw new AssertionError("leeg bord: " + leeg);
+		level.setBlock(smederij, com.drakenrijken.data.ModBlocks.SMEDERIJ.defaultBlockState(), 3);
+		var wacht = com.drakenrijken.data.MachineBoardBlock.report(level, bord);
+		if (wacht.size() != 1 || !wacht.get(0).startsWith("smederij") || !wacht.get(0).contains("Wacht")) throw new AssertionError("wacht: " + wacht);
+		com.drakenrijken.data.MachineRuntime.breakForTest(level, smederij);
+		var kapot = com.drakenrijken.data.MachineBoardBlock.report(level, bord);
+		if (!kapot.get(0).contains("Storing")) throw new AssertionError("storing: " + kapot);
+		com.drakenrijken.data.MachineRuntime.clearForTest();
+		context.succeed();
+	}
 }

@@ -39,6 +39,12 @@ public final class MachineRuntime {
 
 	public static int active() { return JOBS.count(); }
 
+	/** Voortgang (0 tot 100) van het werk op deze plek, of -1 als er niets loopt. */
+	public static int percentAt(ServerLevel level, BlockPos pos) {
+		String k = key(level, pos);
+		return JOBS.running(k) ? JOBS.percent(k) : -1;
+	}
+
 	private static String key(ServerLevel level, BlockPos pos) { return level.dimension().identifier() + "|" + pos.asLong(); }
 
 	private static ServerLevel levelOf(MinecraftServer server, String key) {
