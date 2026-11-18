@@ -45,20 +45,21 @@ public final class WorldGen {
 	/** Bouwt het dorp (en soms een burcht, dungeon of drakengebied ernaast) als de hele omgeving geladen is; false als dat nog niet kan. */
 	public static boolean build(ServerLevel level, int cx, int cz) {
 		int x = cx * 16, z = cz * 16;
-		// Thema (DR-1201): Japanse koninkrijken krijgen nooit een grote stad; tot Task 3 bouwen ze nog het gewone dorp.
+		// Thema (DR-1201/1203): Japanse koninkrijken krijgen nooit een grote stad, maar een Japans dorp en kasteel.
 		if (com.drakenrijken.core.KingdomTheme.usesCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
+		boolean japans = com.drakenrijken.core.KingdomTheme.of(level.getSeed(), cx, cz) == com.drakenrijken.core.KingdomTheme.JAPANS;
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
 		if (!vlak(level, x, z, y)) return true; // water of steile helling: niet bouwen
-		StructureBuilder.place(level, new BlockPos(x, y, z), Blueprints.village());
+		StructureBuilder.place(level, new BlockPos(x, y, z), japans ? com.drakenrijken.core.JapanesePlans.village() : Blueprints.village());
 		String extra = KingdomPlacement.companion(level.getSeed(), cx, cz);
 		if (!extra.isEmpty()) {
 			int ex = x + 48, ez = z;
 			int ey = level.getHeight(Heightmap.Types.WORLD_SURFACE, ex + 8, ez + 8);
 			if (!vlak(level, ex, ez, ey)) return true;
 			var plan = switch (extra) {
-				case "burcht" -> Blueprints.castle();
+				case "burcht" -> japans ? com.drakenrijken.core.JapanesePlans.castle() : Blueprints.castle();
 				case "dungeon" -> Blueprints.dungeon();
 				default -> Blueprints.lair();
 			};
