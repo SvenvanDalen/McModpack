@@ -45,7 +45,8 @@ public final class WorldGen {
 	/** Bouwt het dorp (en soms een burcht, dungeon of drakengebied ernaast) als de hele omgeving geladen is; false als dat nog niet kan. */
 	public static boolean build(ServerLevel level, int cx, int cz) {
 		int x = cx * 16, z = cz * 16;
-		if (com.drakenrijken.core.CityPlans.isCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
+		// Thema (DR-1201): Japanse koninkrijken krijgen nooit een grote stad; tot Task 3 bouwen ze nog het gewone dorp.
+		if (com.drakenrijken.core.KingdomTheme.usesCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
 		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
