@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Belegeringswapens: ontwerp (arm, contragewicht, frame) bepaalt bereik, schade en gewicht; te licht frame breekt, te zwaar wapen is niet te verplaatsen (DR-1105) (DR-1105, #9)
 - Leger: soldaten aanwerven (max 200), uitrusten en voeden; zichtbare soldaten binnen het budget, hongerig leger vecht minder (DR-1104) (DR-1104, #8)
 - Bouwwerk telt mee voor macht: 40 blokken is 1 punt, bouwen alleen geeft hooguit niveau 3; groter rijk trekt meer mensen en vijanden aan (DR-1103) (DR-1103, #7)
 - Een koning erkent je pas na eigen bouwwerken (troonzaal, haven, kazerne); grotere rijken eisen er meer; spelregels en tests, nog niet in de wereld (DR-1102, #6)
