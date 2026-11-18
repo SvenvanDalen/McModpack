@@ -49,10 +49,16 @@ public final class WorldGen {
 		if (com.drakenrijken.core.KingdomTheme.usesCity(level.getSeed(), cx, cz)) return buildCity(level, x, z);
 		boolean japans = com.drakenrijken.core.KingdomTheme.of(level.getSeed(), cx, cz) == com.drakenrijken.core.KingdomTheme.JAPANS;
 		boolean extraNodig = !KingdomPlacement.companion(level.getSeed(), cx, cz).isEmpty();
-		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + 48)) return false;
+		if (!level.hasChunksAt(x - 16, z - 16, x + (extraNodig ? 96 : 48), z + (japans ? 80 : 48))) return false;
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, z + 8);
 		if (!vlak(level, x, z, y)) return true; // water of steile helling: niet bouwen
 		StructureBuilder.place(level, new BlockPos(x, y, z), japans ? com.drakenrijken.core.JapanesePlans.village() : Blueprints.village());
+		if (japans) {
+			// Japans gebied (DR-1204): tuin met kersenbomen, bamboe, vijver en berg direct achter het dorp (één structuur, ca. 1.600 blokken).
+			int gz = z + 36;
+			int gy = level.getHeight(Heightmap.Types.WORLD_SURFACE, x + 8, gz + 8);
+			if (vlak(level, x, gz, gy)) StructureBuilder.place(level, new BlockPos(x, gy, gz), com.drakenrijken.core.JapaneseLand.garden());
+		}
 		String extra = KingdomPlacement.companion(level.getSeed(), cx, cz);
 		if (!extra.isEmpty()) {
 			int ex = x + 48, ez = z;
