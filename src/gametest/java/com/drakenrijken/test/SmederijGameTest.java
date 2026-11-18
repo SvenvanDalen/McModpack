@@ -248,4 +248,28 @@ public class SmederijGameTest {
 		if (stenen != 1) throw new AssertionError("verwacht 1 ruinesteen, kreeg " + stenen + " (klaar=" + klaar + ")");
 		context.succeed();
 	}
+
+	@GameTest
+	public void echteGeneratieBouwtGroteStad(GameTestHelper context) {
+		var level = context.getLevel();
+		long seed = level.getSeed();
+var BED = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getOptional(net.minecraft.resources.Identifier.withDefaultNamespace("white_bed")).orElseThrow();
+		int geprobeerd = 0, besteBedden = 0;
+		for (int cx = 200; cx < 400 && geprobeerd < 12 && besteBedden < 25; cx++) for (int cz = 200; cz < 400 && geprobeerd < 12 && besteBedden < 25; cz++) {
+			if (!com.drakenrijken.core.KingdomPlacement.hasKingdom(seed, cx, cz) || !com.drakenrijken.core.CityPlans.isCity(seed, cx, cz)) continue;
+			geprobeerd++;
+			int x = cx * 16, z = cz * 16;
+			for (int a = cx - 1; a <= cx + 5; a++) for (int b = cz - 1; b <= cz + 5; b++) level.getChunk(a, b);
+			com.drakenrijken.data.WorldGen.build(level, cx, cz);
+			int bedden = 0;
+			for (int bx = x; bx < x + 64; bx++) for (int bz = z; bz < z + 64; bz++) for (int by = level.getMinY(); by < level.getMaxY(); by++)
+				if (level.getBlockState(new net.minecraft.core.BlockPos(bx, by, bz)).is(BED)) bedden++;
+			System.out.println("ECHTE-STAD chunk " + cx + "," + cz + " bedden=" + bedden);
+			for (var e : level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class, new net.minecraft.world.phys.AABB(x - 16, level.getMinY(), z - 16, x + 80, level.getMaxY(), z + 80))) e.discard();
+			besteBedden = Math.max(besteBedden, bedden);
+		}
+		if (geprobeerd == 0) throw new AssertionError("geen stad gevonden voor seed " + seed);
+		if (besteBedden < 25) throw new AssertionError("verwacht 25 woningen (minstens een bed per woning), kreeg " + besteBedden);
+		context.succeed();
+	}
 }
