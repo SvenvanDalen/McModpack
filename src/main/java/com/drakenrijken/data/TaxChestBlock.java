@@ -26,12 +26,14 @@ public class TaxChestBlock extends Block {
 		PlayerDataHolder h = new PlayerDataHolder(p);
 		int niveau = com.drakenrijken.core.RealmState.levelFor(h.data.realmPower());
 		long dag = p.level().getGameTime() / 24000L;
-		int bedrag = com.drakenrijken.core.RealmTax.owed(niveau, h.data.lastTaxDay(), dag);
+		int belasting = com.drakenrijken.core.RealmTax.owed(niveau, h.data.lastTaxDay(), dag);
+		int opbrengst = com.drakenrijken.core.Profession.payout(niveau, h.data.lastTaxDay(), dag);
+		int bedrag = belasting + opbrengst;
 		if (bedrag <= 0) return niveau == 0 ? "Je rijk is nog te klein om belasting te betalen (niveau 1 nodig)." : "Er ligt nog geen belasting klaar; kom morgen terug.";
 		h.data.setLastTaxDay(dag);
 		p.setAttached(ModData.PLAYER_DATA, h.data);
 		p.getInventory().add(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.GOLD_INGOT, bedrag));
-		return "Je rijk betaalt " + bedrag + " goudstaven belasting.";
+		return "Je rijk betaalt " + belasting + " goudstaven belasting en je dorpelingen leveren " + opbrengst + " op.";
 	}
 
 	private record PlayerDataHolder(com.drakenrijken.core.PlayerData data) {

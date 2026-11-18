@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Belastingkist betaalt ook de opbrengst van je dorpelingen (boer, mijnwerker, smid) uit (#152).
 - Bouwplantafel: rechtsklik zet een werkplaats (waterrad, as, smederij) naast de tafel neer als je de blokken hebt (#147).
 - Belastingkist: rechtsklik haalt de belasting van je rijk op (#153); `/dr belasting` doet hetzelfde.
 - Machines draaien nu doorlopend: een klik start een werk dat over meerdere ticks loopt, met kracht- en tijdsgrens, en bij afsluiten wordt alles afgemaakt (DR-802).
