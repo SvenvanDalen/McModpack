@@ -63,6 +63,11 @@ public final class WorldGen {
 			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
 			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : extra.equals("burcht") ? "burcht" : "dungeon", 1);
 			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
+				if (extra.equals("drakengebied")) {
+					// Ruïnesteen met aanwijzingen vlak voor het drakengebied.
+					int sx = ex - 2, sz = ez + 8;
+					level.setBlock(new BlockPos(sx, level.getHeight(Heightmap.Types.WORLD_SURFACE, sx, sz), sz), ModBlocks.RUINESTEEN.defaultBlockState(), 3);
+				}
 		}
 		return true;
 	}
