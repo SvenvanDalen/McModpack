@@ -185,7 +185,7 @@ Bron: GitHub-issue #1. Elke story heeft een eigen issue en een eigen PR. Bouwt v
 | DR-1105 | Belegeringswapens zelf bouwen | Ontwerp bepaalt bereik, schade en gewicht | L | DR-1104 | S | #9 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1106 | Schip zelf bouwen | Kiel en ontwerp bepalen drijfkracht, snelheid en plekken | L | – | M | #10 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1107 | Scheepsbemanning en kanonnen | Zonder bemanning vaart het schip niet | M | DR-1106 | M | #11 | (deels: spelregels en tests in core, nog niet in de wereld)
-| DR-1108 | Koning omkopen of afzetten | Daarna zelf zijn plek innemen via een rijk | M | DR-1102 | S | #12 |
+| DR-1108 | Koning omkopen of afzetten | Daarna zelf zijn plek innemen via een rijk | M | DR-1102 | S | #12 | (deels: spelregels en tests in core, nog niet in de wereld)
 | DR-1109 | Gevangenen laten werken | Werk in mijn, op het land en op schepen | M | DR-1104 | S | #13 |
 | DR-1110 | Opstanden | Slechte behandeling leidt tot opstand | M | DR-1109 | S | #14 |
 | DR-1111 | Optioneel: lege kavel | Start zonder gegenereerde structuren; eerst bespreken | L | – | C | #15 |
