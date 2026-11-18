@@ -63,10 +63,30 @@ public final class WorldGen {
 			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
 			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : extra.equals("burcht") ? "burcht" : "dungeon", 1);
 			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
-				if (extra.equals("drakengebied")) placeRuinStone(level, ex, ez);
+				if (extra.equals("drakengebied")) placeRuin(level, ex, ez);
 		}
 		return true;
 	}
+	/**
+	 * Bouwt een ruïne (12x12) in de strook tussen dorp en drakengebied. Het verhaal hangt aan de plek van de steen (storyFor),
+	 * dus we schuiven de hoek tot het verhaal bij het bouwplan past. Geeft de plek van de steen terug.
+	 */
+	public static BlockPos placeRuin(ServerLevel level, int ex, int ez) {
+		for (int d = 0; d < 64; d++) {
+			for (String story : com.drakenrijken.core.RuinPlans.STORIES) {
+				var plan = com.drakenrijken.core.RuinPlans.plan(story);
+				int[] s = com.drakenrijken.core.RuinPlans.stoneAt(plan);
+				int cx = ex - 16 + d % 4, cz = ez + 4 + d / 4;
+				int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, cx + 6, cz + 6);
+				BlockPos stone = new BlockPos(cx + s[0], y, cz + s[1]);
+				if (!RuinStoneBlock.storyFor(level.dimension().identifier() + "|" + stone.asLong()).equals(story)) continue;
+				StructureBuilder.placeWithLoot(level, new BlockPos(cx, y, cz), plan, "ruine", 1);
+				return stone;
+			}
+		}
+		return placeRuinStone(level, ex, ez);
+	}
+
 	/** Ruïnesteen met aanwijzingen vlak voor het drakengebied; geeft de plek terug. */
 	public static BlockPos placeRuinStone(ServerLevel level, int ex, int ez) {
 		int sx = ex - 2, sz = ez + 8;

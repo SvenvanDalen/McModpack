@@ -210,4 +210,18 @@ public class SmederijGameTest {
 		if (!a.contains("ontdekt koninkrijk")) throw new AssertionError("zonder ontdekt koninkrijk: " + a);
 		context.succeed();
 	}
+
+	@GameTest
+	public void ruineWordtGebouwdMetSteenEnKist(GameTestHelper context) {
+		var level = context.getLevel();
+		var o = context.absolutePos(new net.minecraft.core.BlockPos(20, 0, 20));
+		var stone = com.drakenrijken.data.WorldGen.placeRuin(level, o.getX(), o.getZ());
+		if (!level.getBlockState(stone).is(com.drakenrijken.data.ModBlocks.RUINESTEEN)) throw new AssertionError("geen ruinesteen op " + stone);
+		String story = com.drakenrijken.data.RuinStoneBlock.storyFor(level.dimension().identifier() + "|" + stone.asLong());
+		int chests = 0;
+		for (int x = -12; x <= 12; x++) for (int z = -12; z <= 12; z++) for (int y = -6; y <= 8; y++)
+			if (level.getBlockState(stone.offset(x, y, z)).is(net.minecraft.world.level.block.Blocks.CHEST)) chests++;
+		if (chests < 1) throw new AssertionError("geen kist bij ruine " + story);
+		context.succeed();
+	}
 }

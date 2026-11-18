@@ -1,6 +1,6 @@
 # Ruïne-indelingen (tekstontwerp)
 
-Vier kleine bouwplannen, bij de verhalen in `src/main/resources/data/drakenrijken/ruins/*.json`. Dit is een ontwerp op papier; er is nog niets gebouwd.
+Vier kleine bouwplannen, bij de verhalen in `src/main/resources/data/drakenrijken/ruins/*.json`. De plannen staan in `core/RuinPlans.java` (iets vereenvoudigd: kolenblok i.p.v. kampvuur) en worden bij het drakengebied gebouwd.
 
 ## Gemeenschappelijke regels
 - Grondoppervlak maximaal 12x12, hoogte maximaal 8 (kelder en schuilplaats tellen niet mee in die 8, maximaal 3 diep).

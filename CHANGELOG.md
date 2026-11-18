@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Vier ruïnes (wachttoren, smederij, kapel, drakenkamp) worden nu echt gebouwd bij het drakengebied, met één ruïnesteen en één kist (#158).
 - Treinstation: reis voor de helft van de prijs naar het volgende ontdekte koninkrijk, met een brandende stoomketel in de buurt (#144).
 - Karstation: een mijnkar levert kolen op uit de speltijd (#146).
 - Ruïnesteen: vier verhalen (wachttoren, smederij, kapel, drakenkamp), per plek vast gekozen.
