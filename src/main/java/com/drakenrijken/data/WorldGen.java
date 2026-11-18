@@ -81,6 +81,7 @@ public final class WorldGen {
 				BlockPos stone = new BlockPos(cx + s[0], y, cz + s[1]);
 				if (!RuinStoneBlock.storyFor(level.dimension().identifier() + "|" + stone.asLong()).equals(story)) continue;
 				StructureBuilder.placeWithLoot(level, new BlockPos(cx, y, cz), plan, "ruine", 1);
+				com.drakenrijken.DrakenRijken.LOGGER.info("Ruïne {} gebouwd, steen op {} {} {}", story, stone.getX(), stone.getY(), stone.getZ());
 				return stone;
 			}
 		}
