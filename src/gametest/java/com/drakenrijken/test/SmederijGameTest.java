@@ -163,4 +163,16 @@ public class SmederijGameTest {
 		com.drakenrijken.data.MachineRuntime.clearForTest();
 		context.succeed();
 	}
+
+	@GameTest
+	public void glazenBuisMeetDeLeiding(GameTestHelper context) {
+		var level = context.getLevel();
+		var start = context.absolutePos(new net.minecraft.core.BlockPos(1, 2, 1));
+		for (int i = 0; i < 3; i++) level.setBlock(start.east(i), com.drakenrijken.data.ModBlocks.GLAZENBUIS.defaultBlockState(), 3);
+		int l = com.drakenrijken.data.GlassPipeBlock.length(level, start);
+		if (l != 3) throw new AssertionError("lengte hoort 3 te zijn, is " + l);
+		if (!com.drakenrijken.data.GlassPipeBlock.describe(l).contains("doorvoer")) throw new AssertionError("geen doorvoer");
+		if (!com.drakenrijken.data.GlassPipeBlock.describe(com.drakenrijken.core.Pipe.MAX_LENGTH + 1).contains("te lang")) throw new AssertionError("te lang niet gemeld");
+		context.succeed();
+	}
 }

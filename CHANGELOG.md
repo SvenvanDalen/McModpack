@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Glazen buis: rechtsklikken meet de lengte en doorvoer van de leiding (#150).
 - Machinebord: rechtsklikken toont de status van alle machines binnen 8 blokken (#148).
 - Een ruïnesteen met aanwijzingen staat nu bij elk drakengebied in de wereld.
 - Ruïnesteen: elke rechtsklik onthult een volgende aanwijzing; na de laatste volgt een beloning (#158).
