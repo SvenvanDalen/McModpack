@@ -63,14 +63,18 @@ public final class WorldGen {
 			var corner = new BlockPos(ex, extra.equals("burcht") ? ey + 6 : ey, ez);
 			StructureBuilder.placeWithLoot(level, corner, plan, extra.equals("drakengebied") ? "ruine" : extra.equals("burcht") ? "burcht" : "dungeon", 1);
 			StructureBuilder.spawnGuards(level, corner, plan, extra.equals("drakengebied") ? "drakengebied" : "dungeon", 1);
-				if (extra.equals("drakengebied")) {
-					// Ruïnesteen met aanwijzingen vlak voor het drakengebied.
-					int sx = ex - 2, sz = ez + 8;
-					level.setBlock(new BlockPos(sx, level.getHeight(Heightmap.Types.WORLD_SURFACE, sx, sz), sz), ModBlocks.RUINESTEEN.defaultBlockState(), 3);
-				}
+				if (extra.equals("drakengebied")) placeRuinStone(level, ex, ez);
 		}
 		return true;
 	}
+	/** Ruïnesteen met aanwijzingen vlak voor het drakengebied; geeft de plek terug. */
+	public static BlockPos placeRuinStone(ServerLevel level, int ex, int ez) {
+		int sx = ex - 2, sz = ez + 8;
+		BlockPos p = new BlockPos(sx, level.getHeight(Heightmap.Types.WORLD_SURFACE, sx, sz), sz);
+		level.setBlock(p, ModBlocks.RUINESTEEN.defaultBlockState(), 3);
+		return p;
+	}
+
 	/** Geen water in het midden en geen hoogteverschil van meer dan 6 blokken tussen midden en de vier hoeken van 32x32. */
 	static boolean vlak(ServerLevel level, int x, int z, int y) {
 		if (y != level.getHeight(Heightmap.Types.OCEAN_FLOOR, x + 8, z + 8)) return false;

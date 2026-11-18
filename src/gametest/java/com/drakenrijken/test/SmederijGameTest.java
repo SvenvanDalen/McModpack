@@ -175,4 +175,12 @@ public class SmederijGameTest {
 		if (!com.drakenrijken.data.GlassPipeBlock.describe(com.drakenrijken.core.Pipe.MAX_LENGTH + 1).contains("te lang")) throw new AssertionError("te lang niet gemeld");
 		context.succeed();
 	}
+
+	@GameTest
+	public void ruinesteenKomtBijDrakengebied(GameTestHelper context) {
+		var level = context.getLevel();
+		var pos = com.drakenrijken.data.WorldGen.placeRuinStone(level, context.absolutePos(new net.minecraft.core.BlockPos(5, 0, 0)).getX(), context.absolutePos(new net.minecraft.core.BlockPos(5, 0, 0)).getZ());
+		if (!level.getBlockState(pos).is(com.drakenrijken.data.ModBlocks.RUINESTEEN)) throw new AssertionError("geen ruinesteen op " + pos);
+		context.succeed();
+	}
 }
