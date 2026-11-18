@@ -8,8 +8,8 @@ class RealmVillagersTest {
 	@Test
 	void groeitMetNiveau() {
 		assertEquals(4, RealmVillagers.toSpawn(0, 0));
-		assertEquals(8, RealmVillagers.toSpawn(1, 0));
-		assertEquals(4, RealmVillagers.toSpawn(1, 4));
+		assertEquals(6, RealmVillagers.toSpawn(1, 0));
+		assertEquals(2, RealmVillagers.toSpawn(1, 4));
 	}
 
 	@Test

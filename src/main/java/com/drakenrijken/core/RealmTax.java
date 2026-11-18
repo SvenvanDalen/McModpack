@@ -7,12 +7,14 @@ public final class RealmTax {
 
 	private RealmTax() {}
 
-	/** Goudstaven per dag: 0 bij niveau 0, 2 per niveau, 10 bij niveau 5. */
+	private static final int[] TABLE = {0, 2, 4, 7, 11, 16};
+
+	/** Goudstaven per dag: 0, 2, 4, 7, 11, 16 voor niveau 0 t/m 5 (groeit door op de hoge niveaus). */
 	public static int daily(int level) {
 		if (level < 0 || level > RealmState.MAX_LEVEL) {
 			throw new IllegalArgumentException("rijksniveau buiten 0.." + RealmState.MAX_LEVEL + ": " + level);
 		}
-		return 2 * level;
+		return TABLE[level];
 	}
 
 	/** Wat er klaarligt sinds de laatste inning, met het plafond van 3 dagen. */

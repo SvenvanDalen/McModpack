@@ -22,7 +22,8 @@ class RealmEffectsTest {
 	@Test
 	void dorpelingenGroeienMetHetNiveau() {
 		assertEquals(4, RealmEffects.villagerCap(0));
-		assertEquals(24, RealmEffects.villagerCap(5));
+		assertEquals(16, RealmEffects.villagerCap(5));
+		assertEquals(11, RealmEffects.villagerCap(3));
 		assertThrows(IllegalArgumentException.class, () -> RealmEffects.villagerCap(6));
 	}
 

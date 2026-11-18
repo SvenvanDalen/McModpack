@@ -37,7 +37,8 @@ class ProfessionTest {
 		int l = RealmState.MAX_LEVEL;
 		int boeren = Profession.assign(RealmVillagers.target(l))[Profession.BOER.ordinal()];
 		assertEquals(Profession.dailyYield(l), Profession.dailyYield(l, Season.LENTE));
-		assertEquals(Profession.dailyYield(l) - boeren * Profession.BOER.dailyYield() / 2, Profession.dailyYield(l, Season.WINTER));
+		int vol = boeren * Profession.BOER.dailyYield();
+		assertEquals(Profession.dailyYield(l) - vol + vol * Season.WINTER.harvestPercent() / 100, Profession.dailyYield(l, Season.WINTER));
 		assertTrue(Profession.dailyYield(l, Season.ZOMER) >= Profession.dailyYield(l, Season.HERFST));
 	}
 }

@@ -2,7 +2,7 @@ package com.drakenrijken.core;
 
 /** Beroepen van dorpelingen (#152). Opbrengst per dag per dorpeling; waarden zijn eerste inschattingen, nog niet door de Economy Designer nagekeken. */
 public enum Profession {
-	BOER("Boer", 1),
+	BOER("Boer", 2),
 	MIJNWERKER("Mijnwerker", 2),
 	SMID("Smid", 2),
 	WACHTER("Wachter", 0);

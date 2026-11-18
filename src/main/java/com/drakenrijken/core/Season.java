@@ -3,9 +3,9 @@ package com.drakenrijken.core;
 /** Seizoenen (#155): een cyclus van 4 x 7 speldagen. De oogstfactor is een eerste inschatting en nog niet aan de oogst gekoppeld. */
 public enum Season {
 	LENTE("Lente", 100),
-	ZOMER("Zomer", 125),
-	HERFST("Herfst", 110),
-	WINTER("Winter", 50);
+	ZOMER("Zomer", 130),
+	HERFST("Herfst", 115),
+	WINTER("Winter", 60);
 
 	public static final int DAYS_PER_SEASON = 7;
 	public static final int CYCLE_DAYS = DAYS_PER_SEASON * 4;

@@ -10,7 +10,7 @@ class RealmTaxTest {
 	void opbrengstGroeitMetHetNiveau() {
 		assertEquals(0, RealmTax.daily(0));
 		assertEquals(2, RealmTax.daily(1));
-		assertEquals(10, RealmTax.daily(RealmState.MAX_LEVEL));
+		assertEquals(16, RealmTax.daily(RealmState.MAX_LEVEL));
 	}
 
 	@Test

@@ -18,7 +18,7 @@ public final class RealmEffects {
 
 	/** Hoeveel dorpelingen het rijk huisvest: 4 bij niveau 0, 4 erbij per niveau, 24 bij niveau 5. */
 	public static int villagerCap(int level) {
-		return 4 + 4 * check(level);
+		return 4 + 12 * check(level) / 5;
 	}
 
 	private static int check(int level) {
