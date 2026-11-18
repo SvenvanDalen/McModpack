@@ -120,4 +120,15 @@ public class SmederijGameTest {
 		if (level.getBlockState(pos).getValue(com.drakenrijken.data.LightningRodBlock.LADING) != 4) throw new AssertionError("lading niet verlaagd");
 		context.succeed();
 	}
+
+	@GameTest
+	public void geruchtentafelVertelNieuweGeruchten(GameTestHelper context) {
+		var player = context.makeMockServerPlayerInLevel();
+		String eerste = com.drakenrijken.data.RumorTableBlock.listen(player, 0.0);
+		if (!eerste.startsWith("Gerucht: ")) throw new AssertionError("geen gerucht: " + eerste);
+		if (com.drakenrijken.data.ModData.of(player).heard().size() != 1) throw new AssertionError("gerucht niet onthouden");
+		String tweede = com.drakenrijken.data.RumorTableBlock.listen(player, 0.0);
+		if (tweede.equals(eerste)) throw new AssertionError("zelfde gerucht twee keer");
+		context.succeed();
+	}
 }

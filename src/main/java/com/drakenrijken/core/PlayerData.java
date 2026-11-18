@@ -9,6 +9,7 @@ public final class PlayerData {
 	private final QuestProgress quests = new QuestProgress();
 	private int realmPower;
 	private long lastTaxDay;
+	private final java.util.Set<String> heard = new java.util.LinkedHashSet<>();
 	private final java.util.Set<String> discovered = new java.util.LinkedHashSet<>();
 
 	private PlayerData() {}
@@ -27,6 +28,9 @@ public final class PlayerData {
 
 	/** Ontdekte koninkrijken als "x,z" (midden van het koninkrijk), in volgorde van ontdekking. */
 	public java.util.Set<String> discovered() { return discovered; }
+
+	/** Ids van geruchten die de speler al hoorde (RumorTable). */
+	public java.util.Set<String> heard() { return heard; }
 
 	public int realmPower() { return realmPower; }
 

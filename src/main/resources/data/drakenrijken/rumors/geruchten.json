@@ -1,0 +1,7 @@
+{"rumors": [
+	{"id": "oude_smid", "text": "Men zegt dat een smid in het noorden een zwaard smeedde dat nooit breekt.", "requires": "", "reveals": ""},
+	{"id": "draak_berg", "text": "Boeren zien 's nachts vuur boven de hoogste bergtop. Een draak?", "requires": "", "reveals": ""},
+	{"id": "wijze_ruine", "text": "Onder een verlaten ruïne zou een vergeten schat liggen.", "requires": "koninkrijk", "reveals": "ruine"},
+	{"id": "handelaar", "text": "Reizende handelaren betalen goed voor ijzer, maar alleen als je rijk groot genoeg is.", "requires": "koninkrijk", "reveals": ""},
+	{"id": "onweer", "text": "Wie een koperen staaf op een hoge plek zet, kan de bliksem temmen.", "requires": "", "reveals": ""}
+]}

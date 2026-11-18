@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Geruchtentafel: rechtsklik vertelt een nieuw gerucht uit een JSON-lijst; je hoort elk gerucht één keer (#157).
 - Bliksemafleider: laadt op bij onweer en geeft een machine in de buurt extra kracht voor één taak (#151).
 - Moersleutel: herstelt een machine met slijtage of storing; machines kunnen na ongeveer 60 producten stukgaan (#149).
 - Belastingkist betaalt ook de opbrengst van je dorpelingen (boer, mijnwerker, smid) uit (#152).

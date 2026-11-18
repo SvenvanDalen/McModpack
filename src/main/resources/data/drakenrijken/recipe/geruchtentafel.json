@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["PPP", "WWW", "W W"],
+	"key": {"P": "minecraft:paper", "W": "minecraft:oak_planks"},
+	"result": {"id": "drakenrijken:geruchtentafel", "count": 1}
+}
