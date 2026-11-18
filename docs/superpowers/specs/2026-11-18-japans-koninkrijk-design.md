@@ -33,7 +33,7 @@ Overwogen: (1) in plakjes via Epic 12, (2) eerst alleen koninkrijk en gebied, (3
 | ID | Story | Acceptatie (kort) |
 |---|---|---|
 | DR-1201 | Koninkrijkstype en thema in data | `KingdomPlacement` kent een Japans type; deterministisch per seed; dichtheid blijft tussen 0,5% en 2% |
-| DR-1202 | Klassen samoerai en onmyoji | Keuzescherm toont ze; startset, 3 start-vaardigheden per klasse uit JSON; geen crash zonder keuze |
+| DR-1202 | Klassen samoerai en onmyoji | Keuzescherm toont ze; startset, 6 vaardigheden per klasse uit JSON (de bestaande test `BundledSkillsTest` eist 6 per klasse); geen crash zonder keuze |
 | DR-1203 | Japans dorp en kasteel | Bouwplan met huizen, markt, dojo, torii, pagode en kasteel; NPC-plekken |
 | DR-1204 | Japans gebied | Bouwplan met kersenbomen, bamboe en berg rond het koninkrijk; geleidelijke generatie zonder tick-piek |
 | DR-1205 | Wapens | Katana, naginata, boog, shuriken met schade uit JSON en 16x16-tekstuur |
