@@ -1,6 +1,6 @@
 # Draken en Rijken
 
-Een solo fantasy-RPG als Fabric-mod voor Minecraft Java: kies een klasse (Ridder, Magiër of Schurk), doe quests, bouw een rijk, ontwikkel industrie in drie tijdperken en versla een draak.
+Een solo fantasy-RPG als Fabric-mod voor Minecraft Java: kies een klasse (Ridder, Magiër, Schurk, Samoerai of Onmyoji), doe quests, bouw een rijk, ontwikkel industrie in drie tijdperken en versla een draak. Naast de westerse koninkrijken is er een Japans koninkrijk met dorp, kasteel, kersenbomen en bamboe, eigen wapens (katana, naginata, boog, shuriken) en eigen eten (rijst, onigiri, sushi, thee).
 
 > Status: in ontwikkeling (versie 0.1.0). De spelregels zijn getest, maar het meeste is nog niet in het draaiende spel geprobeerd.
 

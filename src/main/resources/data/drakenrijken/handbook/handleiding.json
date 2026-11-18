@@ -1,5 +1,5 @@
 {"chapters":[
-{"id":"klassen","title":"Klassen","lines":["Kies bij het begin een klasse met /dr klasse ridder, magier of schurk.","Je krijgt een startset en kunt vaardigheden leren als je niveau stijgt.","Je kunt je klasse niet meer wisselen."]},
+{"id":"klassen","title":"Klassen","lines":["Kies bij het begin een klasse met /dr klasse: ridder, magier, schurk, samoerai of onmyoji.","Je krijgt een startset en kunt vaardigheden leren als je niveau stijgt.","Samoerai en onmyoji horen bij het Japanse koninkrijk, met onder meer katana en onigiri.","Je kunt je klasse niet meer wisselen."]},
 {"id":"quests","title":"Quests","lines":["Met /dr quests zie je je opdrachten en hoe ver je bent.","Quests geven ervaring en soms voorwerpen.","Sommige quests ontgrendelen een nieuw tijdperk."]},
 {"id":"industrie","title":"Industrie","lines":["Er zijn drie tijdperken: tijdperk 1 (water en assen), tijdperk 2 (stoom) en tijdperk 3 (runen).","Een machine van een tijdperk dat je nog niet kent, werkt niet voor je.","Kracht gaat via assen naar machines. Met /dr recepten zie je hoeveel machinerecepten er zijn."]},
 {"id":"rijk","title":"Je rijk","lines":["Je machines samen geven rijksmacht; met /dr rijk zie je je niveau en groeien er dorpelingen bij.","Vanaf niveau 2 vallen vijanden je rijk aan. Handelaren geven betere prijzen bij een hoger niveau."]},

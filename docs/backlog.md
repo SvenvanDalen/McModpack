@@ -190,6 +190,50 @@ Bron: GitHub-issue #1. Elke story heeft een eigen issue en een eigen PR. Bouwt v
 | DR-1110 | Opstanden | Slechte behandeling leidt tot opstand | M | DR-1109 | S | #14 |
 | DR-1111 | Optioneel: lege kavel | Start zonder gegenereerde structuren; eerst bespreken | L | – | C | #15 |
 
+## Epic 12: Japans koninkrijk (stand 2026-11-18)
+
+Bron: `docs/superpowers/specs/2026-11-18-japans-koninkrijk-design.md`. Alle stories zijn M. Spelregels en tests staan in `core/`; de bouwwerken zijn **niet in het spel bekeken** (alleen de bouwplannen zijn getest).
+
+| ID | Story | Status | Wat er is en wat nog niet |
+|---|---|---|---|
+| DR-1201 | Koninkrijkstype en thema in data | ✔ klaar (getest) | `KingdomTheme` en Japans type in `KingdomPlacement`; deterministisch per seed, dichtheid tussen 0,5% en 2% (test) |
+| DR-1202 | Klassen samoerai en onmyoji | ✔ klaar, met beperking | Keuze, startset en 6 vaardigheden per klasse uit JSON. De nieuwe vaardigheden zijn passief (zonder kosten of effect). Het keuzescherm (SkillScreen) met 5 klassen is niet met de hand gecontroleerd |
+| DR-1203 | Japans dorp en kasteel | ✔ klaar, niet in het spel bekeken | Bouwplannen met huizen, markt, dojo, torii, pagode en kasteel en NPC-plekken. De sensei en de koning worden niet gespawnd (er is geen NPC-mechaniek voor rollen, ook niet voor de westerse koning); de sensei-dialoog is dus onbereikbaar |
+| DR-1204 | Japans gebied | ✔ klaar, deels | Tuin met kersenbomen, bamboe, vijver en berg achter het dorp. De tuin wordt in dezelfde bouwbeurt geplaatst als het dorp, niet gespreid (zie meting) |
+| DR-1205 | Wapens | ✔ klaar, met beperkingen | Katana, naginata, yumi, shuriken met 16x16-tekstuur. De waarden staan in Java (`core/JapaneseWeapons`), niet in JSON: acceptatie niet letterlijk gehaald. `usableBy` wordt niet afgedwongen, het bereik van de naginata is niet toegepast, de shuriken doet geen 3 schade en de yumi heeft geen trekanimatie. Schadeformule niet in het spel geprobeerd |
+| DR-1206 | Eten | ✔ klaar, met beperking | Rijst, onigiri, sushi, thee met recepten. De eetbonussen zijn alleen vastgelegd (core), niet toegepast in het spel. Waarden staan in Java, niet in JSON |
+| DR-1207 | Bewoners, quests en buit | ✔ klaar, met beperkingen | Quest, spawnlijst en buittabel; het Japanse kasteel gebruikt eigen buit en spawns. `loot/japans_dorp.json` heeft geen plaatsingshaak (nog ongebruikt). De sensei en de koning worden niet gespawnd |
+| DR-1208 | Meting en afronding | ✔ klaar, met beperking | Wat gemeten kon worden staat hieronder; FPS en RAM in het spel zijn **niet gemeten**. README, handleiding, changelog en wiki (lokaal klaargezet) bijgewerkt |
+
+### Meting DR-1208 (2026-11-18)
+
+Gemeten met een tijdelijke JUnit-meting (JDK 25, niet meegecommit): het aantal blokplaatsingen van de bouwplannen en hoe lang het opstellen van het plan duurt (gemiddelde van 200 keer na 50 opwarmrondes). Dit is alleen de rekentijd van het plan in `core/`, **niet** het neerzetten van blokken in de wereld.
+
+| Bouwplan | Plaatsingen | Tijd om het plan op te stellen |
+|---|---|---|
+| Westers dorp | 1.541 | 40 µs |
+| Japans dorp | 3.774 (2,4x westers) | 98 µs |
+| Japanse tuin | 1.853 | 103 µs |
+| Westers kasteel | 6.130 | 167 µs |
+| Japans kasteel | 6.219 (gelijk aan westers) | 232 µs |
+
+- Japans dorp plus tuin: 5.627 plaatsingen in één bouwbeurt (3,7x het westerse dorp). De tuin hoort bij hetzelfde dorp en wordt niet apart ingepland.
+- **Risico:** die ~5.600 plaatsingen gebeuren in één keer bij het activeren van het koninkrijk. Een korte haperingspiek is mogelijk; dat is niet in het spel gemeten. Het westerse kasteel (6.130) doet dit al op dezelfde schaal, dus het is geen nieuw soort piek, maar het dorp is wel veel zwaarder dan het westerse. Het ontwerp vroeg "geleidelijke generatie zonder tick-piek"; dat is niet gebouwd.
+- **Niet gemeten:** FPS op lage instelling, RAM tijdens het spelen, laadtijd, de echte tijd van het plaatsen van blokken en het aantal blokken/entiteiten in beeld in een Japans koninkrijk. Dat kan alleen in het echte spel op de doellaptop (valt onder DR-005, DR-801, DR-805). Eis blijft 40+ FPS en onder ca. 3 GB; of die gehaald wordt is voor het Japanse koninkrijk **onbekend**.
+
+### Open vervolgstories Epic 12 (nog niet gebouwd, eerst bespreken)
+
+| Voorstel | Wat |
+|---|---|
+| Wapen- en eetwaarden naar JSON | `JapaneseWeapons` en eetbonussen uit `data/drakenrijken/` laden (DR-1205/DR-1206 letterlijk halen) |
+| Eetbonussen toepassen | Onigiri, sushi en thee geven in het spel hun bonus |
+| Wapengedrag afmaken | `usableBy` afdwingen, naginata-bereik, shuriken 3 schade, yumi trekanimatie |
+| Effecten voor klassevaardigheden | De 12 passieve vaardigheden van samoerai en onmyoji kosten en effect geven |
+| NPC-rollen spawnen | Sensei en koning (ook de westerse) echt plaatsen, zodat de sensei-dialoog bereikbaar wordt |
+| Plaatsingshaak voor `loot/japans_dorp.json` | Buit van het dorp koppelen aan een kist of plek |
+| Geleidelijke generatie | Dorp en tuin over meerdere ticks verdelen als de meting in het spel een piek laat zien |
+| Handmatige controle in het spel | Bouwwerken bekijken, SkillScreen met 5 klassen, spawns en quests spelen |
+
 ---
 
 ## Voorgestelde volgorde (mijlpalen)
@@ -228,7 +272,8 @@ Wat nog open staat kan niet zonder het echte spel, eigen bestanden of een beslui
 
 | Story | Wat ontbreekt |
 |---|---|
-| DR-005, DR-801, DR-805, DR-807 | Metingen (FPS, RAM, laadtijd) op de doellaptop in het echte spel |
+| DR-005, DR-801, DR-805, DR-807 | Metingen (FPS, RAM, laadtijd) op de doellaptop in het echte spel (ook voor het Japanse koninkrijk, Epic 12) |
+| Epic 12 (zie vervolgstories) | Bouwwerken, SkillScreen met 5 klassen en spawns bekijken in het spel; wapen- en eetgedrag afmaken |
 | DR-903 t/m DR-905 | Speelrondes door een mens in het echte spel |
 | DR-906 | Starten met en zonder Sodium en Lithium in het echte spel |
 | DR-907 | Wacht op de fouten uit de speelrondes (DR-903) |
