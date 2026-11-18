@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Kern voor bliksemvanger (`LightningRod`), herbergsgeruchten (`RumorTable`) en ruïneverhalen (`RuinStory`); nog zonder blokken of inhoud.
 - Belastingplafond 5 dagen, `Profession.payout` (uitbetaling beroepen) en `MachineWear` (slijtage en storing, uit te zetten).
 - Economie bijgesteld: NPC-grens en rijkshuisvesting gelijk (max 16), belasting 0/2/4/7/11/16, boer levert 2, seizoenen winter 60/herfst 115/zomer 130, nieuwe `GoldSinks` (bouwplan 1 goud per 10 blokken, muuronderhoud 1 goud per 20 blokken per dag).
 - Trein en mijnkar (#144, #146, eerste stap): in de kern bepalen prijs (helft van snelreis), reistijd, kracht van de ketel en de opbrengst per minuut van een kar (hoogstens 4 karren). Nog geen wagon of rails in het spel.
