@@ -106,4 +106,18 @@ public class SmederijGameTest {
 		com.drakenrijken.data.MachineRuntime.clearForTest();
 		context.succeed();
 	}
+
+	@GameTest
+	public void bliksemafleiderLaadtOpEnGeeftKracht(GameTestHelper context) {
+		var level = context.getLevel();
+		var pos = context.absolutePos(new net.minecraft.core.BlockPos(1, 2, 1));
+		level.setBlock(pos, com.drakenrijken.data.ModBlocks.BLIKSEMAFLEIDER.defaultBlockState(), 3);
+		if (com.drakenrijken.data.LightningRodBlock.drawNear(level, pos)) throw new AssertionError("lege afleider geeft kracht");
+		for (int i = 0; i < 7; i++) com.drakenrijken.data.LightningRodBlock.strike(level, pos);
+		int lading = level.getBlockState(pos).getValue(com.drakenrijken.data.LightningRodBlock.LADING);
+		if (lading != 5) throw new AssertionError("lading hoort 5 te zijn, is " + lading);
+		if (!com.drakenrijken.data.LightningRodBlock.drawNear(level, pos)) throw new AssertionError("geladen afleider geeft niets");
+		if (level.getBlockState(pos).getValue(com.drakenrijken.data.LightningRodBlock.LADING) != 4) throw new AssertionError("lading niet verlaagd");
+		context.succeed();
+	}
 }

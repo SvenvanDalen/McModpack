@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [" C ", " I ", "III"],
+	"key": {"C": "minecraft:copper_ingot", "I": "minecraft:iron_ingot"},
+	"result": {"id": "drakenrijken:bliksemafleider", "count": 1}
+}

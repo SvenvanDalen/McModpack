@@ -7,6 +7,11 @@ public final class LightningRod {
 
 	private int charge;
 
+	public LightningRod() {}
+
+	/** Begint met een bestaande lading (binnen 0 en de capaciteit). */
+	public LightningRod(int charge) { this.charge = Math.max(0, Math.min(CAPACITY, charge)); }
+
 	public int charge() { return charge; }
 
 	/** Een bliksemslag op de vanger; geeft de lading die er echt bij kwam (niet meer dan er past). */
