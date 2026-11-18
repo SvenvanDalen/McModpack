@@ -17,7 +17,7 @@ class RealmTaxTest {
 	void plafondVanDrieDagen() {
 		assertEquals(0, RealmTax.owed(3, 10, 10));
 		assertEquals(6, RealmTax.owed(1, 10, 13));
-		assertEquals(6, RealmTax.owed(1, 10, 500));
+		assertEquals(10, RealmTax.owed(1, 10, 500));
 		assertEquals(0, RealmTax.owed(3, 10, 5));
 	}
 

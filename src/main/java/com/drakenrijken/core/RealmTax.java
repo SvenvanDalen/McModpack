@@ -1,9 +1,9 @@
 package com.drakenrijken.core;
 
-/** Belasting van het rijk (#154): elke speldag goud, met een plafond van 3 dagen. Waarden zijn eerste inschattingen om te balanceren. */
+/** Belasting van het rijk (#154): elke speldag goud, met een plafond van 5 dagen. Waarden zijn eerste inschattingen om te balanceren. */
 public final class RealmTax {
 	/** Zoveel dagen belasting blijft hoogstens liggen. */
-	public static final int MAX_DAYS = 3;
+	public static final int MAX_DAYS = 5;
 
 	private RealmTax() {}
 

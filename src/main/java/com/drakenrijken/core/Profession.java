@@ -43,4 +43,10 @@ public enum Profession {
 		int boer = r[BOER.ordinal()] * BOER.dailyYield * season.harvestPercent() / 100;
 		return dailyYield(level) - r[BOER.ordinal()] * BOER.dailyYield + boer;
 	}
+
+	/** Uitbetaling aan de speler: opbrengst per dag in het seizoen van vandaag, voor hoogstens {@link RealmTax#MAX_DAYS} dagen sinds de laatste keer. */
+	public static int payout(int level, long lastDay, long today) {
+		long dagen = Math.max(0, Math.min(RealmTax.MAX_DAYS, today - lastDay));
+		return (int) (dailyYield(level, Season.of(today)) * dagen);
+	}
 }

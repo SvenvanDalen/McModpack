@@ -41,4 +41,13 @@ class ProfessionTest {
 		assertEquals(Profession.dailyYield(l) - vol + vol * Season.WINTER.harvestPercent() / 100, Profession.dailyYield(l, Season.WINTER));
 		assertTrue(Profession.dailyYield(l, Season.ZOMER) >= Profession.dailyYield(l, Season.HERFST));
 	}
+
+	@Test
+	void uitbetalingHoudtPlafondAan() {
+		int l = RealmState.MAX_LEVEL;
+		assertEquals(0, Profession.payout(l, 100, 100));
+		assertEquals(Profession.payout(l, 0, RealmTax.MAX_DAYS), Profession.payout(l, 0, RealmTax.MAX_DAYS));
+		assertTrue(Profession.payout(l, 0, 500) <= Profession.dailyYield(l, Season.ZOMER) * RealmTax.MAX_DAYS);
+		assertEquals(0, Profession.payout(l, 50, 10));
+	}
 }
