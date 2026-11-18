@@ -1,5 +1,6 @@
 package com.drakenrijken.data;
 
+import com.drakenrijken.core.JapaneseFood;
 import com.drakenrijken.core.JapaneseWeapons;
 import java.util.function.Function;
 import net.minecraft.core.Registry;
@@ -7,7 +8,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SnowballItem;
 import net.minecraft.world.item.ToolMaterial;
@@ -18,6 +21,11 @@ public final class ModJapaneseItems {
 	public static Item NAGINATA;
 	public static Item YUMI;
 	public static Item SHURIKEN;
+
+	public static Item RIJST;
+	public static Item ONIGIRI;
+	public static Item SUSHI;
+	public static Item THEE;
 
 	private ModJapaneseItems() {}
 
@@ -31,6 +39,16 @@ public final class ModJapaneseItems {
 		NAGINATA = register(n.id(), p -> new Item(p.sword(ToolMaterial.IRON, (float) (n.damage() - 3), -3.0F).durability(n.durability())));
 		YUMI = register(y.id(), p -> new BowItem(p.durability(y.durability())));
 		SHURIKEN = register(s.id(), p -> new SnowballItem(p.stacksTo(JapaneseWeapons.SHURIKEN_STACK)));
+		// De bonussen staan in core.JapaneseFood; ze worden nog niet in het spel toegepast.
+		RIJST = register("rijst", p -> new Item(p.food(food("rijst"))));
+		ONIGIRI = register("onigiri", p -> new Item(p.food(food("onigiri"))));
+		SUSHI = register("sushi", p -> new Item(p.food(food("sushi"))));
+		THEE = register("thee", p -> new Item(p.food(food("thee"), Consumables.DEFAULT_DRINK)));
+	}
+
+	private static FoodProperties food(String id) {
+		JapaneseFood.Stats f = JapaneseFood.get(id);
+		return new FoodProperties.Builder().nutrition(f.hunger()).saturationModifier((float) f.saturation()).build();
 	}
 
 	private static Item register(String name, Function<Item.Properties, Item> factory) {

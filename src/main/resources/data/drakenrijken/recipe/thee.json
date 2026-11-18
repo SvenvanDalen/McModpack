@@ -1,0 +1,6 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"category": "misc",
+	"ingredients": ["minecraft:fern","minecraft:fern","minecraft:glass_bottle"],
+	"result": {"id": "drakenrijken:thee", "count": 1}
+}

@@ -1,0 +1,6 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"category": "misc",
+	"ingredients": ["drakenrijken:rijst","drakenrijken:rijst","minecraft:dried_kelp"],
+	"result": {"id": "drakenrijken:onigiri", "count": 2}
+}

@@ -1,0 +1,6 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"category": "misc",
+	"ingredients": ["drakenrijken:rijst","minecraft:dried_kelp","minecraft:cod"],
+	"result": {"id": "drakenrijken:sushi", "count": 2}
+}
