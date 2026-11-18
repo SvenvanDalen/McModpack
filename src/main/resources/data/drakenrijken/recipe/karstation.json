@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": ["I I", "PCP", "RRR"],
+	"key": {"I": "minecraft:iron_ingot", "P": "minecraft:oak_planks", "C": "minecraft:minecart", "R": "minecraft:rail"},
+	"result": {"id": "drakenrijken:karstation", "count": 1}
+}

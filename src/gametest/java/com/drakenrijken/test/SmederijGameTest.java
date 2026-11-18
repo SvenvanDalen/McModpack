@@ -183,4 +183,20 @@ public class SmederijGameTest {
 		if (!level.getBlockState(pos).is(com.drakenrijken.data.ModBlocks.RUINESTEEN)) throw new AssertionError("geen ruinesteen op " + pos);
 		context.succeed();
 	}
+
+	@GameTest
+	public void karstationLeverstKolenNaDeRit(GameTestHelper context) {
+		com.drakenrijken.data.CartStationBlock.clearForTest();
+		var player = context.makeMockServerPlayerInLevel();
+		var level = context.getLevel();
+		var pos = context.absolutePos(new net.minecraft.core.BlockPos(2, 1, 2));
+		String a = com.drakenrijken.data.CartStationBlock.collect(player, level, pos, 0L);
+		if (!a.contains("rijdt weg")) throw new AssertionError("start: " + a);
+		String b = com.drakenrijken.data.CartStationBlock.collect(player, level, pos, 10 * 20L);
+		if (!b.contains("onderweg")) throw new AssertionError("te vroeg: " + b);
+		String c = com.drakenrijken.data.CartStationBlock.collect(player, level, pos, 45 * 20L);
+		if (player.getInventory().countItem(Items.COAL) != 8) throw new AssertionError("45 s = 2 ronden = 8 kolen: " + c);
+		com.drakenrijken.data.CartStationBlock.clearForTest();
+		context.succeed();
+	}
 }

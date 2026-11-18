@@ -4,6 +4,7 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 
 ## [Niet uitgebracht]
 
+- Karstation: een mijnkar levert kolen op uit de speltijd (#146).
 - Ruïnesteen: vier verhalen (wachttoren, smederij, kapel, drakenkamp), per plek vast gekozen.
 - Glazen buis: rechtsklikken meet de lengte en doorvoer van de leiding (#150).
 - Machinebord: rechtsklikken toont de status van alle machines binnen 8 blokken (#148).

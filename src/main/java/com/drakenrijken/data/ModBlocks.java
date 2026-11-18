@@ -30,6 +30,7 @@ public final class ModBlocks {
 	public static Block RUINESTEEN;
 	public static Block MACHINEBORD;
 	public static Block GLAZENBUIS;
+	public static Block KARSTATION;
 
 	private ModBlocks() {}
 
@@ -51,6 +52,7 @@ public final class ModBlocks {
 		RUINESTEEN = register("ruinesteen", RuinStoneBlock::new, BlockBehaviour.Properties.of().strength(2.5f));
 		MACHINEBORD = register("machinebord", MachineBoardBlock::new, BlockBehaviour.Properties.of().strength(2.0f));
 		GLAZENBUIS = register("glazenbuis", GlassPipeBlock::new, BlockBehaviour.Properties.of().strength(0.8f).noOcclusion());
+		KARSTATION = register("karstation", CartStationBlock::new, BlockBehaviour.Properties.of().strength(2.5f));
 	}
 
 	private static Block register(String naam, java.util.function.Function<BlockBehaviour.Properties, Block> maker, BlockBehaviour.Properties props) {
