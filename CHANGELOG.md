@@ -5,6 +5,12 @@ Versienummering volgt [Semver](https://semver.org/lang/nl/): `MAJOR.MINOR.PATCH`
 ## [Niet uitgebracht]
 
 - Japans koninkrijk (Epic 12, DR-1201 t/m DR-1208): een koninkrijkstype met dorp, kasteel en tuin (kersenbomen, bamboe, vijver, berg), de klassen samoerai en onmyoji, wapens (katana, naginata, boog, shuriken), eten (rijst, onigiri, sushi, thee), een quest en eigen buit en bewoners. Bouwwerken niet in het spel bekeken; FPS en RAM niet in het spel gemeten (alleen het aantal plaatsingen: dorp plus tuin ongeveer 5.600 in één bouwbeurt). Wapen- en eetwaarden staan in Java, eetbonussen zijn nog niet toegepast, de nieuwe vaardigheden hebben nog geen effect en de sensei en koning worden nog niet gespawnd. Nog niet af: de klasse-beperking van wapens wordt niet afgedwongen, de naginata heeft geen extra bereik, de shuriken doet geen schade en de yumi heeft geen spanning; eetbonussen werken nog niet; de nieuwe klassevaardigheden hebben nog geen effect; sensei en koning verschijnen nog niet.
+- Startmodus 'lege kavel' (instelling startMode in drakenrijken.json): er worden dan geen dorpen, steden of burchten gebouwd; standaard blijft 'normaal' (DR-1111) (DR-1111, #15)
+- Opstanden: honger, te weinig bewakers en hard werk laten de onrust oplopen; vanaf 80 breekt een opstand uit (DR-1110) (DR-1110, #14)
+- Gevangenen werken in de mijn, op het land of op schepen; per 5 gevangenen is een bewaker nodig (DR-1109) (DR-1109, #13)
+- Koning omkopen (prijs per niveau) of afzetten met een sterker leger dan zijn wacht; zijn plek innemen kan met een even groot eigen rijk (DR-1108) (DR-1108, #12)
+- Scheepsbemanning: zonder minimale bemanning vaart het schip niet, kanonnen hebben schutters nodig en delen de plekken (DR-1107) (DR-1107, #11)
+- Schip zelf bouwen: kiel, breedte, romp en zeilen bepalen drijfkracht, snelheid, wendbaarheid en plekken; een te zwaar schip zinkt (DR-1106) (DR-1106, #10)
 - Belegeringswapens: ontwerp (arm, contragewicht, frame) bepaalt bereik, schade en gewicht; te licht frame breekt, te zwaar wapen is niet te verplaatsen (DR-1105) (DR-1105, #9)
 - Leger: soldaten aanwerven (max 200), uitrusten en voeden; zichtbare soldaten binnen het budget, hongerig leger vecht minder (DR-1104) (DR-1104, #8)
 - Bouwwerk telt mee voor macht: 40 blokken is 1 punt, bouwen alleen geeft hooguit niveau 3; groter rijk trekt meer mensen en vijanden aan (DR-1103) (DR-1103, #7)
