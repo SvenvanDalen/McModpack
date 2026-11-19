@@ -11,7 +11,7 @@ public final class HudLines {
 		List<String> r = new ArrayList<>();
 		if (!quest.isEmpty()) r.add("Quest: " + quest);
 		if (klasse != null && balk != null) {
-			r.add((klasse == PlayerClass.MAGIER ? "Mana " : "Uithouding ") + balk.value() + "/" + balk.max());
+			r.add((klasse == PlayerClass.MAGIER || klasse == PlayerClass.ONMYOJI ? "Mana " : "Uithouding ") + balk.value() + "/" + balk.max());
 		}
 		if (rijkNiveau > 0) r.add("Rijk niveau " + rijkNiveau);
 		return String.join("\n", r);

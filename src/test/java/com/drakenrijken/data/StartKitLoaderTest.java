@@ -41,4 +41,19 @@ class StartKitLoaderTest {
 		assertTrue(StartKit.forClass(kits, PlayerClass.MAGIER).items().isEmpty());
 		assertEquals(2, StartKit.forClass(kits, PlayerClass.RIDDER).items().size());
 	}
+
+	@Test
+	void bundeldeKitsDekkenAlleKlassen() throws Exception {
+		java.nio.file.Path dir = java.nio.file.Paths.get(StartKitLoaderTest.class.getResource("/data/drakenrijken/kits").toURI());
+		List<String> teksten = new ArrayList<>();
+		try (Stream<java.nio.file.Path> files = java.nio.file.Files.list(dir)) {
+			for (var p : files.filter(f -> f.toString().endsWith(".json")).toList()) teksten.add(java.nio.file.Files.readString(p));
+		}
+		List<String> warns = new ArrayList<>();
+		List<StartKit> kits = StartKitLoader.load(teksten.stream(), warns::add);
+		assertTrue(warns.isEmpty(), warns.toString());
+		for (PlayerClass pc : PlayerClass.values()) {
+			assertTrue(!StartKit.forClass(kits, pc).items().isEmpty(), "geen kit voor " + pc);
+		}
+	}
 }

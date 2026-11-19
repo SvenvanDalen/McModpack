@@ -50,6 +50,6 @@ class LangFilesTest {
 			}
 		}
 		assertTrue(missing.isEmpty(), "zonder naam: " + missing);
-		for (String c : new String[] {"ridder", "magier", "schurk"}) assertTrue(keys.contains("class.drakenrijken." + c));
+		for (String c : new String[] {"ridder", "magier", "schurk", "samoerai", "onmyoji"}) assertTrue(keys.contains("class.drakenrijken." + c));
 	}
 }
